@@ -1,1 +1,14 @@
-ï»¿TEAM 16
+SER 502 ACTIVITY LOG
+
+Week 0 (March 19th- 25th):
+1. Finalised with the team members.
+2. Creating GitHub private repository and adding structure to the git repository.
+
+Week 1 (March 26th – 31st): 
+Meeting 1 Agenda:
+1. Discussing the basic requirements to build a compiler and what to start with.
+2. Deciding on the language being used to design the compiler.
+3. Gathering information regarding several stages in a design.
+4. Discussing further on the milesotnes and topics that come up during the meeting.
+ 
+
