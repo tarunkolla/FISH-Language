@@ -3,8 +3,10 @@ $ i;
 $ j;
 $ k;
 $ sum;
+$ boolResult;
 i = 3;
 j = 5;
+
 loop k from 1 to 5:
 	if((k / 2) == 0):
 		sum = sum + j;
@@ -12,5 +14,6 @@ loop k from 1 to 5:
 		sum = sum - i;
 endif;
 endloop;
+boolResult = (sum == 10);
 write sum;
 endFISH
