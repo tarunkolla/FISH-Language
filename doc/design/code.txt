@@ -1,0 +1,16 @@
+startFISH
+$ i;
+$ j;
+$ k;
+$ sum;
+i = 3;
+j = 5;
+loop k from 1 to 5:
+	if((k / 2) == 0):
+		sum = sum + j;
+	else:
+		sum = sum - i;
+endif;
+endloop;
+write sum;
+endFISH
