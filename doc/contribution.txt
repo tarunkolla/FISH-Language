@@ -9,6 +9,6 @@ Meeting 1 Agenda:
 1. Discussing the basic requirements to build a compiler and what to start with.
 2. Deciding on the language being used to design the compiler.
 3. Gathering information regarding several stages in a design.
-4. Discussing further on the milesotnes and topics that come up during the meeting.
- 
+4. Discussing further on the milestones and topics that come up during the meeting.
+
 
