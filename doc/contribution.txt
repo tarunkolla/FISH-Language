@@ -12,3 +12,28 @@ Meeting 1 Agenda:
 4. Discussing further on the milestones and topics that come up during the meeting.
 
 
+Meeting 1 :
+Tarun Kolla: 
+Discuss project outline.
+Detail Phase 1: Grammar and Lexical Analyzer
+Define basic coding style.
+Started work on Logo Design.
+
+Koushik Kotamraju: 
+Discussed basic outline of the project.
+Defined basic coding style of the language.
+Detail Phase 1: Grammar and Lexical Analyzer
+Started designing basic grammar. 
+
+Ravi Teja Thoram:
+Discuss project outline.
+Detail Phase 1: Grammar and Lexical Analyzer
+Define basic coding style.
+
+Pranav Mandadi:
+Discuss project outline.
+Detail Phase 1: Grammar and Lexical Analyzer
+Define basic coding style.
+
+
+
