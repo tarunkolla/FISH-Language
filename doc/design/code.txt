@@ -8,7 +8,7 @@ i = 3;
 j = 5;
 
 loop counter from 1 to 5:
-	if((k / 2) == 0):
+	if((counter / 2) == 0):
 		sum = sum + j;
 	else:
 		sum = sum - i;
