@@ -11,19 +11,34 @@ Grammar Description:
 Grammar : 
 	This section shows the Unambiguous Grammar for our programming language FISH.
 
-Program 		-> Block
-Block      		-> ‘startFISH’ Declaration; Statements ‘endFISH’
-Declaration 	-> DeclarationHelp ‘;’ Declaration ‘;’ | DeclarationHelp
-DeclarationHelp -> ‘$’ Identifier
-Statements 		-> StatementsHelp ‘;’ Statements ';'| StatementsHelp
-StatementsHelp	-> Identifier ‘=’ Expression |
-            	   ‘If’ ‘(‘ Boolexpression ‘)’ ‘:’ Statements ‘else’ ‘:’Statements ‘endif’ ‘;’ | 
-            	   ‘loop’ Identifier Number ‘to’   Number ‘:’ Statements ‘endloop’ |
-            	   'loop' BoolExpression 'do' ':' Statements 'endloop'
+grammar Fish;
+program 		: block;
+block      		: 'startFISH' declaration statements 'endFISH';
+declaration 		: declarationHelp declaration
+			| declarationHelp;
+declarationHelp 	: '$' IDENTIFIER;
+statements 		: statementsHelp statements 
+			| statementsHelp;
+statementsHelp		: IDENTIFIER '=' expression 
+			| 'if' '(' boolExpression ')' ':' statements 'else' ':' statements 'endif' 
+			| 'loop' IDENTIFIER 'from' NUMBER 'to' NUMBER ':' statements 'endloop' 
+			| 'loop' '(' boolExpression ')' ':' statements 'endloop';
+boolExpression 		: 'true' 
+			| 'false' 
+			| expression '==' expression;
 
-Boolexpression 	-> ‘true’ | ‘false’ | Expression ‘==’ Expression
-Expression 		-> Term  ‘+’ Expression | Term ‘-’ Expression | Term
-Term         	-> Factor ‘*’  Term  | Factor ‘/’ Term | Factor ‘%’ Term| Factor
-Factor     		-> Number | Identifier
-Number 			-> [-]?[0-9]+
-Identifier 		-> [_]?[a-z]+
+expression 		: term  '+' expression 
+			| term '-' expression 
+			| term;
+term 	        	: factor '*'  term  
+			| factor '/' term 
+			| factor '%' term
+			| factor;
+
+factor     		: NUMBER
+			| IDENTIFIER;
+
+IDENTIFIER		: [a-z]+;
+NUMBER	 		: [-]?[0-9]+;
+
+NEWLINE			: ('\r'|'\n'|' '|'\t') -> skip;
