@@ -1,4 +1,4 @@
-     FISH LANGUAGE
+  FISH LANGUAGE
 Features of Language:
 Data Types:
 Our language allows declaration of two data types Integer and Boolean (planning to implement the binding of data type dynamically, our idea of implementation is to check the type associated with the variable whenever assignment operator occurs and update the type accordingly).
@@ -32,4 +32,3 @@ Our language allows declaration of two data types Integer and Boolean (planning 
 		fun #<functionName>(<parameters>):
 			block
 		endfun
-
