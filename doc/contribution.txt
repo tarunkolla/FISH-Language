@@ -4,7 +4,7 @@ Week 0 (March 19th- 25th):
 1. Finalised with the team members.
 2. Creating GitHub private repository and adding structure to the git repository.
 
-Week 1 (March 26th – 31st): 
+Week 1 (March 26th â€“ 31st): 
 Meeting 1 Agenda:
 1. Discussing the basic requirements to build a compiler and what to start with.
 2. Deciding on the language being used to design the compiler.
@@ -25,15 +25,59 @@ Defined basic coding style of the language.
 Detail Phase 1: Grammar and Lexical Analyzer
 Started designing basic grammar. 
 
-Ravi Teja Thoram:
+Naga Ravi Teja Thoram:
 Discuss project outline.
 Detail Phase 1: Grammar and Lexical Analyzer
 Define basic coding style.
 
-Pranav Mandadi:
+Siva Pranav Mandadi:
 Discuss project outline.
 Detail Phase 1: Grammar and Lexical Analyzer
 Define basic coding style.
 
+Meeting 2 Agenda: 
+1. Finalizing on grammar
+2. Working on issues related to dynamic binding of variables.
 
+Meeting 2:
+Tarun kolla:
+Working on refinement of grammer rules.
+Discussed further on dynamic binding of variables.
+
+Koushik Kotamaraju:
+Learning ANTLR4 working and implementation.
+Discussed further on dynamic binding of variables.
+
+Naga Ravi Teja Thoram:
+Learning ANTLR4 working and implementation.
+Discussed further on dynamic binding of variables.
+
+Siva Pranav Mandadi:
+Working on refinement of grammer rules.
+Discussed further on dynamic binding of variables.
+
+Week 2(April 1st - 7th):
+Meeting 3 Agenda:
+1. Working on Byte Code 
+2. Intermediate code genration 
+3. Deciding on byte code instruction 
+4. Grammer validatin using ANTLR4
+
+Meeting 3:
+Tarun kolla:
+Decided on Opcode and their corrosponding functinality.
+Newly added Funtions in FISH programming language.
+
+Koushik Kotamaraju:
+Decided on Opcode and their corrosponding functinality.
+Newly added Funtions in FISH programming language.
+
+Naga Ravi Teja Thoram:
+Grammer validation using ANTLR4
+Refined the grammer by making changes in functionality of FISH programming language.
+
+Siva Pranav Mandadi:
+Grammer validation using ANTLR4
+Refined the grammer by making changes in functionality of FISH programming language.
+  
 
