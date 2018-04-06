@@ -1,44 +1,59 @@
-Grammar Description:
-	This section depicts the brief rules involved in our grammar and additional details in context of grammar.
-	Identifiers 		  : can be named starting with a optional underscore (_) followed by sequence of small 	letters
-	Arithmetic Operations : Addition(+), Subtraction(-), Multiplication(*), Division(/) and Modulus(%)
-	Numbers 			  : These are integers (both positive and negative).
-	Statements 			  : Our grammar holds an assigment Statement (with operator '='),
-							If-else statement (conditional block), 
-							loop statement (with two versions: 1. Iterates a counter in given range of numbers 2. Iterates till associated Boolean expression becomes 'false')
-	Boolean				  :	grammar includes atomic values "true","false" and Boolean Expression (with operator '==')				
-	The grammar was refined form obtained after removing 'leftRecursion' and including 'Precedence' among operators.  
-Grammar : 
-	This section shows the Unambiguous Grammar for our programming language FISH.
-
-grammar Fish;
-program 		: block;
-block      		: 'startFISH' declaration statements 'endFISH';
-declaration 		: declarationHelp declaration
-			| declarationHelp;
-declarationHelp 	: '$' IDENTIFIER;
-statements 		: statementsHelp statements 
-			| statementsHelp;
-statementsHelp		: IDENTIFIER '=' expression 
-			| 'if' '(' boolExpression ')' ':' statements 'else' ':' statements 'endif' 
-			| 'loop' IDENTIFIER 'from' NUMBER 'to' NUMBER ':' statements 'endloop' 
-			| 'loop' '(' boolExpression ')' ':' statements 'endloop';
-boolExpression 		: 'true' 
-			| 'false' 
-			| expression '==' expression;
-
-expression 		: term  '+' expression 
-			| term '-' expression 
-			| term;
-term 	        	: factor '*'  term  
-			| factor '/' term 
-			| factor '%' term
-			| factor;
-
-factor     		: NUMBER
-			| IDENTIFIER;
-
-IDENTIFIER		: [a-z]+;
-NUMBER	 		: [-]?[0-9]+;
-
-NEWLINE			: ('\r'|'\n'|' '|'\t') -> skip;
+Grammar : As we are using Top-down parsing approach our grammar must be unambiguous, so we eliminated left recursion and added precedence among operators. The grammar is as follows:
+program			->  mainBlock
+mainBlock		->  startFISH block endFish | startFISH block endFish functionalBlock
+block			-> declaration statements
+			| statements
+functionalBlock		-> functionalHelpBlock functionalBlock
+			|  functionalHelpBlock 
+functionalHelpBlock 	-> fun functionName(parameters): block endfun
+parameters 		->  parametersHelp, parameters
+			|   parametersHelp
+parametersHelp 	-> $identifier
+declaration 		->  declarationHelp , declaration
+			|   declarationHelp
+declarationHelp	 	-> $identifier
+			 |   $identifier = number
+		 	 |   $identifier = boolean
+statements		->  statementsHelp statements
+			|   statementsHelp
+statementsHelp	 	->  assignmentStatement
+			|    ifStatement
+			|    loopStatement
+			|    functionCall
+			|    writeStatement
+			|    returnStatement
+assignmentStatement 	-> identifier = expression
+			| identifier = booleanExpression
+ifStatement		->  if (booleanExpression) : block else : block endif
+loopStatement		->  loop (booleanExpression) : block endloop
+functionCall		->  identifier = functionName(arguments)
+			|   functionName(arguments)
+arguments 		-> argumentsHelp , arguments
+		 	| argumentsHelp
+argumentsHelp  		-> expression
+			| boolean
+writeStatement 		->  write expression
+returnStatement		->  return expression
+			|    return booleanExpression
+boolExpression	 	->  expression == expression
+		 	|    expression >= expression
+		 	|    expression <= expression
+  		 	|    expression != expression
+		 	|    expression > expression
+		 	|    expression < expression
+			|    boolean
+expression 		->  term  + expression 
+			|    term - expression 
+			|    term
+term 	        		->  factor *  term  
+		 	|  factor / term 
+		 	|  factor % term
+		 	|  factor
+factor			->  (expression)
+			|   identifier
+			|   number
+boolean			->  true
+			|    false	
+number			->   [-|+]?[0-9]+
+identifier		->   [a-z]+
+functionName		->   [#][a-z]+

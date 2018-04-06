@@ -1,20 +1,20 @@
 startFISH
-$ i;
-$ counter;
-$ sumeven;
-$ boolresult;
-i = -3;
-counter = 1;
-sumeven = 0;
-
-loop counter 1 to 15:
-	if((counter % 2) == 0):
-		sumeven = sumeven + counter;
+	$a,$bob=2,$x,$y
+	a=1
+	x=(2*1)+2
+	if(a==1):
+		y=#sub(a,x)
 	else:
-		write 'odd';
-	endif;
-endloop;
-boolresult = (sumeven == 10);
-write boolresult;
-write sum;
+		y=#add(a,x)
+	endif
+	write y
+	write hello
 endFISH
+
+fun #add($p,$q):
+	return p+q
+endfun
+
+fun #sub($p,$q):
+	return p-q
+endfun	
