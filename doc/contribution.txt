@@ -80,4 +80,32 @@ Siva Pranav Mandadi:
 Grammer validation using ANTLR4
 Refined the grammer by making changes in functionality of FISH programming language.
   
+  
+  
 
+END GOAL & CONTRIBUTION PLAN:
+
+Tarun kolla:
+Work on runtime, installation and testing the compiler with sample programs.
+WOrk on PDF copy of your presentation and YouTube video demonstration.
+
+Koushik Kotamaraju:
+Work on runtime, installation and testing the compiler with sample programs.
+Work on PDF copy of your presentation and YouTube video demonstration.
+
+Naga Ravi Teja Thoram:
+Work on lexical analyzer, parser, intermediate code generation.
+Work on PDF copy of your presentation and YouTube video demonstration.
+
+Siva Pranav Mandadi:
+Work on lexical analyzer, parser, intermediate code generation.
+Work on PDF copy of your presentation and YouTube video demonstration.
+
+
+
+BEFORE SUBMISSION:
+
+1. Making final changes and checking to assure solution, grading criteria to be sure our code has address all criteria and
+constraints defined on the assignment page.
+
+2. Addiing other features to our language like functions, nested functions, additional data type support (Float, double, string etc,.), class etc if everything goes as planned.
