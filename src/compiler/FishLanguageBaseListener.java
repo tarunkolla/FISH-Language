@@ -29,7 +29,8 @@ public class FishLanguageBaseListener implements FishLanguageListener {
 	int instructionNo = 0;
 	
 	@Override public void enterProgram(FishLanguageParser.ProgramContext ctx) {
-		
+		instructionNo++;
+		instructionStack.add(instructionNo+" START FISHING");
 	}
 	/**
 	 * {@inheritDoc}
