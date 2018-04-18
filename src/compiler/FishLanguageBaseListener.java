@@ -38,6 +38,8 @@ public class FishLanguageBaseListener implements FishLanguageListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitProgram(FishLanguageParser.ProgramContext ctx) {
+		instructionNo++;
+		instructionStack.add(instructionNo+"END FISHING");
 	}
 	/**
 	 * {@inheritDoc}
