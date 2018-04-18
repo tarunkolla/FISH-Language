@@ -1,3 +1,4 @@
+package compiler;
 // Generated from FishLanguage.g4 by ANTLR 4.7.1
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -17,56 +18,6 @@ public interface FishLanguageListener extends ParseTreeListener {
 	 */
 	void exitProgram(FishLanguageParser.ProgramContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link FishLanguageParser#mainBlock}.
-	 * @param ctx the parse tree
-	 */
-	void enterMainBlock(FishLanguageParser.MainBlockContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link FishLanguageParser#mainBlock}.
-	 * @param ctx the parse tree
-	 */
-	void exitMainBlock(FishLanguageParser.MainBlockContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link FishLanguageParser#block}.
-	 * @param ctx the parse tree
-	 */
-	void enterBlock(FishLanguageParser.BlockContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link FishLanguageParser#block}.
-	 * @param ctx the parse tree
-	 */
-	void exitBlock(FishLanguageParser.BlockContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link FishLanguageParser#parametersHelp}.
-	 * @param ctx the parse tree
-	 */
-	void enterParametersHelp(FishLanguageParser.ParametersHelpContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link FishLanguageParser#parametersHelp}.
-	 * @param ctx the parse tree
-	 */
-	void exitParametersHelp(FishLanguageParser.ParametersHelpContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link FishLanguageParser#declaration}.
-	 * @param ctx the parse tree
-	 */
-	void enterDeclaration(FishLanguageParser.DeclarationContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link FishLanguageParser#declaration}.
-	 * @param ctx the parse tree
-	 */
-	void exitDeclaration(FishLanguageParser.DeclarationContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link FishLanguageParser#declarationHelp}.
-	 * @param ctx the parse tree
-	 */
-	void enterDeclarationHelp(FishLanguageParser.DeclarationHelpContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link FishLanguageParser#declarationHelp}.
-	 * @param ctx the parse tree
-	 */
-	void exitDeclarationHelp(FishLanguageParser.DeclarationHelpContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link FishLanguageParser#statements}.
 	 * @param ctx the parse tree
 	 */
@@ -77,15 +28,15 @@ public interface FishLanguageListener extends ParseTreeListener {
 	 */
 	void exitStatements(FishLanguageParser.StatementsContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link FishLanguageParser#statementsHelp}.
+	 * Enter a parse tree produced by {@link FishLanguageParser#declarationStatement}.
 	 * @param ctx the parse tree
 	 */
-	void enterStatementsHelp(FishLanguageParser.StatementsHelpContext ctx);
+	void enterDeclarationStatement(FishLanguageParser.DeclarationStatementContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link FishLanguageParser#statementsHelp}.
+	 * Exit a parse tree produced by {@link FishLanguageParser#declarationStatement}.
 	 * @param ctx the parse tree
 	 */
-	void exitStatementsHelp(FishLanguageParser.StatementsHelpContext ctx);
+	void exitDeclarationStatement(FishLanguageParser.DeclarationStatementContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link FishLanguageParser#assignmentStatement}.
 	 * @param ctx the parse tree
@@ -106,6 +57,26 @@ public interface FishLanguageListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitIfStatement(FishLanguageParser.IfStatementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FishLanguageParser#ifBlock}.
+	 * @param ctx the parse tree
+	 */
+	void enterIfBlock(FishLanguageParser.IfBlockContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FishLanguageParser#ifBlock}.
+	 * @param ctx the parse tree
+	 */
+	void exitIfBlock(FishLanguageParser.IfBlockContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FishLanguageParser#elseBlock}.
+	 * @param ctx the parse tree
+	 */
+	void enterElseBlock(FishLanguageParser.ElseBlockContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FishLanguageParser#elseBlock}.
+	 * @param ctx the parse tree
+	 */
+	void exitElseBlock(FishLanguageParser.ElseBlockContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link FishLanguageParser#loopStatement}.
 	 * @param ctx the parse tree
@@ -146,24 +117,4 @@ public interface FishLanguageListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitExpression(FishLanguageParser.ExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link FishLanguageParser#term}.
-	 * @param ctx the parse tree
-	 */
-	void enterTerm(FishLanguageParser.TermContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link FishLanguageParser#term}.
-	 * @param ctx the parse tree
-	 */
-	void exitTerm(FishLanguageParser.TermContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link FishLanguageParser#factor}.
-	 * @param ctx the parse tree
-	 */
-	void enterFactor(FishLanguageParser.FactorContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link FishLanguageParser#factor}.
-	 * @param ctx the parse tree
-	 */
-	void exitFactor(FishLanguageParser.FactorContext ctx);
 }
