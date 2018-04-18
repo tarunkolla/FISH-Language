@@ -1,6 +1,7 @@
 package compiler;
 // Generated from FishLanguage.g4 by ANTLR 4.7.1
 
+import java.util.ArrayList;
 import java.util.Stack;
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -18,10 +19,17 @@ public class FishLanguageBaseListener implements FishLanguageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	Stack<String> ir = new Stack<String>();
+	ArrayList<String> instructionStack = new ArrayList<String>();
+	Stack<Integer> ifStack = new Stack<Integer>();
+	Stack<Integer> elseStack = new Stack<Integer>();
+	Stack<Integer> loopStack = new Stack<Integer>();
+	int elseStart, temp, elseEnd, ifEnd, failNo = 0;
 	
-	@Override public void enterProgram(FishLanguageParser.ProgramContext ctx) { 
-		ir.push("START FISHING");
+	
+	int instructionNo = 0;
+	
+	@Override public void enterProgram(FishLanguageParser.ProgramContext ctx) {
+		
 	}
 	/**
 	 * {@inheritDoc}
@@ -29,7 +37,6 @@ public class FishLanguageBaseListener implements FishLanguageListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitProgram(FishLanguageParser.ProgramContext ctx) {
-		ir.push("END FISHING");
 	}
 	/**
 	 * {@inheritDoc}
@@ -55,7 +62,9 @@ public class FishLanguageBaseListener implements FishLanguageListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitDeclarationStatement(FishLanguageParser.DeclarationStatementContext ctx) { 
-		ir.push("DECLARE " + ctx.IDENTIFIER() );
+
+		instructionNo++;
+		instructionStack.add(instructionNo+" DECLARE " + ctx.IDENTIFIER());
 	}
 	/**
 	 * {@inheritDoc}
@@ -63,7 +72,8 @@ public class FishLanguageBaseListener implements FishLanguageListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void enterAssignmentStatement(FishLanguageParser.AssignmentStatementContext ctx) { 
-		ir.push("PUSH " + ctx.IDENTIFIER());
+		instructionNo++;
+		instructionStack.add(instructionNo+" PUSH " + ctx.IDENTIFIER());
 	}
 	/**
 	 * {@inheritDoc}
@@ -71,56 +81,84 @@ public class FishLanguageBaseListener implements FishLanguageListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitAssignmentStatement(FishLanguageParser.AssignmentStatementContext ctx) { 
-		ir.push("LOAD ");
+		instructionNo++;
+		instructionStack.add(instructionNo+" ASSIGN ");
 	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterIfStatement(FishLanguageParser.IfStatementContext ctx) { }
+	@Override public void enterIfStatement(FishLanguageParser.IfStatementContext ctx) { 
+			
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitIfStatement(FishLanguageParser.IfStatementContext ctx) { }
+	@Override public void exitIfStatement(FishLanguageParser.IfStatementContext ctx) {
+	elseStart = ifStack.pop();
+	instructionStack.set(elseStart -1,  instructionStack.get(elseStart-1)+ instructionNo);
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterIfBlock(FishLanguageParser.IfBlockContext ctx) { }
+	@Override public void enterIfBlock(FishLanguageParser.IfBlockContext ctx) {
+		instructionNo++;
+		instructionStack.add(instructionNo+" IF");
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitIfBlock(FishLanguageParser.IfBlockContext ctx) { }
+	@Override public void exitIfBlock(FishLanguageParser.IfBlockContext ctx) {
+		instructionNo++;
+		instructionStack.add(instructionNo+" ENDIF");
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterElseBlock(FishLanguageParser.ElseBlockContext ctx) { }
+	@Override public void enterElseBlock(FishLanguageParser.ElseBlockContext ctx) { 
+		instructionNo++;
+		instructionStack.add(instructionNo+"ELSE ");
+		elseStack.push(instructionNo);
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitElseBlock(FishLanguageParser.ElseBlockContext ctx) { }
+	@Override public void exitElseBlock(FishLanguageParser.ElseBlockContext ctx) {
+		instructionNo++;
+		instructionStack.add(instructionNo+" ENDELSE");
+		elseStack.push(instructionNo);
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLoopStatement(FishLanguageParser.LoopStatementContext ctx) { }
+	@Override public void enterLoopStatement(FishLanguageParser.LoopStatementContext ctx) {
+		instructionNo++;
+		instructionStack.add("LOOP"+instructionNo);
+		loopStack.push(instructionNo);
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitLoopStatement(FishLanguageParser.LoopStatementContext ctx) { }
+	@Override public void exitLoopStatement(FishLanguageParser.LoopStatementContext ctx) {
+		instructionNo++;
+		instructionStack.add("ENDLOOP"+instructionNo);
+		loopStack.push(instructionNo);
+	}
 	/**
 	 * {@inheritDoc}
 	 *
@@ -133,41 +171,51 @@ public class FishLanguageBaseListener implements FishLanguageListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitWriteStatement(FishLanguageParser.WriteStatementContext ctx) { 
-		ir.push("DISPLAY ");
+		instructionNo++;
+		instructionStack.add(instructionNo+" DISPLAY ");
 	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBooleanExpression(FishLanguageParser.BooleanExpressionContext ctx) { 
+	@Override public void enterBooleanExpression(FishLanguageParser.BooleanExpressionContext ctx) {
 	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitBooleanExpression(FishLanguageParser.BooleanExpressionContext ctx) { 
+	@Override public void exitBooleanExpression(FishLanguageParser.BooleanExpressionContext ctx) {
 		if(ctx.GTE()!=null)
 		{
-			ir.push("GREATERTHANEQUAL");
+			instructionNo++;
+			instructionStack.add(instructionNo+" GREATERTHANEQUAL");
 		}
 		else if(ctx.LTE()!= null)
 		{
-			ir.push("LESSTHANEQUAL");
+			instructionNo++;
+			instructionStack.add(instructionNo+" LESSTHANEQUAL");
 		}
 		else if(ctx.NE()!= null)
 		{
-			ir.push("NOTEQUAL");
+			instructionNo++;
+			instructionStack.add(instructionNo+" NOTEQUAL");
 		}
 		else if(ctx.GT()!= null)
 		{
-			ir.push("GREATERTHAN");
+			instructionNo++;
+			instructionStack.add(instructionNo+" GREATERTHAN");
 		}
 		else if(ctx.LT()!= null)
 		{
-			ir.push("LESSTHAN");
+			instructionNo++;
+			instructionStack.add(instructionNo+" LESSTHAN");
 		}
+	
+		instructionNo++;
+		ifStack.push(instructionNo);
+		instructionStack.add(instructionNo+" FAILGOTO");
 	}
 	/**
 	 * {@inheritDoc}
@@ -177,15 +225,18 @@ public class FishLanguageBaseListener implements FishLanguageListener {
 	@Override public void enterExpression(FishLanguageParser.ExpressionContext ctx) { 
 		if(ctx.IDENTIFIER()!=null)
 		{
-			ir.add("PUSH " + ctx.IDENTIFIER());
+			instructionNo++;
+			instructionStack.add(instructionNo+" PUSH " + ctx.IDENTIFIER());
 		}
 		else if(ctx.NUMBER()!=null)
 		{
-			ir.add("PUSH " + ctx.NUMBER());
+			instructionNo++;
+			instructionStack.add(instructionNo+" PUSH " + ctx.NUMBER());
 		}
 		else if(ctx.BOOLEAN()!=null)
 		{
-			ir.add("PUSH " + ctx.BOOLEAN());
+			instructionNo++;
+			instructionStack.add(instructionNo+" PUSH " + ctx.BOOLEAN());
 		}
 	}
 	/**
@@ -196,23 +247,28 @@ public class FishLanguageBaseListener implements FishLanguageListener {
 	@Override public void exitExpression(FishLanguageParser.ExpressionContext ctx) {
 		if(ctx.ADD()!=null)
 		{
-			ir.add("ADD " + ctx.IDENTIFIER());
+			instructionNo++;
+			instructionStack.add(instructionNo+" ADD " + ctx.IDENTIFIER());
 		}
 		else if(ctx.SUBTRACT()!=null)
 		{
-			ir.add("SUBTRACT " + ctx.NUMBER());
+			instructionNo++;
+			instructionStack.add(instructionNo+" SUBTRACT " + ctx.NUMBER());
 		}
 		else if(ctx.MULTIPLY()!=null)
 		{
-			ir.add("MULTIPLY " + ctx.BOOLEAN());
+			instructionNo++;
+			instructionStack.add(instructionNo+" MULTIPLY " + ctx.BOOLEAN());
 		}
 		else if(ctx.DIVIDE()!=null)
 		{
-			ir.add("DIVIDE " + ctx.BOOLEAN());
+			instructionNo++;
+			instructionStack.add(instructionNo+" DIVIDE " + ctx.BOOLEAN());
 		}
 		else if(ctx.MOD()!=null)
 		{
-			ir.add("MOD " + ctx.BOOLEAN());
+			instructionNo++;
+			instructionStack.add(instructionNo+" MOD " + ctx.BOOLEAN());
 		}
 	}
 
