@@ -12,7 +12,7 @@ class FishMain{
 	@SuppressWarnings("deprecation")
 	public static void main(String args[]) throws Exception
 	{
-		FileInputStream fis = new FileInputStream("C:\\Javalib\\Test\\newSample.txt");
+		FileInputStream fis = new FileInputStream("C:\\Javalib\\Test\\code.txt");
 		ANTLRInputStream input = new ANTLRInputStream(fis);
 		FishLanguageLexer lexer = new FishLanguageLexer(input);
 		CommonTokenStream tokens = new CommonTokenStream(lexer);

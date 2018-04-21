@@ -1,44 +1,51 @@
 grammar FishLanguage;
-program	: mainBlock;
-mainBlock	: 'startFISH' block 'endFISH';
-block		: declaration statements
-		| statements;
-parametersHelp : '$' IDENTIFIER;
-declaration 	: declarationHelp ',' declaration
-		|   declarationHelp;
-declarationHelp	 : '$' IDENTIFIER
-		 |   '$' IDENTIFIER '=' NUMBER
-		 |   '$' IDENTIFIER '=' BOOLEAN;
-statements	: statementsHelp statements
-		|   statementsHelp;
-statementsHelp	: assignmentStatement
+program		: 'startFISH' statements+ 'endFISH';
+
+statements 	: (assignmentStatement
 		|    ifStatement
 		|    loopStatement
-		|    writeStatement;
-assignmentStatement :IDENTIFIER '=' expression;
-ifStatement	: 'if' '('booleanExpression')' ':' block 'else' ':' block 'endif';
-loopStatement	: 'loop' '('booleanExpression')' ':' block 'endloop';
-writeStatement : 'write' expression;
-booleanExpression: expression '==' expression
-		 |    expression '>=' expression
-		 |    expression '<=' expression
-  		 |    expression '!=' expression
-		 |    expression '>' expression
-		 |    expression '<' expression
+		|    writeStatement
+		|    declarationStatement);
+
+declarationStatement : DOLLAR IDENTIFIER;
+		     
+assignmentStatement : IDENTIFIER ASSIGNMENT expression;
+ifStatement	: ifBlock (elseBlock)? 'endif';
+ifBlock		: 'if' LBRACE booleanExpression RBRACE ':' statements+ ;
+elseBlock	: 'else' ':' statements+;
+loopStatement	: 'loop' LBRACE booleanExpression RBRACE ':' statements+ 'endloop';
+writeStatement  : 'write' expression;
+
+booleanExpression: expression EQUALS expression
+		 |    expression GTE expression
+		 |    expression LTE expression
+  		 |    expression NE expression
+		 |    expression GT expression
+		 |    expression LT expression
 		 |    BOOLEAN;
-expression 	: term  '+' expression 
-		|    term '-' expression 
-		|    term;
-term 	         : factor  '*'  term  
-		 |  factor '/' term 
-		 |  factor '%' term
-		 |  factor;
-factor		: '('expression')'
-		|   NUMBER
-		|   IDENTIFIER;
+expression 	: expression (MULTIPLY|DIVIDE|MOD) expression
+		| expression (ADD|SUBTRACT) expression
+		| NUMBER
+		| BOOLEAN
+		| IDENTIFIER
+		| LBRACE expression RBRACE;
 BOOLEAN		: 'true'
-		|    'false';	
+		| 'false';	
 NUMBER 		:  [-]?[0-9]+;
 IDENTIFIER	:  [a-z]+;
-FUNCTIONNAME	:  [#][a-z]+;
-NEWLINE		: ('\r'|'\n'|' '|'\t') -> skip;
+DOLLAR		: '$';
+ASSIGNMENT	: '=';
+MULTIPLY	: '*';
+DIVIDE		: '/';
+MOD		: '%';
+ADD		: '+';
+SUBTRACT	: '-';
+LBRACE		: '(';
+RBRACE		: ')';
+EQUALS		: '==';
+GTE		: '>=';
+LTE		: '<=';
+NE		: '!=';
+GT		: '>';
+LT		: '<';
+NEWLINE		: [ \n\t\r] -> skip;
