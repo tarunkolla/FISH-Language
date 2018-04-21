@@ -1,5 +1,6 @@
 package compiler;
 import org.antlr.v4.runtime.ANTLRInputStream;
+import runtime.FishRunTimeMain;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
@@ -17,23 +18,24 @@ class FishMain{
 		CommonTokenStream tokens = new CommonTokenStream(lexer);
 		FishLanguageParser parser = new FishLanguageParser(tokens);
 		ParserRuleContext tree = parser.program();
-		try
-		{
-			PrintWriter writer = new PrintWriter("parseTree.pt","UTF-8");
-			writer.println(tree);
-			writer.println(tree.toStringTree());
-			writer.close();
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
 		ParseTreeWalker ptw = new ParseTreeWalker();
 		FishLanguageBaseListener flb = new FishLanguageBaseListener();
 		ptw.walk(flb, tree);
-		Object[] vals = flb.ir.toArray();
-        for (Object obj : vals) {
-            System.out.println(obj);
+		try
+        {
+        	PrintWriter writer = new PrintWriter("ByteCode" + ".ic", "UTF-8");
+        	for(int i=0;i<flb.instructionStack.size();i++)
+        	{
+        		writer.println(flb.instructionStack.get(i));
+        	}
+        	writer.close();
         }
+        catch(Exception e)
+        {
+        	e.printStackTrace();
+        }
+		FishRunTimeMain runTime = new FishRunTimeMain();
+		runTime.start("ByteCode.ic");
+		
 	}
 }
