@@ -1,4 +1,3 @@
-package compiler;
 // Generated from FishLanguage.g4 by ANTLR 4.7.1
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
@@ -18,9 +17,9 @@ public class FishLanguageParser extends Parser {
 		new PredictionContextCache();
 	public static final int
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
-		BOOLEAN=10, NUMBER=11, IDENTIFIER=12, DOLLAR=13, ASSIGNMENT=14, MULTIPLY=15, 
-		DIVIDE=16, MOD=17, ADD=18, SUBTRACT=19, LBRACE=20, RBRACE=21, EQUALS=22, 
-		GTE=23, LTE=24, NE=25, GT=26, LT=27, NEWLINE=28;
+		BOOLEAN=10, BINARY=11, NUMBER=12, IDENTIFIER=13, DOLLAR=14, ASSIGNMENT=15, 
+		MULTIPLY=16, DIVIDE=17, MOD=18, ADD=19, SUBTRACT=20, LBRACE=21, RBRACE=22, 
+		EQUALS=23, GTE=24, LTE=25, NE=26, GT=27, LT=28, BOR=29, BAND=30, NEWLINE=31;
 	public static final int
 		RULE_program = 0, RULE_statements = 1, RULE_declarationStatement = 2, 
 		RULE_assignmentStatement = 3, RULE_ifStatement = 4, RULE_ifBlock = 5, 
@@ -34,15 +33,15 @@ public class FishLanguageParser extends Parser {
 
 	private static final String[] _LITERAL_NAMES = {
 		null, "'startFISH'", "'endFISH'", "'endif'", "'if'", "':'", "'else'", 
-		"'loop'", "'endloop'", "'write'", null, null, null, "'$'", "'='", "'*'", 
-		"'/'", "'%'", "'+'", "'-'", "'('", "')'", "'=='", "'>='", "'<='", "'!='", 
-		"'>'", "'<'"
+		"'loop'", "'endloop'", "'write'", null, null, null, null, "'$'", "'='", 
+		"'*'", "'/'", "'%'", "'+'", "'-'", "'('", "')'", "'=='", "'>='", "'<='", 
+		"'!='", "'>'", "'<'", "'||'", "'&&'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
 		null, null, null, null, null, null, null, null, null, null, "BOOLEAN", 
-		"NUMBER", "IDENTIFIER", "DOLLAR", "ASSIGNMENT", "MULTIPLY", "DIVIDE", 
-		"MOD", "ADD", "SUBTRACT", "LBRACE", "RBRACE", "EQUALS", "GTE", "LTE", 
-		"NE", "GT", "LT", "NEWLINE"
+		"BINARY", "NUMBER", "IDENTIFIER", "DOLLAR", "ASSIGNMENT", "MULTIPLY", 
+		"DIVIDE", "MOD", "ADD", "SUBTRACT", "LBRACE", "RBRACE", "EQUALS", "GTE", 
+		"LTE", "NE", "GT", "LT", "BOR", "BAND", "NEWLINE"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -415,7 +414,7 @@ public class FishLanguageParser extends Parser {
 			setState(51);
 			match(LBRACE);
 			setState(52);
-			booleanExpression();
+			booleanExpression(0);
 			setState(53);
 			match(RBRACE);
 			setState(54);
@@ -544,7 +543,7 @@ public class FishLanguageParser extends Parser {
 			setState(68);
 			match(LBRACE);
 			setState(69);
-			booleanExpression();
+			booleanExpression(0);
 			setState(70);
 			match(RBRACE);
 			setState(71);
@@ -633,6 +632,13 @@ public class FishLanguageParser extends Parser {
 		public TerminalNode GT() { return getToken(FishLanguageParser.GT, 0); }
 		public TerminalNode LT() { return getToken(FishLanguageParser.LT, 0); }
 		public TerminalNode BOOLEAN() { return getToken(FishLanguageParser.BOOLEAN, 0); }
+		public List<BooleanExpressionContext> booleanExpression() {
+			return getRuleContexts(BooleanExpressionContext.class);
+		}
+		public BooleanExpressionContext booleanExpression(int i) {
+			return getRuleContext(BooleanExpressionContext.class,i);
+		}
+		public TerminalNode BINARY() { return getToken(FishLanguageParser.BINARY, 0); }
 		public BooleanExpressionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -648,85 +654,115 @@ public class FishLanguageParser extends Parser {
 	}
 
 	public final BooleanExpressionContext booleanExpression() throws RecognitionException {
-		BooleanExpressionContext _localctx = new BooleanExpressionContext(_ctx, getState());
-		enterRule(_localctx, 18, RULE_booleanExpression);
+		return booleanExpression(0);
+	}
+
+	private BooleanExpressionContext booleanExpression(int _p) throws RecognitionException {
+		ParserRuleContext _parentctx = _ctx;
+		int _parentState = getState();
+		BooleanExpressionContext _localctx = new BooleanExpressionContext(_ctx, _parentState);
+		BooleanExpressionContext _prevctx = _localctx;
+		int _startState = 18;
+		enterRecursionRule(_localctx, 18, RULE_booleanExpression, _p);
 		try {
-			setState(107);
+			int _alt;
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(108);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,6,_ctx) ) {
 			case 1:
-				enterOuterAlt(_localctx, 1);
 				{
-				setState(82);
-				expression(0);
 				setState(83);
-				match(EQUALS);
+				expression(0);
 				setState(84);
+				match(EQUALS);
+				setState(85);
 				expression(0);
 				}
 				break;
 			case 2:
-				enterOuterAlt(_localctx, 2);
 				{
-				setState(86);
-				expression(0);
 				setState(87);
-				match(GTE);
+				expression(0);
 				setState(88);
+				match(GTE);
+				setState(89);
 				expression(0);
 				}
 				break;
 			case 3:
-				enterOuterAlt(_localctx, 3);
 				{
-				setState(90);
-				expression(0);
 				setState(91);
-				match(LTE);
+				expression(0);
 				setState(92);
+				match(LTE);
+				setState(93);
 				expression(0);
 				}
 				break;
 			case 4:
-				enterOuterAlt(_localctx, 4);
 				{
-				setState(94);
-				expression(0);
 				setState(95);
-				match(NE);
+				expression(0);
 				setState(96);
+				match(NE);
+				setState(97);
 				expression(0);
 				}
 				break;
 			case 5:
-				enterOuterAlt(_localctx, 5);
 				{
-				setState(98);
-				expression(0);
 				setState(99);
-				match(GT);
+				expression(0);
 				setState(100);
+				match(GT);
+				setState(101);
 				expression(0);
 				}
 				break;
 			case 6:
-				enterOuterAlt(_localctx, 6);
 				{
-				setState(102);
-				expression(0);
 				setState(103);
-				match(LT);
+				expression(0);
 				setState(104);
+				match(LT);
+				setState(105);
 				expression(0);
 				}
 				break;
 			case 7:
-				enterOuterAlt(_localctx, 7);
 				{
-				setState(106);
+				setState(107);
 				match(BOOLEAN);
 				}
 				break;
+			}
+			_ctx.stop = _input.LT(-1);
+			setState(115);
+			_errHandler.sync(this);
+			_alt = getInterpreter().adaptivePredict(_input,7,_ctx);
+			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
+				if ( _alt==1 ) {
+					if ( _parseListeners!=null ) triggerExitRuleEvent();
+					_prevctx = _localctx;
+					{
+					{
+					_localctx = new BooleanExpressionContext(_parentctx, _parentState);
+					pushNewRecursionContext(_localctx, _startState, RULE_booleanExpression);
+					setState(110);
+					if (!(precpred(_ctx, 8))) throw new FailedPredicateException(this, "precpred(_ctx, 8)");
+					setState(111);
+					match(BINARY);
+					setState(112);
+					booleanExpression(9);
+					}
+					} 
+				}
+				setState(117);
+				_errHandler.sync(this);
+				_alt = getInterpreter().adaptivePredict(_input,7,_ctx);
+			}
 			}
 		}
 		catch (RecognitionException re) {
@@ -735,7 +771,7 @@ public class FishLanguageParser extends Parser {
 			_errHandler.recover(this, re);
 		}
 		finally {
-			exitRule();
+			unrollRecursionContexts(_parentctx);
 		}
 		return _localctx;
 	}
@@ -787,34 +823,34 @@ public class FishLanguageParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(117);
+			setState(126);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case NUMBER:
 				{
-				setState(110);
+				setState(119);
 				match(NUMBER);
 				}
 				break;
 			case BOOLEAN:
 				{
-				setState(111);
+				setState(120);
 				match(BOOLEAN);
 				}
 				break;
 			case IDENTIFIER:
 				{
-				setState(112);
+				setState(121);
 				match(IDENTIFIER);
 				}
 				break;
 			case LBRACE:
 				{
-				setState(113);
+				setState(122);
 				match(LBRACE);
-				setState(114);
+				setState(123);
 				expression(0);
-				setState(115);
+				setState(124);
 				match(RBRACE);
 				}
 				break;
@@ -822,24 +858,24 @@ public class FishLanguageParser extends Parser {
 				throw new NoViableAltException(this);
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(127);
+			setState(136);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,9,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,10,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					setState(125);
+					setState(134);
 					_errHandler.sync(this);
-					switch ( getInterpreter().adaptivePredict(_input,8,_ctx) ) {
+					switch ( getInterpreter().adaptivePredict(_input,9,_ctx) ) {
 					case 1:
 						{
 						_localctx = new ExpressionContext(_parentctx, _parentState);
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(119);
+						setState(128);
 						if (!(precpred(_ctx, 6))) throw new FailedPredicateException(this, "precpred(_ctx, 6)");
-						setState(120);
+						setState(129);
 						_la = _input.LA(1);
 						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << MULTIPLY) | (1L << DIVIDE) | (1L << MOD))) != 0)) ) {
 						_errHandler.recoverInline(this);
@@ -849,7 +885,7 @@ public class FishLanguageParser extends Parser {
 							_errHandler.reportMatch(this);
 							consume();
 						}
-						setState(121);
+						setState(130);
 						expression(7);
 						}
 						break;
@@ -857,9 +893,9 @@ public class FishLanguageParser extends Parser {
 						{
 						_localctx = new ExpressionContext(_parentctx, _parentState);
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(122);
+						setState(131);
 						if (!(precpred(_ctx, 5))) throw new FailedPredicateException(this, "precpred(_ctx, 5)");
-						setState(123);
+						setState(132);
 						_la = _input.LA(1);
 						if ( !(_la==ADD || _la==SUBTRACT) ) {
 						_errHandler.recoverInline(this);
@@ -869,16 +905,16 @@ public class FishLanguageParser extends Parser {
 							_errHandler.reportMatch(this);
 							consume();
 						}
-						setState(124);
+						setState(133);
 						expression(6);
 						}
 						break;
 					}
 					} 
 				}
-				setState(129);
+				setState(138);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,9,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,10,_ctx);
 			}
 			}
 		}
@@ -895,56 +931,69 @@ public class FishLanguageParser extends Parser {
 
 	public boolean sempred(RuleContext _localctx, int ruleIndex, int predIndex) {
 		switch (ruleIndex) {
+		case 9:
+			return booleanExpression_sempred((BooleanExpressionContext)_localctx, predIndex);
 		case 10:
 			return expression_sempred((ExpressionContext)_localctx, predIndex);
 		}
 		return true;
 	}
-	private boolean expression_sempred(ExpressionContext _localctx, int predIndex) {
+	private boolean booleanExpression_sempred(BooleanExpressionContext _localctx, int predIndex) {
 		switch (predIndex) {
 		case 0:
-			return precpred(_ctx, 6);
+			return precpred(_ctx, 8);
+		}
+		return true;
+	}
+	private boolean expression_sempred(ExpressionContext _localctx, int predIndex) {
+		switch (predIndex) {
 		case 1:
+			return precpred(_ctx, 6);
+		case 2:
 			return precpred(_ctx, 5);
 		}
 		return true;
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\36\u0085\4\2\t\2"+
-		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
-		"\t\13\4\f\t\f\3\2\3\2\6\2\33\n\2\r\2\16\2\34\3\2\3\2\3\3\3\3\3\3\3\3\3"+
-		"\3\5\3&\n\3\3\4\3\4\3\4\3\5\3\5\3\5\3\5\3\6\3\6\5\6\61\n\6\3\6\3\6\3\7"+
-		"\3\7\3\7\3\7\3\7\3\7\6\7;\n\7\r\7\16\7<\3\b\3\b\3\b\6\bB\n\b\r\b\16\b"+
-		"C\3\t\3\t\3\t\3\t\3\t\3\t\6\tL\n\t\r\t\16\tM\3\t\3\t\3\n\3\n\3\n\3\13"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3!\u008e\4\2\t\2\4"+
+		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
+		"\13\4\f\t\f\3\2\3\2\6\2\33\n\2\r\2\16\2\34\3\2\3\2\3\3\3\3\3\3\3\3\3\3"+
+		"\5\3&\n\3\3\4\3\4\3\4\3\5\3\5\3\5\3\5\3\6\3\6\5\6\61\n\6\3\6\3\6\3\7\3"+
+		"\7\3\7\3\7\3\7\3\7\6\7;\n\7\r\7\16\7<\3\b\3\b\3\b\6\bB\n\b\r\b\16\bC\3"+
+		"\t\3\t\3\t\3\t\3\t\3\t\6\tL\n\t\r\t\16\tM\3\t\3\t\3\n\3\n\3\n\3\13\3\13"+
 		"\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13"+
-		"\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\5\13n\n\13\3\f\3\f"+
-		"\3\f\3\f\3\f\3\f\3\f\3\f\5\fx\n\f\3\f\3\f\3\f\3\f\3\f\3\f\7\f\u0080\n"+
-		"\f\f\f\16\f\u0083\13\f\3\f\2\3\26\r\2\4\6\b\n\f\16\20\22\24\26\2\4\3\2"+
-		"\21\23\3\2\24\25\2\u008d\2\30\3\2\2\2\4%\3\2\2\2\6\'\3\2\2\2\b*\3\2\2"+
-		"\2\n.\3\2\2\2\f\64\3\2\2\2\16>\3\2\2\2\20E\3\2\2\2\22Q\3\2\2\2\24m\3\2"+
-		"\2\2\26w\3\2\2\2\30\32\7\3\2\2\31\33\5\4\3\2\32\31\3\2\2\2\33\34\3\2\2"+
-		"\2\34\32\3\2\2\2\34\35\3\2\2\2\35\36\3\2\2\2\36\37\7\4\2\2\37\3\3\2\2"+
-		"\2 &\5\b\5\2!&\5\n\6\2\"&\5\20\t\2#&\5\22\n\2$&\5\6\4\2% \3\2\2\2%!\3"+
-		"\2\2\2%\"\3\2\2\2%#\3\2\2\2%$\3\2\2\2&\5\3\2\2\2\'(\7\17\2\2()\7\16\2"+
-		"\2)\7\3\2\2\2*+\7\16\2\2+,\7\20\2\2,-\5\26\f\2-\t\3\2\2\2.\60\5\f\7\2"+
-		"/\61\5\16\b\2\60/\3\2\2\2\60\61\3\2\2\2\61\62\3\2\2\2\62\63\7\5\2\2\63"+
-		"\13\3\2\2\2\64\65\7\6\2\2\65\66\7\26\2\2\66\67\5\24\13\2\678\7\27\2\2"+
-		"8:\7\7\2\29;\5\4\3\2:9\3\2\2\2;<\3\2\2\2<:\3\2\2\2<=\3\2\2\2=\r\3\2\2"+
-		"\2>?\7\b\2\2?A\7\7\2\2@B\5\4\3\2A@\3\2\2\2BC\3\2\2\2CA\3\2\2\2CD\3\2\2"+
-		"\2D\17\3\2\2\2EF\7\t\2\2FG\7\26\2\2GH\5\24\13\2HI\7\27\2\2IK\7\7\2\2J"+
-		"L\5\4\3\2KJ\3\2\2\2LM\3\2\2\2MK\3\2\2\2MN\3\2\2\2NO\3\2\2\2OP\7\n\2\2"+
-		"P\21\3\2\2\2QR\7\13\2\2RS\5\26\f\2S\23\3\2\2\2TU\5\26\f\2UV\7\30\2\2V"+
-		"W\5\26\f\2Wn\3\2\2\2XY\5\26\f\2YZ\7\31\2\2Z[\5\26\f\2[n\3\2\2\2\\]\5\26"+
-		"\f\2]^\7\32\2\2^_\5\26\f\2_n\3\2\2\2`a\5\26\f\2ab\7\33\2\2bc\5\26\f\2"+
-		"cn\3\2\2\2de\5\26\f\2ef\7\34\2\2fg\5\26\f\2gn\3\2\2\2hi\5\26\f\2ij\7\35"+
-		"\2\2jk\5\26\f\2kn\3\2\2\2ln\7\f\2\2mT\3\2\2\2mX\3\2\2\2m\\\3\2\2\2m`\3"+
-		"\2\2\2md\3\2\2\2mh\3\2\2\2ml\3\2\2\2n\25\3\2\2\2op\b\f\1\2px\7\r\2\2q"+
-		"x\7\f\2\2rx\7\16\2\2st\7\26\2\2tu\5\26\f\2uv\7\27\2\2vx\3\2\2\2wo\3\2"+
-		"\2\2wq\3\2\2\2wr\3\2\2\2ws\3\2\2\2x\u0081\3\2\2\2yz\f\b\2\2z{\t\2\2\2"+
-		"{\u0080\5\26\f\t|}\f\7\2\2}~\t\3\2\2~\u0080\5\26\f\b\177y\3\2\2\2\177"+
-		"|\3\2\2\2\u0080\u0083\3\2\2\2\u0081\177\3\2\2\2\u0081\u0082\3\2\2\2\u0082"+
-		"\27\3\2\2\2\u0083\u0081\3\2\2\2\f\34%\60<CMmw\177\u0081";
+		"\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\5\13o\n\13\3\13\3\13"+
+		"\3\13\7\13t\n\13\f\13\16\13w\13\13\3\f\3\f\3\f\3\f\3\f\3\f\3\f\3\f\5\f"+
+		"\u0081\n\f\3\f\3\f\3\f\3\f\3\f\3\f\7\f\u0089\n\f\f\f\16\f\u008c\13\f\3"+
+		"\f\2\4\24\26\r\2\4\6\b\n\f\16\20\22\24\26\2\4\3\2\22\24\3\2\25\26\2\u0097"+
+		"\2\30\3\2\2\2\4%\3\2\2\2\6\'\3\2\2\2\b*\3\2\2\2\n.\3\2\2\2\f\64\3\2\2"+
+		"\2\16>\3\2\2\2\20E\3\2\2\2\22Q\3\2\2\2\24n\3\2\2\2\26\u0080\3\2\2\2\30"+
+		"\32\7\3\2\2\31\33\5\4\3\2\32\31\3\2\2\2\33\34\3\2\2\2\34\32\3\2\2\2\34"+
+		"\35\3\2\2\2\35\36\3\2\2\2\36\37\7\4\2\2\37\3\3\2\2\2 &\5\b\5\2!&\5\n\6"+
+		"\2\"&\5\20\t\2#&\5\22\n\2$&\5\6\4\2% \3\2\2\2%!\3\2\2\2%\"\3\2\2\2%#\3"+
+		"\2\2\2%$\3\2\2\2&\5\3\2\2\2\'(\7\20\2\2()\7\17\2\2)\7\3\2\2\2*+\7\17\2"+
+		"\2+,\7\21\2\2,-\5\26\f\2-\t\3\2\2\2.\60\5\f\7\2/\61\5\16\b\2\60/\3\2\2"+
+		"\2\60\61\3\2\2\2\61\62\3\2\2\2\62\63\7\5\2\2\63\13\3\2\2\2\64\65\7\6\2"+
+		"\2\65\66\7\27\2\2\66\67\5\24\13\2\678\7\30\2\28:\7\7\2\29;\5\4\3\2:9\3"+
+		"\2\2\2;<\3\2\2\2<:\3\2\2\2<=\3\2\2\2=\r\3\2\2\2>?\7\b\2\2?A\7\7\2\2@B"+
+		"\5\4\3\2A@\3\2\2\2BC\3\2\2\2CA\3\2\2\2CD\3\2\2\2D\17\3\2\2\2EF\7\t\2\2"+
+		"FG\7\27\2\2GH\5\24\13\2HI\7\30\2\2IK\7\7\2\2JL\5\4\3\2KJ\3\2\2\2LM\3\2"+
+		"\2\2MK\3\2\2\2MN\3\2\2\2NO\3\2\2\2OP\7\n\2\2P\21\3\2\2\2QR\7\13\2\2RS"+
+		"\5\26\f\2S\23\3\2\2\2TU\b\13\1\2UV\5\26\f\2VW\7\31\2\2WX\5\26\f\2Xo\3"+
+		"\2\2\2YZ\5\26\f\2Z[\7\32\2\2[\\\5\26\f\2\\o\3\2\2\2]^\5\26\f\2^_\7\33"+
+		"\2\2_`\5\26\f\2`o\3\2\2\2ab\5\26\f\2bc\7\34\2\2cd\5\26\f\2do\3\2\2\2e"+
+		"f\5\26\f\2fg\7\35\2\2gh\5\26\f\2ho\3\2\2\2ij\5\26\f\2jk\7\36\2\2kl\5\26"+
+		"\f\2lo\3\2\2\2mo\7\f\2\2nT\3\2\2\2nY\3\2\2\2n]\3\2\2\2na\3\2\2\2ne\3\2"+
+		"\2\2ni\3\2\2\2nm\3\2\2\2ou\3\2\2\2pq\f\n\2\2qr\7\r\2\2rt\5\24\13\13sp"+
+		"\3\2\2\2tw\3\2\2\2us\3\2\2\2uv\3\2\2\2v\25\3\2\2\2wu\3\2\2\2xy\b\f\1\2"+
+		"y\u0081\7\16\2\2z\u0081\7\f\2\2{\u0081\7\17\2\2|}\7\27\2\2}~\5\26\f\2"+
+		"~\177\7\30\2\2\177\u0081\3\2\2\2\u0080x\3\2\2\2\u0080z\3\2\2\2\u0080{"+
+		"\3\2\2\2\u0080|\3\2\2\2\u0081\u008a\3\2\2\2\u0082\u0083\f\b\2\2\u0083"+
+		"\u0084\t\2\2\2\u0084\u0089\5\26\f\t\u0085\u0086\f\7\2\2\u0086\u0087\t"+
+		"\3\2\2\u0087\u0089\5\26\f\b\u0088\u0082\3\2\2\2\u0088\u0085\3\2\2\2\u0089"+
+		"\u008c\3\2\2\2\u008a\u0088\3\2\2\2\u008a\u008b\3\2\2\2\u008b\27\3\2\2"+
+		"\2\u008c\u008a\3\2\2\2\r\34%\60<CMnu\u0080\u0088\u008a";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

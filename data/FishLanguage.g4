@@ -16,14 +16,13 @@ elseBlock	: 'else' ':' statements+;
 loopStatement	: 'loop' LBRACE booleanExpression RBRACE ':' statements+ 'endloop';
 writeStatement  : 'write' expression;
 
-booleanExpression: expression EQUALS expression
+booleanExpression: booleanExpression BINARY booleanExpression
+         |    expression EQUALS expression
 		 |    expression GTE expression
 		 |    expression LTE expression
   		 |    expression NE expression
 		 |    expression GT expression
 		 |    expression LT expression
-		 |    expression AND expression
-		 |    expression OR expression
 		 |    BOOLEAN;
 expression 	: expression (MULTIPLY|DIVIDE|MOD) expression
 		| expression (ADD|SUBTRACT) expression
@@ -33,6 +32,7 @@ expression 	: expression (MULTIPLY|DIVIDE|MOD) expression
 		| LBRACE expression RBRACE;
 BOOLEAN		: 'true'
 		| 'false';	
+BINARY : BAND | BOR;
 NUMBER 		:  [-]?[0-9]+;
 IDENTIFIER	:  [a-z]+;
 DOLLAR		: '$';
@@ -50,7 +50,7 @@ LTE		: '<=';
 NE		: '!=';
 GT		: '>';
 LT		: '<';
-OR              : '||';
-AND             : '&&';
+BOR      : '||';
+BAND     : '&&';
 
 NEWLINE		: [ \n\t\r] -> skip;
