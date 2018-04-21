@@ -50,7 +50,7 @@ LTE		: '<=';
 NE		: '!=';
 GT		: '>';
 LT		: '<';
-OR      : '||';
-AND     : '&&';
+OR              : '||';
+AND             : '&&';
 
 NEWLINE		: [ \n\t\r] -> skip;
