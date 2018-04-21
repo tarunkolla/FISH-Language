@@ -25,7 +25,7 @@ public class FishLanguageBaseListener implements FishLanguageListener {
 	Stack<Integer> loopStack = new Stack<Integer>();
 	Stack<Integer> loopStart = new Stack<Integer>();
 	int ifNext, elseNext, temp,temp1 = 0;
-	
+	int ifPresCount=0, ifPrevCount=0, loopPresCount=0, loopPrevCount=0;
 	
 	int instructionNo = 0;
 	
@@ -111,6 +111,7 @@ public class FishLanguageBaseListener implements FishLanguageListener {
 	 */
 	@Override public void enterIfBlock(FishLanguageParser.IfBlockContext ctx) {
 		instructionNo++;
+		ifPresCount++;
 		instructionStack.add(instructionNo+" STARTIF");
 	}
 	/**
@@ -120,7 +121,10 @@ public class FishLanguageBaseListener implements FishLanguageListener {
 	 */
 	@Override public void exitIfBlock(FishLanguageParser.IfBlockContext ctx) {
 		instructionNo++;
-		instructionStack.add(instructionNo+" ENDIFGOTO ");
+		ifPresCount--;
+		ifPrevCount--;
+		int next = instructionNo + 1;
+		instructionStack.add(instructionNo+" ENDIFGOTO "+ next);
 		ifNext = ifStack.pop();
 		int temp = instructionNo + 1;
 		elseStack.push(instructionNo);
@@ -145,7 +149,7 @@ public class FishLanguageBaseListener implements FishLanguageListener {
 		instructionStack.add(instructionNo+" ENDELSE");
 		elseNext = elseStack.pop();
 		int temp = instructionNo + 1;
-		instructionStack.set(elseNext-1, instructionStack.get(elseNext-1)+temp);
+		instructionStack.set(elseNext-1, elseNext + " ENDIFGOTO " +temp);
 		
 	}
 	/**
@@ -155,6 +159,7 @@ public class FishLanguageBaseListener implements FishLanguageListener {
 	 */
 	@Override public void enterLoopStatement(FishLanguageParser.LoopStatementContext ctx) {
 		instructionNo++;
+		loopPresCount++;
 		loopStart.push(instructionNo);
 		instructionStack.add(instructionNo+" LOOP");
 	}
@@ -165,6 +170,8 @@ public class FishLanguageBaseListener implements FishLanguageListener {
 	 */
 	@Override public void exitLoopStatement(FishLanguageParser.LoopStatementContext ctx) {
 		instructionNo++;
+		loopPresCount--;
+		loopPrevCount--;
 		temp = loopStart.pop();
 		instructionStack.add(instructionNo+" GOTO "+temp);
 		instructionNo++;
@@ -234,8 +241,16 @@ public class FishLanguageBaseListener implements FishLanguageListener {
 		}
 	
 		instructionNo++;
-		ifStack.push(instructionNo);
-		loopStack.push(instructionNo);
+		if(ifPresCount > ifPrevCount)
+		{
+			ifStack.push(instructionNo);
+			ifPrevCount = ifPresCount;
+		}
+		if(loopPresCount > loopPrevCount)
+		{
+			loopStack.push(instructionNo);
+			loopPrevCount = loopPresCount;
+		}
 		instructionStack.add(instructionNo+" FAILGOTO ");
 	}
 	/**
