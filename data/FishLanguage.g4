@@ -22,6 +22,8 @@ booleanExpression: expression EQUALS expression
   		 |    expression NE expression
 		 |    expression GT expression
 		 |    expression LT expression
+		 |    expression AND expression
+		 |    expression OR expression
 		 |    BOOLEAN;
 expression 	: expression (MULTIPLY|DIVIDE|MOD) expression
 		| expression (ADD|SUBTRACT) expression
@@ -48,4 +50,7 @@ LTE		: '<=';
 NE		: '!=';
 GT		: '>';
 LT		: '<';
+OR      : '||';
+AND     : '&&';
+
 NEWLINE		: [ \n\t\r] -> skip;
