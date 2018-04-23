@@ -5,7 +5,8 @@ statements 	: (assignmentStatement
 		|    ifStatement
 		|    loopStatement
 		|    writeStatement
-		|    declarationStatement);
+		|    declarationStatement
+		|    readStatement);
 
 declarationStatement : DOLLAR IDENTIFIER;
 		     
@@ -14,43 +15,45 @@ ifStatement	: ifBlock (elseBlock)? 'endif';
 ifBlock		: 'if' LBRACE booleanExpression RBRACE ':' statements+ ;
 elseBlock	: 'else' ':' statements+;
 loopStatement	: 'loop' LBRACE booleanExpression RBRACE ':' statements+ 'endloop';
-writeStatement  : 'write' expression;
-
-booleanExpression: booleanExpression BINARY booleanExpression
-         |    expression EQUALS expression
+writeStatement  : 'write' expression
+		| 'write' STRING;
+readStatement	: 'read' IDENTIFIER;
+booleanExpression: expression EQUALS expression
 		 |    expression GTE expression
 		 |    expression LTE expression
   		 |    expression NE expression
 		 |    expression GT expression
 		 |    expression LT expression
+		 |    expression AND expression
+		 |    expression OR expression		
 		 |    BOOLEAN;
 expression 	: expression (MULTIPLY|DIVIDE|MOD) expression
 		| expression (ADD|SUBTRACT) expression
 		| NUMBER
 		| BOOLEAN
+		| STRING
 		| IDENTIFIER
 		| LBRACE expression RBRACE;
 BOOLEAN		: 'true'
 		| 'false';	
-BINARY : BAND | BOR;
 NUMBER 		:  [-]?[0-9]+;
 IDENTIFIER	:  [a-z]+;
 DOLLAR		: '$';
 ASSIGNMENT	: '=';
 MULTIPLY	: '*';
 DIVIDE		: '/';
-MOD		: '%';
-ADD		: '+';
+MOD			: '%';
+ADD			: '+';
 SUBTRACT	: '-';
 LBRACE		: '(';
 RBRACE		: ')';
 EQUALS		: '==';
-GTE		: '>=';
-LTE		: '<=';
-NE		: '!=';
-GT		: '>';
-LT		: '<';
-BOR      : '||';
-BAND     : '&&';
-
+GTE			: '>=';
+LTE			: '<=';
+NE			: '!=';
+GT			: '>';
+LT			: '<';
+AND 		: '&&';
+OR			: '||';
+STRING		: ["][ a-zA-Z:=]+["];
 NEWLINE		: [ \n\t\r] -> skip;

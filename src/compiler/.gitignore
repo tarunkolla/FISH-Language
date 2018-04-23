@@ -1,0 +1,17 @@
+/FishLanguageBaseListener.class
+/FishLanguageLexer.class
+/FishLanguageListener.class
+/FishLanguageParser$AssignmentStatementContext.class
+/FishLanguageParser$BooleanExpressionContext.class
+/FishLanguageParser$DeclarationStatementContext.class
+/FishLanguageParser$ElseBlockContext.class
+/FishLanguageParser$ExpressionContext.class
+/FishLanguageParser$IfBlockContext.class
+/FishLanguageParser$IfStatementContext.class
+/FishLanguageParser$LoopStatementContext.class
+/FishLanguageParser$ProgramContext.class
+/FishLanguageParser$ReadStatementContext.class
+/FishLanguageParser$StatementsContext.class
+/FishLanguageParser$WriteStatementContext.class
+/FishLanguageParser.class
+/FishMain.class
