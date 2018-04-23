@@ -2,12 +2,15 @@ package runtime;
 
 import java.util.Arrays;
 import java.util.Hashtable;
+import java.util.Scanner;
 import java.util.Stack;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class FishRunTime {
 	
 	String operations[] = {"DISPLAY", "GREATERTHANEQUAL", "LESSTHANEQUAL","NOTEQUAL","GREATERTHAN","LESSTHAN",
-						"EQUALS", "ADD","SUBTRACT","MULTIPLY", "DIVIDE", "MOD","ASSIGN"};
+						"EQUALS", "ADD","SUBTRACT","MULTIPLY", "DIVIDE", "MOD","ASSIGN", "AND", "OR", "READ"};
 	Pair<String, String> temporary = Pair.of(" ", " ");
 	
 	public static boolean checkComptability(String operandType1, String operandType2)
@@ -36,6 +39,18 @@ public class FishRunTime {
 			return Integer.parseInt(operand);
 		}
 	}
+	public static boolean getBoolValue(String operand, Hashtable<String, Pair<String, String>> environment)
+	{
+		if(environment.containsKey(operand))
+		{
+			return Boolean.parseBoolean(environment.get(operand).second);
+		}
+		else 
+		{
+			return Boolean.parseBoolean(operand);
+		}
+	}
+	
 	public int process(String instruction,Hashtable<String, Pair<String, String>> environment, Stack<String> runTimeStack,int eipRegister)
 	{
 		String[] element = instruction.split(" ");
@@ -43,16 +58,40 @@ public class FishRunTime {
 		if(check)
 		{
 			switch(element[1]) {
+			case "READ":
+				String variable = runTimeStack.pop();
+				String data;
+				Pair<String, String> temporaryRead = Pair.of(" ", " ");
+				if(environment.containsKey(variable))
+				{
+					Scanner scan = new Scanner(System.in);
+					data = scan.next();
+					temporaryRead.first = findType(data);
+					temporaryRead.second = data;
+					environment.put(variable, temporaryRead);
+				}
+				else
+				{
+					System.out.println("Variable not declared");
+				}
+				break;
 			case "DISPLAY":
 				String output = runTimeStack.pop();
 				String result;
 				if(environment.containsKey(output))
-					result = (String) environment.get(output).second;
+				{
+					result = environment.get(output).second;
+					System.out.println(result + " type:" + environment.get(output).first);
+				}
 				else
+				{
+					//System.out.println(output + "from run time hii");
 					result = output;
+					System.out.println(result);
+				}
 				//System.out.println("dis " + environment);
 				//System.out.println("dis1 " + runTimeStack);
-				System.out.println(result);
+				
 				break;
 			case "GREATERTHANEQUAL":
 				int opGte2 = 0,opGte1 = 0;
@@ -563,6 +602,91 @@ public class FishRunTime {
 				//System.out.println("assign " + environment);
 				//System.out.println("assign1 " + runTimeStack);
 				break;
+			case "AND":
+				Boolean opAnd2, opAnd1,resAnd;
+				String intermediateAnd = "";
+				String type1And = "", type2And = "";
+				String operand2And = runTimeStack.pop();
+				//System.out.println(operand2+" asda");
+				String operand1And = runTimeStack.pop();
+				//System.out.println("asd " + operand1);
+				if(environment.containsKey(operand2And))
+				{
+					intermediateAnd = environment.get(operand2And).second;
+					type2And = environment.get(operand2And).first;
+				}
+				else {
+					type2And = findType(operand2And);
+				}
+				if(environment.containsKey(operand1And))
+				{
+					intermediateAnd = environment.get(operand1And).second;	
+					type1And = environment.get(operand1And).first;
+				}
+				else
+				{
+					type1And = findType(operand1And);
+				}
+				Boolean checkTypeAnd = checkComptability(type1And, type2And);
+				if(checkTypeAnd && (type1And.equals("BOOLEAN") || type2And.equals("BOOLEAN")))
+				{
+					opAnd1 = getBoolValue(operand1And, environment);
+					opAnd2 = getBoolValue(operand2And, environment);
+					resAnd = opAnd1 && opAnd2;
+					//System.out.println(resAnd + "result");
+					runTimeStack.push(String.valueOf(resAnd));
+					//System.out.println("And " + environment);
+					//System.out.println("And1 " + runTimeStack);
+				}
+				else
+				{
+					System.out.println("Incompatible types or Variable not declared");
+					System.exit(0);
+				}
+				break;
+			case "OR":
+				Boolean opOr2 ,opOr1 ,resOr;
+				String intermediateOr = "";
+				String type1Or = "", type2Or = "";
+				String operand2Or = runTimeStack.pop();
+				//System.out.println(operand2+" asda");
+				String operand1Or = runTimeStack.pop();
+				//System.out.println("asd " + operand1);
+				if(environment.containsKey(operand2Or))
+				{
+					intermediateOr = environment.get(operand2Or).second;
+					type2Or = environment.get(operand2Or).first;
+				}
+				else {
+					type2Or = findType(operand2Or);
+				}
+				if(environment.containsKey(operand1Or))
+				{
+					intermediateOr = environment.get(operand1Or).second;	
+					type1Or = environment.get(operand1Or).first;
+				}
+				else
+				{
+					type1Or = findType(operand1Or);
+				}
+				Boolean checkTypeOr = checkComptability(type1Or, type2Or);
+				if(checkTypeOr && (type1Or.equals("BOOLEAN") || type2Or.equals("BOOLEAN")))
+				{
+					opOr1 = getBoolValue(operand1Or, environment);
+					opOr2 = getBoolValue(operand2Or, environment);
+					resOr = opOr1 || opOr2;
+					//System.out.println(resOr + "result");
+					runTimeStack.push(String.valueOf(resOr));
+					//System.out.println("Or " + environment);
+					//System.out.println("Or1 " + runTimeStack);
+				}
+				else
+				{
+					System.out.println("Incompatible types or Variable not declared");
+					System.exit(0);
+				}
+
+				break;
 			default:
 				System.out.println("error");
 			}
@@ -579,7 +703,19 @@ public class FishRunTime {
 				//System.out.println("dec1 " + runTimeStack);
 				break;
 			case "PUSH":
-				runTimeStack.push(element[2]);
+				if (element[2].contains("\""))
+				{
+					Pattern p = Pattern.compile("\"([^\"]*)\"");
+					Matcher m = p.matcher(instruction);
+					String s;
+					m.find();
+					runTimeStack.push(m.group(1));
+					
+				}
+				else
+				{
+					runTimeStack.push(element[2]);
+				}
 				//System.out.println("push " + environment);
 				//System.out.println("push1 " + runTimeStack);
 				break;

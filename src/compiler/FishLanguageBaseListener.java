@@ -8,6 +8,8 @@ import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
+import compiler.FishLanguageParser.ReadStatementContext;
+
 /**
  * This class provides an empty implementation of {@link FishLanguageListener},
  * which can be extended to create a listener which only needs to handle a subset
@@ -24,11 +26,11 @@ public class FishLanguageBaseListener implements FishLanguageListener {
 	Stack<Integer> elseStack = new Stack<Integer>();
 	Stack<Integer> loopStack = new Stack<Integer>();
 	Stack<Integer> loopStart = new Stack<Integer>();
+	Stack<Integer> returnAddrStack = new Stack<Integer>();
 	int ifNext, elseNext, temp,temp1 = 0;
-	int ifPresCount=0, ifPrevCount=0, loopPresCount=0, loopPrevCount=0;
+	int ifPresCount=0, ifPrevCount=0, loopPresCount=0, loopPrevCount=0, boolExprCount=0;
 	
 	int instructionNo = 0;
-	
 	@Override public void enterProgram(FishLanguageParser.ProgramContext ctx) {
 		instructionNo++;
 		instructionStack.add(instructionNo+" START FISHING");
@@ -59,14 +61,13 @@ public class FishLanguageBaseListener implements FishLanguageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDeclarationStatement(FishLanguageParser.DeclarationStatementContext ctx) {}
+	@Override public void enterDeclarationStatement(FishLanguageParser.DeclarationStatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDeclarationStatement(FishLanguageParser.DeclarationStatementContext ctx) { 
-
+	@Override public void exitDeclarationStatement(FishLanguageParser.DeclarationStatementContext ctx) {
 		instructionNo++;
 		instructionStack.add(instructionNo+" DECLARE " + ctx.IDENTIFIER());
 	}
@@ -93,17 +94,13 @@ public class FishLanguageBaseListener implements FishLanguageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterIfStatement(FishLanguageParser.IfStatementContext ctx) { 
-			
-	}
+	@Override public void enterIfStatement(FishLanguageParser.IfStatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitIfStatement(FishLanguageParser.IfStatementContext ctx) {
-	
-	}
+	@Override public void exitIfStatement(FishLanguageParser.IfStatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -135,7 +132,7 @@ public class FishLanguageBaseListener implements FishLanguageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterElseBlock(FishLanguageParser.ElseBlockContext ctx) { 
+	@Override public void enterElseBlock(FishLanguageParser.ElseBlockContext ctx) {
 		instructionNo++;
 		instructionStack.add(instructionNo+" STARTELSE");
 	}
@@ -150,14 +147,13 @@ public class FishLanguageBaseListener implements FishLanguageListener {
 		elseNext = elseStack.pop();
 		int temp = instructionNo + 1;
 		instructionStack.set(elseNext-1, elseNext + " ENDIFGOTO " +temp);
-		
 	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLoopStatement(FishLanguageParser.LoopStatementContext ctx) {
+	@Override public void enterLoopStatement(FishLanguageParser.LoopStatementContext ctx) { 
 		instructionNo++;
 		loopPresCount++;
 		loopStart.push(instructionNo);
@@ -168,7 +164,7 @@ public class FishLanguageBaseListener implements FishLanguageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitLoopStatement(FishLanguageParser.LoopStatementContext ctx) {
+	@Override public void exitLoopStatement(FishLanguageParser.LoopStatementContext ctx) { 
 		instructionNo++;
 		loopPresCount--;
 		loopPrevCount--;
@@ -185,23 +181,19 @@ public class FishLanguageBaseListener implements FishLanguageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterWriteStatement(FishLanguageParser.WriteStatementContext ctx) {
-	}
+	@Override public void enterWriteStatement(FishLanguageParser.WriteStatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitWriteStatement(FishLanguageParser.WriteStatementContext ctx) { 
+	@Override public void exitWriteStatement(FishLanguageParser.WriteStatementContext ctx) {
 		instructionNo++;
 		instructionStack.add(instructionNo+" DISPLAY ");
 	}
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterBooleanExpression(FishLanguageParser.BooleanExpressionContext ctx) {
+	
+	@Override public void enterBooleanExpression(FishLanguageParser.BooleanExpressionContext ctx) { 
+		boolExprCount++;
 	}
 	/**
 	 * {@inheritDoc}
@@ -239,26 +231,38 @@ public class FishLanguageBaseListener implements FishLanguageListener {
 			instructionNo++;
 			instructionStack.add(instructionNo+" EQUALS");
 		}
+		else if(ctx.AND()!=null)
+		{
+			instructionNo++;
+			instructionStack.add(instructionNo+" AND ");
+		}
+		else if(ctx.OR()!=null)
+		{
+			instructionNo++;
+			instructionStack.add(instructionNo+" OR ");
+		}
 	
 		instructionNo++;
 		if(ifPresCount > ifPrevCount)
 		{
 			ifStack.push(instructionNo);
 			ifPrevCount = ifPresCount;
+			instructionStack.add(instructionNo+" FAILGOTO ");
 		}
 		if(loopPresCount > loopPrevCount)
 		{
 			loopStack.push(instructionNo);
 			loopPrevCount = loopPresCount;
+			instructionStack.add(instructionNo+" FAILGOTO ");
 		}
-		instructionStack.add(instructionNo+" FAILGOTO ");
+		
 	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterExpression(FishLanguageParser.ExpressionContext ctx) { 
+	@Override public void enterExpression(FishLanguageParser.ExpressionContext ctx) {
 		if(ctx.IDENTIFIER()!=null)
 		{
 			instructionNo++;
@@ -274,13 +278,18 @@ public class FishLanguageBaseListener implements FishLanguageListener {
 			instructionNo++;
 			instructionStack.add(instructionNo+" PUSH " + ctx.BOOLEAN());
 		}
+		else if(ctx.STRING()!=null)
+		{
+			instructionNo++;
+			instructionStack.add(instructionNo+" PUSH " + ctx.STRING());
+		}
 	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitExpression(FishLanguageParser.ExpressionContext ctx) {
+	@Override public void exitExpression(FishLanguageParser.ExpressionContext ctx) { 
 		if(ctx.ADD()!=null)
 		{
 			instructionNo++;
@@ -332,4 +341,18 @@ public class FishLanguageBaseListener implements FishLanguageListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void visitErrorNode(ErrorNode node) { }
+	@Override
+	public void enterReadStatement(ReadStatementContext ctx) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void exitReadStatement(ReadStatementContext ctx) {
+		// TODO Auto-generated method stub
+		instructionNo++;
+		instructionNo++;
+		instructionStack.add(instructionNo+" PUSH "+ctx.IDENTIFIER());
+		instructionStack.add(instructionNo+" READ ");
+		
+	}
 }

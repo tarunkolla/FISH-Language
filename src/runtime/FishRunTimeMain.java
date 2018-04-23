@@ -32,6 +32,12 @@ public class FishRunTimeMain
 			instructions.add(input.nextLine());
 		}
 		commands =  instructions.toArray(new String[instructions.size()]);
+		/*while(eipRegister < commands.length) {
+            String instruction = commands[eipRegister];
+            System.out.println(eipRegister +" "+ instruction);
+            eipRegister++;
+           }*/
+		eipRegister = 0;
 		while(eipRegister < commands.length) {
             String instruction = commands[eipRegister];
             

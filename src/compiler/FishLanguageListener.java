@@ -1,3 +1,4 @@
+package compiler;
 // Generated from FishLanguage.g4 by ANTLR 4.7.1
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -96,6 +97,16 @@ public interface FishLanguageListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitWriteStatement(FishLanguageParser.WriteStatementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FishLanguageParser#readStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterReadStatement(FishLanguageParser.ReadStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FishLanguageParser#readStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitReadStatement(FishLanguageParser.ReadStatementContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link FishLanguageParser#booleanExpression}.
 	 * @param ctx the parse tree
