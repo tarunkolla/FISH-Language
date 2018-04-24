@@ -2,7 +2,7 @@
  <h1 align="center"> FISH LANGUAGE <h1>  
  <h3 align="center"> TEAM 16 <br> SER 502 <h3> <br>
 
- **Team:** <br> Ravi Teja Thoram  nthoram@asu.edu<br>
+ Team: <br> Ravi Teja Thoram  nthoram@asu.edu<br>
  Tarun Kolla tkolla@asu.edu<br>
  Koushik Kotamraju kkotamra@asu.edu<br>
  Siva Pranav Mandadi  smandad1@asu.edu<br>
