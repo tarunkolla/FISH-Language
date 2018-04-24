@@ -22,7 +22,6 @@ public class FishRunTime {
 	{
 		if (value.matches("[-]?[0-9]+"))
 		{
-			//System.out.println("here_2!!!!");
 			return "NUMBER";
 		}
 		else
@@ -88,10 +87,7 @@ public class FishRunTime {
 					//System.out.println(output + "from run time hii");
 					result = output;
 					System.out.println(result);
-				}
-				//System.out.println("dis " + environment);
-				//System.out.println("dis1 " + runTimeStack);
-				
+				}				
 				break;
 			case "GREATERTHANEQUAL":
 				int opGte2 = 0,opGte1 = 0;
@@ -99,9 +95,7 @@ public class FishRunTime {
 				String intermediateGte = "";
 				String type1Gte = "", type2Gte = "";
 				String operand2Gte = runTimeStack.pop();
-				//System.out.println(operand2+" asda");
 				String operand1Gte = runTimeStack.pop();
-				//System.out.println("asd " + operand1);
 				if(environment.containsKey(operand2Gte))
 				{
 					intermediateGte = environment.get(operand2Gte).second;
@@ -128,10 +122,7 @@ public class FishRunTime {
 						resGte = "true";
 					else
 						resGte = "false";
-					//System.out.println(resEqu + "result");
 					runTimeStack.push(resGte);
-					//System.out.println("add " + environment);
-					//System.out.println("add1 " + runTimeStack);
 				}
 				else
 				{
@@ -145,9 +136,7 @@ public class FishRunTime {
 				String intermediateLte = "";
 				String type1Lte = "", type2Lte = "";
 				String operand2Lte = runTimeStack.pop();
-				//System.out.println(operand2+" asda");
 				String operand1Lte = runTimeStack.pop();
-				//System.out.println("asd " + operand1);
 				if(environment.containsKey(operand2Lte))
 				{
 					intermediateLte = environment.get(operand2Lte).second;
@@ -174,10 +163,7 @@ public class FishRunTime {
 						resLte = "true";
 					else
 						resLte = "false";
-					//System.out.println(resEqu + "result");
 					runTimeStack.push(resLte);
-					//System.out.println("add " + environment);
-					//System.out.println("add1 " + runTimeStack);
 				}
 				else
 				{
@@ -191,9 +177,7 @@ public class FishRunTime {
 				String intermediateNEqu = "";
 				String type1NEqu = "", type2NEqu = "";
 				String operand2NEqu= runTimeStack.pop();
-				//System.out.println(operand2+" asda");
 				String operand1NEqu = runTimeStack.pop();
-				//System.out.println("asd " + operand1);
 				if(environment.containsKey(operand2NEqu))
 				{
 					intermediateNEqu = environment.get(operand2NEqu).second;
@@ -220,10 +204,7 @@ public class FishRunTime {
 						resNEqu = "true";
 					else
 						resNEqu = "false";
-					//System.out.println(resEqu + "result");
 					runTimeStack.push(resNEqu);
-					//System.out.println("add " + environment);
-					//System.out.println("add1 " + runTimeStack);
 				}
 				else
 				{
@@ -237,9 +218,7 @@ public class FishRunTime {
 				String intermediateGt = "";
 				String type1Gt = "", type2Gt = "";
 				String operand2Gt= runTimeStack.pop();
-				//System.out.println(operand2+" asda");
 				String operand1Gt = runTimeStack.pop();
-				//System.out.println("asd " + operand1);
 				if(environment.containsKey(operand2Gt))
 				{
 					intermediateGt = environment.get(operand2Gt).second;
@@ -266,10 +245,7 @@ public class FishRunTime {
 						resGt = "true";
 					else
 						resGt = "false";
-					//System.out.println(resEqu + "result");
 					runTimeStack.push(resGt);
-					//System.out.println("gt " + environment);
-					//System.out.println("gt1 " + runTimeStack);
 				}
 				else
 				{
@@ -283,9 +259,7 @@ public class FishRunTime {
 				String intermediateLt = "";
 				String type1Lt = "", type2Lt = "";
 				String operand2Lt= runTimeStack.pop();
-				//System.out.println(operand2+" asda");
 				String operand1Lt = runTimeStack.pop();
-				//System.out.println("asd " + operand1);
 				if(environment.containsKey(operand2Lt))
 				{
 					intermediateLt = environment.get(operand2Lt).second;
@@ -312,10 +286,7 @@ public class FishRunTime {
 						resLt = "true";
 					else
 						resLt = "false";
-					//System.out.println(resEqu + "result");
 					runTimeStack.push(resLt);
-					//System.out.println("add " + environment);
-					//System.out.println("add1 " + runTimeStack);
 				}
 				else
 				{
@@ -329,9 +300,7 @@ public class FishRunTime {
 				String intermediateEqu = "";
 				String type1Equ = "", type2Equ = "";
 				String operand2Equ= runTimeStack.pop();
-				//System.out.println(operand2+" asda");
 				String operand1Equ = runTimeStack.pop();
-				//System.out.println("asd " + operand1);
 				if(environment.containsKey(operand2Equ))
 				{
 					intermediateEqu = environment.get(operand2Equ).second;
@@ -358,10 +327,7 @@ public class FishRunTime {
 						resEqu = "true";
 					else
 						resEqu = "false";
-					//System.out.println(resEqu + "result");
 					runTimeStack.push(resEqu);
-					//System.out.println("eq " + environment);
-					//System.out.println("eq1 " + runTimeStack);
 				}
 				else
 				{
@@ -374,9 +340,7 @@ public class FishRunTime {
 				String intermediate = "";
 				String type1 = "", type2 = "";
 				String operand2 = runTimeStack.pop();
-				//System.out.println(operand2+" asda");
 				String operand1 = runTimeStack.pop();
-				//System.out.println("asd " + operand1);
 				if(environment.containsKey(operand2))
 				{
 					intermediate = environment.get(operand2).second;
@@ -400,10 +364,7 @@ public class FishRunTime {
 					op1 = getValue(operand1, environment);
 					op2 = getValue(operand2, environment);
 					res = op1 + op2;
-					//System.out.println(res + "result");
 					runTimeStack.push(String.valueOf(res));
-					//System.out.println("add " + environment);
-					//System.out.println("add1 " + runTimeStack);
 				}
 				else
 				{
@@ -415,10 +376,8 @@ public class FishRunTime {
 				int opSub2 = 0,opSub1 = 0,resSub;
 				String intermediateSub = "";
 				String type1Sub = "", type2Sub = "";
-				String operand2Sub = runTimeStack.pop();
-				//System.out.println(operand2+" asda");
+				String operand2Sub = runTimeStack.pop()
 				String operand1Sub = runTimeStack.pop();
-				//System.out.println("asd " + operand1);
 				if(environment.containsKey(operand2Sub))
 				{
 					intermediateSub = environment.get(operand2Sub).second;
@@ -442,10 +401,7 @@ public class FishRunTime {
 					opSub1 = getValue(operand1Sub, environment);
 					opSub2 = getValue(operand2Sub, environment);
 					resSub = opSub1 - opSub2;
-					//System.out.println(resSub + "result");
 					runTimeStack.push(String.valueOf(resSub));
-					//System.out.println("add " + environment);
-					//System.out.println("add1 " + runTimeStack);
 				}
 				else
 				{
@@ -458,9 +414,7 @@ public class FishRunTime {
 				String intermediateMul = "";
 				String type1Mul = "", type2Mul = "";
 				String operand2Mul = runTimeStack.pop();
-				//System.out.println(operand2+" asda");
 				String operand1Mul = runTimeStack.pop();
-				//System.out.println("asd " + operand1);
 				if(environment.containsKey(operand2Mul))
 				{
 					intermediateMul = environment.get(operand2Mul).second;
@@ -484,10 +438,7 @@ public class FishRunTime {
 					opMul1 = getValue(operand1Mul, environment);
 					opMul2 = getValue(operand2Mul, environment);
 					resMul = opMul1 * opMul2;
-					//System.out.println(resMul + "result");
 					runTimeStack.push(String.valueOf(resMul));
-					//System.out.println("add " + environment);
-					//System.out.println("add1 " + runTimeStack);
 				}
 				else
 				{
@@ -500,9 +451,7 @@ public class FishRunTime {
 				String intermediateDiv = "";
 				String type1Div = "", type2Div = "";
 				String operand2Div = runTimeStack.pop();
-				//System.out.println(operand2+" asda");
 				String operand1Div = runTimeStack.pop();
-				//System.out.println("asd " + operand1);
 				if(environment.containsKey(operand2Div))
 				{
 					intermediateDiv = environment.get(operand2Div).second;
@@ -526,10 +475,7 @@ public class FishRunTime {
 					opDiv1 = getValue(operand1Div, environment);
 					opDiv2 = getValue(operand2Div, environment);
 					resDiv = opDiv1 / opDiv2;
-					//System.out.println(resDiv + "result");
 					runTimeStack.push(String.valueOf(resDiv));
-					//System.out.println("add " + environment);
-					//System.out.println("add1 " + runTimeStack);
 				}
 				else
 				{
@@ -542,9 +488,7 @@ public class FishRunTime {
 				String intermediateMod = "";
 				String type1Mod = "", type2Mod = "";
 				String operand2Mod = runTimeStack.pop();
-				//System.out.println(operand2+" asda");
 				String operand1Mod = runTimeStack.pop();
-				//System.out.println("asd " + operand1);
 				if(environment.containsKey(operand2Mod))
 				{
 					intermediateMod = environment.get(operand2Mod).second;
@@ -568,10 +512,7 @@ public class FishRunTime {
 					opMod1 = getValue(operand1Mod, environment);
 					opMod2 = getValue(operand2Mod, environment);
 					resMod = opMod1 % opMod2;
-					//System.out.println(resMod + "result");
 					runTimeStack.push(String.valueOf(resMod));
-					//System.out.println("mod " + environment);
-					//System.out.println("mod1 " + runTimeStack);
 				}
 				else
 				{
@@ -583,12 +524,9 @@ public class FishRunTime {
 				Pair<String, String> temporaryAssign = Pair.of(" ", " ");
 				String value;
 				String val = runTimeStack.pop();
-				//System.out.println(val+"value");
 				String var = runTimeStack.pop();
-				//System.out.println(var+"var");
 				if(environment.containsKey(val))
 				{
-					//System.out.println("jump");
 					value = environment.get(val).second;
 					temporaryAssign.first = findType(value);
 				}	
@@ -599,17 +537,13 @@ public class FishRunTime {
 				}
 				temporaryAssign.second = value;
 				environment.put(var, temporaryAssign);
-				//System.out.println("assign " + environment);
-				//System.out.println("assign1 " + runTimeStack);
 				break;
 			case "AND":
 				Boolean opAnd2, opAnd1,resAnd;
 				String intermediateAnd = "";
 				String type1And = "", type2And = "";
 				String operand2And = runTimeStack.pop();
-				//System.out.println(operand2+" asda");
 				String operand1And = runTimeStack.pop();
-				//System.out.println("asd " + operand1);
 				if(environment.containsKey(operand2And))
 				{
 					intermediateAnd = environment.get(operand2And).second;
@@ -633,10 +567,7 @@ public class FishRunTime {
 					opAnd1 = getBoolValue(operand1And, environment);
 					opAnd2 = getBoolValue(operand2And, environment);
 					resAnd = opAnd1 && opAnd2;
-					//System.out.println(resAnd + "result");
 					runTimeStack.push(String.valueOf(resAnd));
-					//System.out.println("And " + environment);
-					//System.out.println("And1 " + runTimeStack);
 				}
 				else
 				{
@@ -649,9 +580,7 @@ public class FishRunTime {
 				String intermediateOr = "";
 				String type1Or = "", type2Or = "";
 				String operand2Or = runTimeStack.pop();
-				//System.out.println(operand2+" asda");
 				String operand1Or = runTimeStack.pop();
-				//System.out.println("asd " + operand1);
 				if(environment.containsKey(operand2Or))
 				{
 					intermediateOr = environment.get(operand2Or).second;
@@ -675,10 +604,7 @@ public class FishRunTime {
 					opOr1 = getBoolValue(operand1Or, environment);
 					opOr2 = getBoolValue(operand2Or, environment);
 					resOr = opOr1 || opOr2;
-					//System.out.println(resOr + "result");
 					runTimeStack.push(String.valueOf(resOr));
-					//System.out.println("Or " + environment);
-					//System.out.println("Or1 " + runTimeStack);
 				}
 				else
 				{
@@ -699,8 +625,6 @@ public class FishRunTime {
 				temporary.first = "NONE";
 				temporary.second = "0";
 				environment.put(element[2], temporary);
-				//System.out.println("dec " + environment);
-				//System.out.println("dec1 " + runTimeStack);
 				break;
 			case "PUSH":
 				if (element[2].contains("\""))
@@ -716,19 +640,13 @@ public class FishRunTime {
 				{
 					runTimeStack.push(element[2]);
 				}
-				//System.out.println("push " + environment);
-				//System.out.println("push1 " + runTimeStack);
 				break;
 			case "FAILGOTO":
 				String decision = runTimeStack.pop();
-				//System.out.println(Integer.parseInt(element[2]) + " hello and hi!!");
 				if(decision.equals("false"))
 					return Integer.parseInt(element[2])-1;
-				//System.out.println("fail " + environment);
-				//System.out.println("fail1 " + runTimeStack);
 				break;
 			case "ENDIFGOTO":
-				//System.out.println("endifgoto dude" + (Integer.parseInt(element[2])-1));
 				return (Integer.parseInt(element[2])-1); 
 			case "GOTO":
 				return Integer.parseInt(element[2]);
