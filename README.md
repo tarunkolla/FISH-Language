@@ -23,7 +23,7 @@ Instructions to install Fish Programming Language:
 
 
     
-Instructions to build and execute the program:
+Instructions to build and execute the program:<br>
 
 
     -Write the Input program snippet with the file name <Filename>.fish within the same folder of the fish.jar if not give the      absolute path to the program file.
@@ -35,11 +35,11 @@ Instructions to build and execute the program:
 Command to Execute the compiler and the runtime:
 
 
-  If .fish file is in a separate folder:
+  If .fish file is in a separate folder:<br>
   java -jar fish.jar path/to/the/program/file.fish 
 
 
-  If .fish file is in the same folder as fish.jar
+  If .fish file is in the same folder as fish.jar<br>
   java -jar fish.jar <filename>.fish
 
 
