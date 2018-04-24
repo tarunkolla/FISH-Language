@@ -1,9 +1,8 @@
 
  <h1 align="center"> FISH LANGUAGE <h1>  
- <h3 align="center">TEAM 16 <br>
- SER 502<h3> <br>
+ <h3 align="center"> TEAM 16 <br> SER 502 <h3> <br>
  
-Team: <br>
+**Team:** <br>
 Ravi Teja Thoram  nthoram@asu.edu<br>
 Tarun Kolla tkolla@asu.edu<br>
 Koushik Kotamraju kkotamra@asu.edu<br>
@@ -23,10 +22,10 @@ Siva Pranav Mandadi  smandad1@asu.edu<br>
     
 **Instructions to build and execute the program:**<br>
 
-
-    -Write the Input program snippet with the file name <Filename>.fish within the same folder of the fish.jar if not give the absolute path to the program file.
+    -Write the Input program snippet with the file name <Filename>.fish within the same folder of the fish.jar 
+    if not give the absolute path to the program file.
     -Open the command prompt and navigate to the folder where the jar is present.
-    -Execute using the given bash command to run the .fish file.
+    -Execute using the given bash command to run the .fish file. 
  
  
  
