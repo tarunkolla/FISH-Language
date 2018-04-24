@@ -17,7 +17,7 @@ System Execution environment: Windows.<br>
 Tools Used: Java SDK 1.8, Eclipse, ANTLR4.<br>
 
 
-Instructions to install Fish Programming Language:
+Instructions to install Fish Programming Language:<br>
     -Download the Jar file.
 
 
@@ -36,11 +36,11 @@ Command to Execute the compiler and the runtime:<br>
 
 
   If .fish file is in a separate folder:<br>
-  java -jar fish.jar path/to/the/program/file.fish 
+  $java -jar fish.jar path/to/the/program/file.fish 
 
 
   If .fish file is in the same folder as fish.jar<br>
-  java -jar fish.jar <filename>.fish
+  $java -jar fish.jar <filename>.fish
 
 
 Youtube-link
