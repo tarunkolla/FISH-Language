@@ -376,7 +376,7 @@ public class FishRunTime {
 				int opSub2 = 0,opSub1 = 0,resSub;
 				String intermediateSub = "";
 				String type1Sub = "", type2Sub = "";
-				String operand2Sub = runTimeStack.pop()
+				String operand2Sub = runTimeStack.pop();
 				String operand1Sub = runTimeStack.pop();
 				if(environment.containsKey(operand2Sub))
 				{
