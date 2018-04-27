@@ -1,14 +1,24 @@
 grammar FishLanguage;
-program		: 'startFISH' statements+ 'endFISH';
+
+program		:  mainBlock (functions)*;
+mainBlock 	: 'startFISH' statements+ 'endFISH';
 
 statements 	: (assignmentStatement
 		|    ifStatement
 		|    loopStatement
 		|    writeStatement
 		|    declarationStatement
-		|    readStatement);
+		|    readStatement
+		|    functionCallStatement
+		|    returnStatement);
 
 declarationStatement : DOLLAR IDENTIFIER;
+
+functions	: 'fun' FUNCNAME LBRACE parameters RBRACE ':' statements+ 'endfun';
+parameters	: (DOLLAR IDENTIFIER)? (',' parameters)?;
+functionCallStatement : FUNCNAME LBRACE arguments RBRACE;
+arguments  	      : (expression)? (','arguments)?;
+returnStatement	      : 'return' expression;
 		     
 assignmentStatement : IDENTIFIER ASSIGNMENT expression;
 ifStatement	: ifBlock (elseBlock)? 'endif';
@@ -24,8 +34,8 @@ booleanExpression: expression EQUALS expression
   		 |    expression NE expression
 		 |    expression GT expression
 		 |    expression LT expression
-		 |    expression AND expression
-		 |    expression OR expression		
+		 |    booleanExpression AND booleanExpression
+		 |    booleanExpression OR booleanExpression		
 		 |    BOOLEAN;
 expression 	: expression (MULTIPLY|DIVIDE|MOD) expression
 		| expression (ADD|SUBTRACT) expression
@@ -33,7 +43,8 @@ expression 	: expression (MULTIPLY|DIVIDE|MOD) expression
 		| BOOLEAN
 		| STRING
 		| IDENTIFIER
-		| LBRACE expression RBRACE;
+		| LBRACE expression RBRACE
+		| 	  functionCallStatement;
 BOOLEAN		: 'true'
 		| 'false';	
 NUMBER 		:  [-]?[0-9]+;
@@ -42,18 +53,19 @@ DOLLAR		: '$';
 ASSIGNMENT	: '=';
 MULTIPLY	: '*';
 DIVIDE		: '/';
-MOD			: '%';
-ADD			: '+';
+MOD		: '%';
+ADD		: '+';
 SUBTRACT	: '-';
 LBRACE		: '(';
 RBRACE		: ')';
 EQUALS		: '==';
-GTE			: '>=';
-LTE			: '<=';
-NE			: '!=';
-GT			: '>';
-LT			: '<';
+GTE		: '>=';
+LTE		: '<=';
+NE		: '!=';
+GT		: '>';
+LT		: '<';
 AND 		: '&&';
-OR			: '||';
 STRING		: ["][ a-zA-Z:=]+["];
+OR		: '||';
+FUNCNAME 	: [A-Z]+;
 NEWLINE		: [ \n\t\r] -> skip;
