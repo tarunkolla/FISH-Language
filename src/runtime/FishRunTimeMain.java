@@ -10,7 +10,7 @@ import java.util.Stack;
 
 public class FishRunTimeMain
 {
-	int eipRegister;
+	int eipRegister,eaxRegister=0;
 	Stack<String> runTimeStack;
 	ArrayList<String> instructions = new ArrayList<String>();
 	String[] commands; 
@@ -43,5 +43,28 @@ public class FishRunTimeMain
             
             eipRegister = runTime.process(instruction, environment, runTimeStack, eipRegister);
         }
+	}
+	public int startFunc(String fileName, int eipRegisterNew) throws FileNotFoundException
+	{
+		FishRunTime runTime = new FishRunTime();
+		File file = new File(fileName);
+		Scanner input = new Scanner(file);
+		
+		while (input.hasNextLine()) {
+			instructions.add(input.nextLine());
+		}
+		commands =  instructions.toArray(new String[instructions.size()]);
+		/*while(eipRegister < commands.length) {
+            String instruction = commands[eipRegister];
+            System.out.println(eipRegister +" "+ instruction);
+            eipRegister++;
+           }*/
+		eipRegister = eipRegisterNew;
+		while(eipRegister < commands.length) {
+            String instruction = commands[eipRegister];
+            
+            eipRegister = runTime.process(instruction, environment, runTimeStack, eipRegister);
+        }
+		return eaxRegister;
 	}
 }

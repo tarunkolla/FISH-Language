@@ -2,13 +2,20 @@ package compiler;
 // Generated from FishLanguage.g4 by ANTLR 4.7.1
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Stack;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
+import compiler.FishLanguageParser.ArgumentsContext;
+import compiler.FishLanguageParser.FunctionCallStatementContext;
+import compiler.FishLanguageParser.FunctionsContext;
+import compiler.FishLanguageParser.MainBlockContext;
+import compiler.FishLanguageParser.ParametersContext;
 import compiler.FishLanguageParser.ReadStatementContext;
+import compiler.FishLanguageParser.ReturnStatementContext;
 
 /**
  * This class provides an empty implementation of {@link FishLanguageListener},
@@ -27,13 +34,12 @@ public class FishLanguageBaseListener implements FishLanguageListener {
 	Stack<Integer> loopStack = new Stack<Integer>();
 	Stack<Integer> loopStart = new Stack<Integer>();
 	Stack<Integer> returnAddrStack = new Stack<Integer>();
+	Stack<Integer> callAddrStack = new Stack<Integer>();
 	int ifNext, elseNext, temp,temp1 = 0;
 	int ifPresCount=0, ifPrevCount=0, loopPresCount=0, loopPrevCount=0, boolExprCount=0;
-	
-	int instructionNo = 0;
+	int instructionNo = 0,arg=0;
 	@Override public void enterProgram(FishLanguageParser.ProgramContext ctx) {
-		instructionNo++;
-		instructionStack.add(instructionNo+" START FISHING");
+		
 	}
 	/**
 	 * {@inheritDoc}
@@ -41,8 +47,19 @@ public class FishLanguageBaseListener implements FishLanguageListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitProgram(FishLanguageParser.ProgramContext ctx) {
+		
+	}
+	@Override
+	public void enterMainBlock(MainBlockContext ctx) {
+		// TODO Auto-generated method stub
 		instructionNo++;
-		instructionStack.add(instructionNo+" END FISHING");
+		instructionStack.add(instructionNo+" STARTFISHING");
+	}
+	@Override
+	public void exitMainBlock(MainBlockContext ctx) {
+		// TODO Auto-generated method stub
+		instructionNo++;
+		instructionStack.add(instructionNo+" ENDFISHING");
 	}
 	/**
 	 * {@inheritDoc}
@@ -355,4 +372,69 @@ public class FishLanguageBaseListener implements FishLanguageListener {
 		instructionStack.add(instructionNo+" READ ");
 		
 	}
+	@Override
+	public void enterFunctions(FunctionsContext ctx) {
+		// TODO Auto-generated method stub
+		instructionNo++;
+		instructionStack.add(instructionNo+" STARTFUN ");
+		int temp = callAddrStack.pop();
+		instructionStack.set(temp-1, temp+ " CALL "+ctx.FUNCNAME()+ " "+instructionNo);
+	}
+	@Override
+	public void exitFunctions(FunctionsContext ctx) {
+		// TODO Auto-generated method stub
+		instructionNo++;
+		instructionStack.add(instructionNo+" ENDFUN ");
+		
+	}
+	@Override
+	public void enterParameters(ParametersContext ctx) {
+		// TODO Auto-generated method stub
+	}
+	@Override
+	public void exitParameters(ParametersContext ctx) {
+		// TODO Auto-generated method stub
+		instructionNo++;
+		instructionStack.add(instructionNo + " PARAMPUSH "+ctx.IDENTIFIER());
+		instructionNo++;
+		instructionStack.add(instructionNo + " PARAMASSIGN ");
+		
+		//instructionStack.add(instructionNo+" PARAM "+arg);
+	}
+	@Override
+	public void enterFunctionCallStatement(FunctionCallStatementContext ctx) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void exitFunctionCallStatement(FunctionCallStatementContext ctx) {
+		// TODO Auto-generated method stub
+		instructionNo++;
+		returnAddrStack.push(instructionNo);
+		callAddrStack.push(instructionNo);
+		instructionStack.add(instructionNo+" CALL "+ctx.FUNCNAME()+ " ");
+	}
+	@Override
+	public void enterArguments(ArgumentsContext ctx) {
+		// TODO Auto-generated method stub
+		
+		
+	}
+	@Override
+	public void exitArguments(ArgumentsContext ctx) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void enterReturnStatement(ReturnStatementContext ctx) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void exitReturnStatement(ReturnStatementContext ctx) {
+		// TODO Auto-generated method stub
+		instructionNo++;
+		instructionStack.add(instructionNo+ " RETURNTO "+returnAddrStack.pop());
+	}
+	
 }

@@ -18,6 +18,16 @@ public interface FishLanguageListener extends ParseTreeListener {
 	 */
 	void exitProgram(FishLanguageParser.ProgramContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link FishLanguageParser#mainBlock}.
+	 * @param ctx the parse tree
+	 */
+	void enterMainBlock(FishLanguageParser.MainBlockContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FishLanguageParser#mainBlock}.
+	 * @param ctx the parse tree
+	 */
+	void exitMainBlock(FishLanguageParser.MainBlockContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link FishLanguageParser#statements}.
 	 * @param ctx the parse tree
 	 */
@@ -37,6 +47,56 @@ public interface FishLanguageListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitDeclarationStatement(FishLanguageParser.DeclarationStatementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FishLanguageParser#functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctions(FishLanguageParser.FunctionsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FishLanguageParser#functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctions(FishLanguageParser.FunctionsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FishLanguageParser#parameters}.
+	 * @param ctx the parse tree
+	 */
+	void enterParameters(FishLanguageParser.ParametersContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FishLanguageParser#parameters}.
+	 * @param ctx the parse tree
+	 */
+	void exitParameters(FishLanguageParser.ParametersContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FishLanguageParser#functionCallStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctionCallStatement(FishLanguageParser.FunctionCallStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FishLanguageParser#functionCallStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctionCallStatement(FishLanguageParser.FunctionCallStatementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FishLanguageParser#arguments}.
+	 * @param ctx the parse tree
+	 */
+	void enterArguments(FishLanguageParser.ArgumentsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FishLanguageParser#arguments}.
+	 * @param ctx the parse tree
+	 */
+	void exitArguments(FishLanguageParser.ArgumentsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FishLanguageParser#returnStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterReturnStatement(FishLanguageParser.ReturnStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FishLanguageParser#returnStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitReturnStatement(FishLanguageParser.ReturnStatementContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link FishLanguageParser#assignmentStatement}.
 	 * @param ctx the parse tree
