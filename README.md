@@ -1,9 +1,6 @@
 
-<head> <h1 align="center"> FISH LANGUAGE <h1>  
- <h3 align="center"> SER 502 - TEAM 16 <h3> 
-  </head>
-
-<body>
+ <h1 align="center"> FISH LANGUAGE </h1>  
+ <h3 align="center"> SER 502 - TEAM 16 </h3> 
 
  Team: <br> Ravi Teja Thoram  nthoram@asu.edu<br>
  Tarun Kolla tkolla@asu.edu<br>
@@ -42,5 +39,3 @@
 
  
  Youtube-link
- 
-</body>
