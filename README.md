@@ -28,11 +28,12 @@
 
   If .fish file is in the same folder as fish.jar<br>
   $java -jar fish.jar <filename>.fish
-
-
-<h3> FISH language programming guidelines: </h3>
-
  
+ <br>
+
+<h3 align="center"> FISH language programming guidelines: </h3>
+
+ <br>
 FISH is a simple programming language that starts and ends with a statement as: 
  
   
@@ -287,6 +288,8 @@ FISH is a simple programming language that starts and ends with a statement as:
  <summary>Video Presentation</summary>
  <p>xyz</p>
  </details>
+ 
+ <br>
 
 
 
