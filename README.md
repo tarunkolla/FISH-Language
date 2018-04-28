@@ -2,7 +2,7 @@
  <h1 align="center"> FISH LANGUAGE </h1>  
  <h3 align="center"> SER 502 - TEAM 16 </h3> 
 
- **Team:** <br> [Ravi Teja Thoram](https://github.com/ravitejathoram)  nthoram@asu.edu<br>
+ **Team:** <br> [Naga Ravi Teja Thoram](https://github.com/ravitejathoram)  nthoram@asu.edu<br>
  [Tarun Kolla](https://github.com/tarunkolla) tkolla@asu.edu<br>
  [Koushik Kotamraju](https://github.com/koushik1610) kkotamra@asu.edu<br>
  [Siva Pranav Mandadi](https://github.com/mspranav)  smandad1@asu.edu<br>
@@ -30,15 +30,51 @@
   $java -jar fish.jar <filename>.fish
 
 
-<h3>Index </h3>
+<h3> FISH language programming guidelines: </h3>
 
- <details>
- <summary>Syntax</summary>
- <p>xyz</p>
- </details>
  
-  <details>
- <summary>Extension</summary>
+ <p> FISH is a simple programming language that starts and ends with a statement as: 
+ 
+  
+ ```
+   startFISH
+     write "Hello FISH!"
+   endFISH
+ ```
+ 
+ It consists of the following:
+  <ol type="1">
+  <li>Data Types</li>
+   <details>
+ <summary>Int</summary>
+  <p>
+    
+  </p>
+    </details>
+      <details>
+ <summary>Real</summary>
+  <p>
+ 
+ </p>
+    </details>
+      <details>
+ <summary>Boolean</summary>
+    <p></p>
+    </details>
+
+  <li>Operation</li>
+   <p>arthimatic relational == logical</p>
+   <li>Statements</li>
+   <p>assignment declerative</p>
+  <li>Constructs</li>
+   <p>conditional constructs(if), iterative constructs(loop) </p>
+   <li>Functions</li>
+</ol> 
+ </p>
+ 
+ 
+ <details>
+ <summary>Scope & Restrictions</summary>
  <p>xyz</p>
  </details>
  
