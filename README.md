@@ -62,7 +62,7 @@ FISH is a simple programming language that starts and ends with a statement as:
   <details>
  <summary>Declerative</summary>
    <p>
-  data types should be declared with a $ sign as:
+  Data types should be declared with a $ sign as:
   
   ```
   $a $b
