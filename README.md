@@ -63,7 +63,7 @@ FISH is a simple programming language that starts and ends with a statement as:
    </details>
   
   <details>
- <summary>Declerative</summary>
+ <summary>Declarative</summary>
    <p>
   Data types should be declared with a $ sign as:
   
@@ -307,7 +307,7 @@ This sections talks about what FISH programming language can do. The list below 
 	  <li>  The simple pinciple we followed in order to achieve dynamic typing is taking care of context/types whenever assignment
 	   statement triggers. 
 	   <li> The priority FISH follows to choose type based on context whenever heterogenous types occurs is <br>
-	   &emsp; <b>	Scenario 1 </b>(in case of Arithemetic and Relational Operations): <br>  &emsp; REAL > NUMBER > NONE (example "dynamicTyping.fish" also illustrates this concept at the statement a = a + b where b = 2.0 after executing this statement a becomes REAL prior to that it is NUMBER) <br>
+	   &emsp; <b>	Scenario 1 </b>(in case of Arithemetic and Relational Operations): <br>  &emsp; REAL > NUMBER > NONE (example "dynamicTyping.fish" also illustrates this concept at the statement a = a + b <br> &emsp; where b = 2.0 after executing this statement a becomes REAL prior to that it is NUMBER) <br>
 	  &emsp; <b>Scanario 2 </b>(in case of Logical operations) : <br>  &emsp; BOOLEAN (logical operations such as AND/OR works only if operands are BOOLEAN)</ul> </p>
  </details>
  
@@ -315,49 +315,55 @@ This sections talks about what FISH programming language can do. The list below 
 	   
  <details>
  <summary>2. Strong Typing</summary>
- <p>Identifier and assignment statement are places where we can loose our control over program. Whenever we are assigning a identifier
-	   to another indentifier i.e a=b (b must hold a value prior to this assignment statement). Since Fish is a Strongly typed language it 
-	   checks scope of 'b' in the environment before assignment.
-	   Consider the program in our test cases "strongTyping.fish",
-	   			o/p of that program is :
-	   				variable not declared : d
-					variable not declared : b
-				(*PRINTING ERROR MESSAGES AS OUR OWN EXCEPTIONS ARE NOT DEFINED*)
-		This program proves that FISH dont allow assignment of undeclared variable to another varible or use of undeclared variable any where in the program thereby proving the quality of STRONG TYPING.
-		The restriction in this strong typing occurs only at "checking no.of arguments at functioncall == no.of parameters at function definition". We havenot checked this during runtime.</p>
+ <p>
+	 <ul> <li>Identifier and assignment statement are places where we can loose our control over program. Whenever we are assigning a identifier
+	   to another indentifier i.e a=b (b must hold a value prior to this assignment statement). Since Fish is a Strongly typed language it </li> <br> 
+	  &emsp; checks scope of 'b' in the environment before assignment. <br>
+	  &emsp; Consider the program in our test cases "strongTyping.fish", 
+	   			
+	o/p of that program is :
+	variable not declared : d
+	variable not declared : b
+				
+(*PRINTING ERROR MESSAGES AS OUR OWN EXCEPTIONS ARE NOT DEFINED*) <br>
+		<li>This program proves that FISH dont allow assignment of undeclared variable to another varible or use of undeclared variable any where in the program thereby proving the quality of STRONG TYPING. </li>
+		<li> The restriction in this strong typing occurs only at "checking no.of arguments at functioncall == no.of parameters at function definition". We havenot checked this during runtime. </li> </ul> </p>
  </details>
  
   <details>
  <summary>3. Meta Language Inspiration</summary>
- <p>Inspired from ML, Fish also prints type of "variable" on console when used along with write "statement" (i.e write a => display value and type of 'a' on console).printing type of variable will also prove our "DYNAMIC TYPING".</p>
+ <p>
+	 <ul>
+		 <li>Inspired from ML, Fish also prints type of "variable" on console when used along with write "statement" (i.e write a => display value and type of 'a' on console).  <br>  Printing type of variable will also exibits our "DYNAMIC TYPING".</p> </li>
+		 </ul>
  </details>
  
   <details>
  <summary>4. Wonders of FISH write Statement</summary>
- <p>
-		1. write can hold a function call (prints return value)
-		2. write can evaluate expressions (arithemetic operations,logical and relational operations)
-	(illustrated in "wondersOFWrite.fish" program and "sampleFunc.fish")</p>
+ <p> 
+		<ul> <li>write can hold a function call (prints return value) </li>
+		<li>write can evaluate expressions (arithemetic operations,logical and relational operations) </li>
+	(illustrated in "wondersOFWrite.fish" program and "sampleFunc.fish") </ul></p>
  </details>
  
   <details>
  <summary>5. Arguments</summary>
- <p>FISH Functions can take expressions as "arguments" and Fish Fucntions can be part of expressions. This scenario is illustrated in the "sampleFunc.fish" program.</p>
+ <p><ul><li>FISH Functions can take expressions as "arguments" and Fish Fucntions can be part of expressions. This scenario is illustrated in the "sampleFunc.fish" program.</li></ul></p>
  </details>
  
   <details>
  <summary>6. Variable Decelaration</summary>
- <p>Fish allows to declare variable at any part of program and from that point of declaration that variable holds "Global Scope". This is good thing but this led to some restriction for us i.e. Use of Same variables in the Function Block and Main Block can corrupt the program. This problem is due to use of global environment hash table instead we have to create environment states block specifically to restrict scope.</p>
+ <p><ul><li>Fish allows to declare variable at any part of program and from that point of declaration that variable holds "Global Scope". This is good thing but this led to some restriction for us i.e. Use of Same variables in the Function Block and Main Block can corrupt the program. This problem is due to use of global environment hash table instead we have to create environment states block specifically to restrict scope. </li></ul></p>
  </details>
  
   <details>
  <summary>7. Restriction</summary>
- <p>FISH functions demand atleast one argument. Our grammar and runtime is in accordance with this feature. 
-	   FISH fucntions do not support "Recursion".
-	   			The reason for this is because we havent created Dynamic Stack Frame to handle environment and runtimestack of each function. We handled everything in global stack.
-	   FISH functions expects definition of recent function call first.
-	   			Consider the example "sampleFunctions.fish" in this as "SUB" is latest function call the definition of the SUB must be found prior to "ADD"
-	   			The reason for this restriction is due to usage of stack during compile time while forming intermediate code to store the point of function call.</p>
+ <p><ul><li>FISH functions demand atleast one argument. Our grammar and runtime is in accordance with this feature. </li>
+	  <li> FISH fucntions do not support "Recursion". <br>
+	   			The reason for this is because we havent created Dynamic Stack Frame to handle environment and runtimestack of each function. We handled everything in global stack. </li>
+	  <li> FISH functions expects definition of recent function call first.  <br>
+	   			 Consider the example "sampleFunctions.fish" in this as "SUB" is latest function call the definition of the SUB must be found prior to "ADD" <br> 
+	   			The reason for this restriction is due to usage of stack during compile time while forming intermediate code to store the point of function call.</li></ul> </p>
  </details>
  Functions can take given expressions as arguments bu it is recommend to leave a space between the operand and operators. Consider the example of f+1, this recommended to be writen as f + 1.
 
