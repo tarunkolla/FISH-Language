@@ -2,10 +2,10 @@
  <h1 align="center"> FISH LANGUAGE </h1>  
  <h3 align="center"> SER 502 - TEAM 16 </h3> 
 
- **Team:** <br> [Naga Ravi Teja Thoram](https://github.com/ravitejathoram)  nthoram@asu.edu<br>
- [Tarun Kolla](https://github.com/tarunkolla) tkolla@asu.edu<br>
- [Koushik Kotamraju](https://github.com/koushik1610) kkotamra@asu.edu<br>
- [Siva Pranav Mandadi](https://github.com/mspranav)  smandad1@asu.edu<br>
+ **Team:** <br> [Naga Ravi Teja Thoram](https://github.com/ravitejathoram)  - nthoram@asu.edu<br>
+ [Tarun Kolla](https://github.com/tarunkolla) - tkolla@asu.edu<br>
+ [Koushik Kotamraju](https://github.com/koushik1610) - kkotamra@asu.edu<br>
+ [Siva Pranav Mandadi](https://github.com/mspranav) - smandad1@asu.edu<br>
 
  **System Execution environment:** Windows.<br>
  Tools Used: Java SDK 1.8, Eclipse, ANTLR4.<br>
@@ -33,7 +33,7 @@
 <h3> FISH language programming guidelines: </h3>
 
  
- <p> FISH is a simple programming language that starts and ends with a statement as: 
+FISH is a simple programming language that starts and ends with a statement as: 
  
   
  ```
@@ -51,26 +51,79 @@
     
   </p>
     </details>
-      <details>
+    <details>
  <summary>Real</summary>
   <p>
  
  </p>
     </details>
-      <details>
+   <details>
  <summary>Boolean</summary>
-    <p></p>
+   <p>
+   </p>
     </details>
 
   <li>Operation</li>
-   <p>arthimatic relational == logical</p>
+    <details>
+ <summary>Arithmetic</summary>
+   <p>
+   </p>
+    </details>
+    
+   <details>
+ <summary>Relational</summary>
+   <p>
+   </p>
+    </details>
+    
+  <details>
+ <summary>Logical</summary>
+   <p>
+   </p>
+    </details>
+   
    <li>Statements</li>
-   <p>assignment declerative</p>
+  
+  <details>
+  <summary>Assignment</summary>
+   <p>
+   </p>
+   </details>
+  
+  <details>
+ <summary>Declerative</summary>
+   <p>
+   </p>
+    </details>
+  
+  <details>
+ <summary>Read</summary>
+   <p>
+   </p>
+    </details>
+  
+  <details>
+ <summary>Write</summary>
+   <p>
+   </p>
+  </details>
+  
   <li>Constructs</li>
-   <p>conditional constructs(if), iterative constructs(loop) </p>
+    <details>
+ <summary>Conditional Constructor</summary>
+   <p>
+   </p>
+    </details>
+   
+   <details>
+   <summary>Iterative Constructor</summary>
+   <p>
+   </p>
+   </details>
    <li>Functions</li>
+   
 </ol> 
- </p>
+
  
  
  <details>
