@@ -126,7 +126,7 @@ FISH is a simple programming language that starts and ends with a statement as:
     f=27
     write f
     ```
-   Write can alos be used to display portion of a line: 
+   Write can also be used to display portion of a line: 
    
    ```
    write "Keep fishing"
@@ -154,13 +154,47 @@ FISH is a simple programming language that starts and ends with a statement as:
     <details>
  <summary>Conditional</summary>
    <p>
+    If is a control flow statement that starts as if(): and ends with endif as:
     
+    ```
+    $f
+    read f
+    
+    if(f == 0):
+        write "f is zero"
+    endif 
+    ```
+   If can also be followed with an else sattement:
+   
+   ```
+   $f $i $s $h
+   f=0 i=1
+   read h
+   
+   if( h == 0):
+       s = f + i
+       write s
+   else:
+       s = f * i
+       write s
+   endif
+   ```
    </p>
     </details>
    
    <details>
    <summary>Iterative</summary>
    <p>
+    The loop statement continually executes a block while a particular condition is true. Its syntax can be expressed as:
+   
+   ```
+    $f
+    f=4
+   	loop(f > 1):
+        write f
+	  	    f = f - 1
+	   endloop
+   ```
    </p>
    </details>
    <li>Functions</li>
