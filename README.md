@@ -282,34 +282,39 @@ FISH is a simple programming language that starts and ends with a statement as:
 
  <h3 align= "center" >Scope & Restrictions</h3>
 
-This sections talks about what FISH programming language can do. Below is a list of the same:
+This sections talks about what FISH programming language can do. The list below has a detailed explanation of the same.
 
   
   <details>
-  <summary>1. Dynamic Typing:</summary>
-   <p> Our programming language dynamically decides the data types of variables just like Java Script/Python.
-	   We support three data types and user only need to declare variable, need not bother about type of variable.
-	   Whenever a variable is declared we are giving default value as "0" and setting default type as "NONE".
-	   Based on the context, we typecast data or shows error message to perform operations among data types.
-	   Consider the example in "data/testcases" section "dynamicTyping.fish" program,
-	   			o/p of that program is :
-		                        a:
-					1 type:NUMBER
-					a:
-					3.0 type:REAL
-	   The output illustrates the dynamic typing in our language because based on context the type of variable "a" is 
+  <summary>1. Dynamic Typing</summary>
+ <p> 
+	<ul>
+ 
+ <li> Our programming language dynamically decides the data types of variables just like Java Script/Python.</li>
+ <li> We support three data types and user only need to declare variable, need not bother about type of variable. </li>
+	 <li>   Whenever a variable is declared we are giving default value as "0" and setting default type as "NONE". </li>
+	 <li>   Based on the context, we typecast data or shows error message to perform operations among data types. 
+	 <li>   Consider the example in "data/testcases" section "dynamicTyping.fish" program, </li>
+	   			o/p of that program is : <br>
+		                        
+	a: 
+	1 type:NUMBER
+	a:
+	3.0 type:REAL
+					
+&emsp; The output illustrates the dynamic typing in our language because based on context the type of variable "a" is 
 	   changing. 
-	   The simple pinciple we followed in order to achieve dynamic typing is taking care of context/types whenever assignment
+	  <li>  The simple pinciple we followed in order to achieve dynamic typing is taking care of context/types whenever assignment
 	   statement triggers. 
-	   The priority FISH follows to choose type based on context whenever heterogenous types occurs is
-	   	Scenario 1 (in case of Arithemetic and Relational Operations): REAL > NUMBER > NONE (example "dynamicTyping.fish" also illustrates this concept at the statement a = a + b where b = 2.0 after executing this statement a becomes REAL prior to that it is NUMBER)
-	   	Scanario 2 (in case of Logical operations) : BOOLEAN (logical operations such as AND/OR works only if operands are BOOLEAN) </p>
+	   <li> The priority FISH follows to choose type based on context whenever heterogenous types occurs is <br>
+	   &emsp; <b>	Scenario 1 </b>(in case of Arithemetic and Relational Operations): <br>  &emsp; REAL > NUMBER > NONE (example "dynamicTyping.fish" also illustrates this concept at the statement a = a + b where b = 2.0 after executing this statement a becomes REAL prior to that it is NUMBER) <br>
+	  &emsp; <b>Scanario 2 </b>(in case of Logical operations) : <br>  &emsp; BOOLEAN (logical operations such as AND/OR works only if operands are BOOLEAN)</ul> </p>
  </details>
  
 
 	   
  <details>
- <summary>2. Strong Typing:</summary>
+ <summary>2. Strong Typing</summary>
  <p>Identifier and assignment statement are places where we can loose our control over program. Whenever we are assigning a identifier
 	   to another indentifier i.e a=b (b must hold a value prior to this assignment statement). Since Fish is a Strongly typed language it 
 	   checks scope of 'b' in the environment before assignment.
@@ -328,7 +333,7 @@ This sections talks about what FISH programming language can do. Below is a list
  </details>
  
   <details>
- <summary>4. Wonders of FISH write Statement:</summary>
+ <summary>4. Wonders of FISH write Statement</summary>
  <p>
 		1. write can hold a function call (prints return value)
 		2. write can evaluate expressions (arithemetic operations,logical and relational operations)
@@ -354,13 +359,15 @@ This sections talks about what FISH programming language can do. Below is a list
 	   			Consider the example "sampleFunctions.fish" in this as "SUB" is latest function call the definition of the SUB must be found prior to "ADD"
 	   			The reason for this restriction is due to usage of stack during compile time while forming intermediate code to store the point of function call.</p>
  </details>
+ Functions can take given expressions as arguments bu it is recommend to leave a space between the operand and operators. Consider the example of f+1, this recommended to be writen as f + 1.
 
  
  <br>
 
-<h3 align = "center"> Other Resources: </h3> <br>
+<h3 align = "center"> Other Resources </h3> <br>
 
  * [Contrubutions and meeting agenda](doc/contribution.txt) 
  * [Compiler Design](doc/design/Compiler-Design.jpg)
  * [FISH Logo](doc/design/FISH.jpg)
-
+ * [FISH Language Grammer](doc/design/grammar/FishLanguage.g4)
+ * [Sample FISH programs](data/Test Cases/Test Programs)
