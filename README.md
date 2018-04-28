@@ -44,6 +44,63 @@ FISH is a simple programming language that starts and ends with a statement as:
  
  **It consists of the following:**
  <ol type="1">
+
+   <li>Statements</li>
+  
+  <details>
+  <summary>Assignment</summary>
+   <p>
+    Fish language supports assignment statements and can be writen as: 
+	   
+   ```
+   $f
+   f = 1
+   ```
+   </p>
+   </details>
+  
+  <details>
+ <summary>Declerative</summary>
+   <p>
+  data types should be declared with a $ sign as:
+  
+  ```
+  $a $b
+  ```
+   </p>
+    </details>
+  
+  <details>
+ <summary>Write</summary>
+   <p>
+    Write is used to display a promt such as:
+    
+    ```
+    $f
+    f=27
+    write f
+    ```
+   Write can also be used to display portion of a line: 
+   
+   ```
+   write "Keep fishing"
+   ```
+   </p>
+  </details>
+  
+  
+  <details>
+ <summary>Read</summary>
+   <p>
+    Read is used for obtaining input of the primitive types such as Int and can be writen as:
+    
+   ```
+   $f
+   write "give the value of f:"
+   read f
+   ```
+   </p>
+    </details>
  <li>Data Types</li>
  <details>
  <summary>Int</summary>
@@ -113,7 +170,16 @@ FISH is a simple programming language that starts and ends with a statement as:
    <details>
  <summary>Relational</summary>
    <p>
-   Fish supports relational operators such as equalto, notequalto, lessthan, graterthan, lessthaorequalto, greaterthanorequlato .  
+   Fish supports relational operators such as equalto '==', notequalto '!=', lessthan '<', graterthan '>', lessthaorequalto '<=', greaterthanorequlato'>='. 
+   
+   ```
+   $f $i
+   f = 2
+   read i
+   if(i >= 2):
+       wiite "i is greater than or equal to 2"
+   endif
+   ```
    </p>
     </details>
     
@@ -132,56 +198,7 @@ FISH is a simple programming language that starts and ends with a statement as:
    </p>
     </details>
    
-   <li>Statements</li>
-  
-  <details>
-  <summary>Assignment</summary>
-   <p>
-	   =
-   </p>
-   </details>
-  
-  <details>
- <summary>Declerative</summary>
-   <p>
-	   
-   </p>
-    </details>
-  
-  <details>
- <summary>Write</summary>
-   <p>
-    Write is used to display a promt such as:
-    
-    ```
-    $f
-    f=27
-    write f
-    ```
-   Write can also be used to display portion of a line: 
    
-   ```
-   write "Keep fishing"
-   ```
-   </p>
-  </details>
-  
-  
-  <details>
- <summary>Read</summary>
-   <p>
-    Read is used for obtaining input of the primitive types such as Int and can be writen as:
-    
-   ```
-   $f
-   write "give the value of f:"
-   read f
-   ```
-   </p>
-    </details>
-  
-
-  
   <li>Constructs</li>
     <details>
  <summary>Conditional</summary>
@@ -231,7 +248,7 @@ FISH is a simple programming language that starts and ends with a statement as:
    </details>
    <li>Functions</li>
    <details>
-   <summary>Function</summary>
+   <summary>Function Block</summary>
    <p>
    Fish language supports functions that start with fun(), ends with endfun and should have a return as:
 	   
