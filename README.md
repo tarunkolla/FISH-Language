@@ -76,11 +76,11 @@ FISH is a simple programming language that starts and ends with a statement as:
    <p>
     Write is used to display a promt such as:
     
-    ```
+   ```
     $f
     f=27
     write f
-    ```
+   ```
    Write can also be used to display portion of a line: 
    
    ```
