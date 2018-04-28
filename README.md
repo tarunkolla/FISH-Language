@@ -79,7 +79,14 @@ FISH is a simple programming language that starts and ends with a statement as:
   <details>
  <summary>Boolean</summary>
    <p>
-    
+    Fish supports boolean types and can be intialized as:
+	   
+   ```
+   $f
+   f = true
+   $i
+   i = false
+   ```
    </p>
     </details>
 
@@ -87,6 +94,7 @@ FISH is a simple programming language that starts and ends with a statement as:
     <details>
  <summary>Arithmetic</summary>
    <p>
+	   
    </p>
     </details>
     
@@ -155,15 +163,15 @@ FISH is a simple programming language that starts and ends with a statement as:
  <summary>Conditional</summary>
    <p>
     If is a control flow statement that starts as if(): and ends with endif as:
-    
-    ```
+   
+   ```
     $f
     read f
     
     if(f == 0):
         write "f is zero"
     endif 
-    ```
+   ```
    If can also be followed with an else sattement:
    
    ```
@@ -190,14 +198,33 @@ FISH is a simple programming language that starts and ends with a statement as:
    ```
     $f
     f=4
-   	loop(f > 1):
+    loop(f > 1):
         write f
-	  	    f = f - 1
-	   endloop
+	f = f - 1
+    endloop
    ```
    </p>
    </details>
    <li>Functions</li>
+   <details>
+   <summary>Function</summary>
+   <p>
+   Fish language supports functions that start with fun() and end with endfun as:
+	   
+   ```
+   fun($f):
+       f = 27
+       wirte f
+   endfun    
+   ```
+   </p>
+   </details>
+    <details>
+   <summary>Function call</summary>
+   <p>
+   Functions in Fish support a return
+   </p>
+   </details>
    
 </ol> 
 
@@ -213,5 +240,7 @@ FISH is a simple programming language that starts and ends with a statement as:
  <p>xyz</p>
  </details>
 
- [Contribution and meeting agenda](doc/contribution.txt) 
+
+<br>
+ Contrubutions and meeting agenda can be found [here](doc/contribution.txt) 
 
