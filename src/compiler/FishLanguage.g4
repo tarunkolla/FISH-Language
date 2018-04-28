@@ -2,6 +2,7 @@ grammar FishLanguage;
 
 program		:  mainBlock (functions)*;
 mainBlock 	: 'startFISH' statements+ 'endFISH';
+
 statements 	: (assignmentStatement
 		|    ifStatement
 		|    loopStatement
@@ -41,14 +42,12 @@ expression 	: expression (MULTIPLY|DIVIDE|MOD) expression
 		| BOOLEAN
 		| STRING
 		| IDENTIFIER
-		| REAL
 		| functionCallStatement
 		| LBRACE expression RBRACE;
 BOOLEAN		: 'true'
 		| 'false';	
 SUBTRACT	: '-';
 NUMBER 		:  [-]?[0-9]+;
-REAL		: [-]?[0-9]+[.][0-9]+;
 IDENTIFIER	:  [a-z]+;
 DOLLAR		: '$';
 ASSIGNMENT	: '=';

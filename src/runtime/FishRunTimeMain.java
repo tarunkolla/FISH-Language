@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Hashtable;
-import java.util.List;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -44,27 +43,14 @@ public class FishRunTimeMain
             eipRegister = runTime.process(instruction, environment, runTimeStack, eipRegister);
         }
 	}
-	public int startFunc(String fileName, int eipRegisterNew) throws FileNotFoundException
+	public static void main(String args[])
 	{
-		FishRunTime runTime = new FishRunTime();
-		File file = new File(fileName);
-		Scanner input = new Scanner(file);
-		
-		while (input.hasNextLine()) {
-			instructions.add(input.nextLine());
+		FishRunTimeMain fish = new FishRunTimeMain();
+		try {
+			fish.start(args[0]);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		commands =  instructions.toArray(new String[instructions.size()]);
-		/*while(eipRegister < commands.length) {
-            String instruction = commands[eipRegister];
-            System.out.println(eipRegister +" "+ instruction);
-            eipRegister++;
-           }*/
-		eipRegister = eipRegisterNew;
-		while(eipRegister < commands.length) {
-            String instruction = commands[eipRegister];
-            
-            eipRegister = runTime.process(instruction, environment, runTimeStack, eipRegister);
-        }
-		return eaxRegister;
 	}
 }

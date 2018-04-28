@@ -9,8 +9,11 @@ import java.util.regex.Pattern;
 
 public class FishRunTime {
 	
-	String operations[] = {"DISPLAY", "GREATERTHANEQUAL", "LESSTHANEQUAL","NOTEQUAL","GREATERTHAN","LESSTHAN",
-						"EQUALS", "ADD","SUBTRACT","MULTIPLY", "DIVIDE", "MOD","ASSIGN", "AND", "OR", "READ","ENDFISHING", "PARAMASSIGN","STARTFUN"};
+	String operations[] = {"DISPLAY", "ASSIGN", "READ","ENDFISHING", "PARAMASSIGN","STARTFUN"};
+	String arithmeticOperations[] = {"ADD", "SUBTRACT","MOD","DIVIDE","MULTIPLY"};
+	String logicalOperations[] = {"AND","OR"};
+	String relationalOperations[] = {"GREATERTHANEQUAL", "LESSTHANEQUAL","NOTEQUAL","GREATERTHAN","LESSTHAN",
+			"EQUALS"};
 	Pair<String, String> temporary = Pair.of(" ", " ");
 	
 	public static boolean checkComptability(String operandType1, String operandType2)
@@ -24,6 +27,10 @@ public class FishRunTime {
 		{
 			//System.out.println("here_2!!!!");
 			return "NUMBER";
+		}
+		else if(value.matches("[-]?[0-9]+[.][0-9]+"))
+		{
+			return "REAL";
 		}
 		else
 			return "BOOLEAN";
@@ -55,6 +62,9 @@ public class FishRunTime {
 	{
 		String[] element = instruction.split(" ");
 		Boolean check = Arrays.asList(operations).contains(element[1]);
+		Boolean arthimeticCheck = Arrays.asList(arithmeticOperations).contains(element[1]);
+		Boolean relationalCheck = Arrays.asList(relationalOperations).contains(element[1]);
+		Boolean logicalCheck = Arrays.asList(logicalOperations).contains(element[1]);
 		if(check)
 		{
 			switch(element[1]) {
@@ -87,492 +97,6 @@ public class FishRunTime {
 				{
 					result = output;
 					System.out.println(result);
-				}
-				break;
-			case "GREATERTHANEQUAL":
-				int opGte2 = 0,opGte1 = 0;
-				String resGte;
-				String intermediateGte = "";
-				String type1Gte = "", type2Gte = "";
-				String operand2Gte = runTimeStack.pop();
-				//System.out.println(operand2+" asda");
-				String operand1Gte = runTimeStack.pop();
-				//System.out.println("asd " + operand1);
-				if(environment.containsKey(operand2Gte))
-				{
-					intermediateGte = environment.get(operand2Gte).second;
-					type2Gte = environment.get(operand2Gte).first;
-				}
-				else {
-					type2Gte = findType(operand2Gte);
-				}
-				if(environment.containsKey(operand1Gte))
-				{
-					intermediateGte = environment.get(operand1Gte).second;	
-					type1Gte = environment.get(operand1Gte).first;
-				}
-				else
-				{
-					type1Gte = findType(operand1Gte);
-				}
-				Boolean checkTypeGte = checkComptability(type1Gte, type2Gte);
-				if(checkTypeGte)
-				{
-					opGte1 = getValue(operand1Gte, environment);
-					opGte2 = getValue(operand2Gte, environment);
-					if (opGte1 > opGte2)
-						resGte = "true";
-					else
-						resGte = "false";
-					//System.out.println(resEqu + "result");
-					runTimeStack.push(resGte);
-					//System.out.println("add " + environment);
-					//System.out.println("add1 " + runTimeStack);
-				}
-				else
-				{
-					System.out.println("Incompatible types or Variable not declared");
-					System.exit(0);
-				}
-				break;
-			case "LESSTHANEQUAL":
-				int opLte2 = 0,opLte1 = 0;
-				String resLte;
-				String intermediateLte = "";
-				String type1Lte = "", type2Lte = "";
-				String operand2Lte = runTimeStack.pop();
-				//System.out.println(operand2+" asda");
-				String operand1Lte = runTimeStack.pop();
-				//System.out.println("asd " + operand1);
-				if(environment.containsKey(operand2Lte))
-				{
-					intermediateLte = environment.get(operand2Lte).second;
-					type2Lte = environment.get(operand2Lte).first;
-				}
-				else {
-					type2Lte = findType(operand2Lte);
-				}
-				if(environment.containsKey(operand1Lte))
-				{
-					intermediateLte = environment.get(operand1Lte).second;	
-					type1Lte = environment.get(operand1Lte).first;
-				}
-				else
-				{
-					type1Lte = findType(operand1Lte);
-				}
-				Boolean checkTypeLte = checkComptability(type1Lte, type2Lte);
-				if(checkTypeLte)
-				{
-					opLte1 = getValue(operand1Lte, environment);
-					opLte2 = getValue(operand2Lte, environment);
-					if (opLte1 <= opLte2)
-						resLte = "true";
-					else
-						resLte = "false";
-					//System.out.println(resEqu + "result");
-					runTimeStack.push(resLte);
-					//System.out.println("add " + environment);
-					//System.out.println("add1 " + runTimeStack);
-				}
-				else
-				{
-					System.out.println("Incompatible types or Variable not declared");
-					System.exit(0);
-				}
-				break;
-			case "NOTEQUAL":
-				int opNEqu2 = 0,opNEqu1 = 0;
-				String resNEqu;
-				String intermediateNEqu = "";
-				String type1NEqu = "", type2NEqu = "";
-				String operand2NEqu= runTimeStack.pop();
-				//System.out.println(operand2+" asda");
-				String operand1NEqu = runTimeStack.pop();
-				//System.out.println("asd " + operand1);
-				if(environment.containsKey(operand2NEqu))
-				{
-					intermediateNEqu = environment.get(operand2NEqu).second;
-					type2NEqu = environment.get(operand2NEqu).first;
-				}
-				else {
-					type2NEqu = findType(operand2NEqu);
-				}
-				if(environment.containsKey(operand1NEqu))
-				{
-					intermediateNEqu = environment.get(operand1NEqu).second;	
-					type1NEqu = environment.get(operand1NEqu).first;
-				}
-				else
-				{
-					type1NEqu = findType(operand1NEqu);
-				}
-				Boolean checkTypeNEqu = checkComptability(type1NEqu, type2NEqu);
-				if(checkTypeNEqu)
-				{
-					opNEqu1 = getValue(operand1NEqu, environment);
-					opNEqu2 = getValue(operand2NEqu, environment);
-					if (opNEqu1 != opNEqu2)
-						resNEqu = "true";
-					else
-						resNEqu = "false";
-					//System.out.println(resEqu + "result");
-					runTimeStack.push(resNEqu);
-					//System.out.println("add " + environment);
-					//System.out.println("add1 " + runTimeStack);
-				}
-				else
-				{
-					System.out.println("Incompatible types or Variable not declared");
-					System.exit(0);
-				}
-				break;
-			case "GREATERTHAN":
-				int opGt2 = 0,opGt1 = 0;
-				String resGt;
-				String intermediateGt = "";
-				String type1Gt = "", type2Gt = "";
-				String operand2Gt= runTimeStack.pop();
-				//System.out.println(operand2+" asda");
-				String operand1Gt = runTimeStack.pop();
-				//System.out.println("asd " + operand1);
-				if(environment.containsKey(operand2Gt))
-				{
-					intermediateGt = environment.get(operand2Gt).second;
-					type2Gt = environment.get(operand2Gt).first;
-				}
-				else {
-					type2Gt = findType(operand2Gt);
-				}
-				if(environment.containsKey(operand1Gt))
-				{
-					intermediateGt = environment.get(operand1Gt).second;	
-					type1Gt = environment.get(operand1Gt).first;
-				}
-				else
-				{
-					type1Gt = findType(operand1Gt);
-				}
-				Boolean checkTypeGt = checkComptability(type1Gt, type2Gt);
-				if(checkTypeGt)
-				{
-					opGt1 = getValue(operand1Gt, environment);
-					opGt2 = getValue(operand2Gt, environment);
-					if (opGt1 > opGt2)
-						resGt = "true";
-					else
-						resGt = "false";
-					//System.out.println(resEqu + "result");
-					runTimeStack.push(resGt);
-					//System.out.println("gt " + environment);
-					//System.out.println("gt1 " + runTimeStack);
-				}
-				else
-				{
-					System.out.println("Incompatible types or Variable not declared");
-					System.exit(0);
-				}
-				break;
-			case "LESSTHAN":
-				int opLt2 = 0,opLt1 = 0;
-				String resLt;
-				String intermediateLt = "";
-				String type1Lt = "", type2Lt = "";
-				String operand2Lt= runTimeStack.pop();
-				//System.out.println(operand2+" asda");
-				String operand1Lt = runTimeStack.pop();
-				//System.out.println("asd " + operand1);
-				if(environment.containsKey(operand2Lt))
-				{
-					intermediateLt = environment.get(operand2Lt).second;
-					type2Lt = environment.get(operand2Lt).first;
-				}
-				else {
-					type2Lt = findType(operand2Lt);
-				}
-				if(environment.containsKey(operand1Lt))
-				{
-					intermediateLt = environment.get(operand1Lt).second;	
-					type1Lt = environment.get(operand1Lt).first;
-				}
-				else
-				{
-					type1Lt = findType(operand1Lt);
-				}
-				Boolean checkTypeLt = checkComptability(type1Lt, type2Lt);
-				if(checkTypeLt)
-				{
-					opLt1 = getValue(operand1Lt, environment);
-					opLt2 = getValue(operand2Lt, environment);
-					if (opLt1 < opLt2)
-						resLt = "true";
-					else
-						resLt = "false";
-					//System.out.println(resEqu + "result");
-					runTimeStack.push(resLt);
-					//System.out.println("add " + environment);
-					//System.out.println("add1 " + runTimeStack);
-				}
-				else
-				{
-					System.out.println("Incompatible types or Variable not declared");
-					System.exit(0);
-				}
-				break;
-			case "EQUALS":
-				int opEqu2 = 0,opEqu1 = 0;
-				String resEqu;
-				String intermediateEqu = "";
-				String type1Equ = "", type2Equ = "";
-				String operand2Equ= runTimeStack.pop();
-				//System.out.println(operand2+" asda");
-				String operand1Equ = runTimeStack.pop();
-				//System.out.println("asd " + operand1);
-				if(environment.containsKey(operand2Equ))
-				{
-					intermediateEqu = environment.get(operand2Equ).second;
-					type2Equ = environment.get(operand2Equ).first;
-				}
-				else {
-					type2Equ = findType(operand2Equ);
-				}
-				if(environment.containsKey(operand1Equ))
-				{
-					intermediateEqu = environment.get(operand1Equ).second;	
-					type1Equ = environment.get(operand1Equ).first;
-				}
-				else
-				{
-					type1Equ = findType(operand1Equ);
-				}
-				Boolean checkTypeEqu = checkComptability(type1Equ, type2Equ);
-				if(checkTypeEqu)
-				{
-					opEqu1 = getValue(operand1Equ, environment);
-					opEqu2 = getValue(operand2Equ, environment);
-					if ((opEqu1 == opEqu2))
-						resEqu = "true";
-					else
-						resEqu = "false";
-					//System.out.println(resEqu + "result");
-					runTimeStack.push(resEqu);
-					//System.out.println("eq " + environment);
-					//System.out.println("eq1 " + runTimeStack);
-				}
-				else
-				{
-					System.out.println("Incompatible types or Variable not declared");
-					System.exit(0);
-				}
-				break;
-			case "ADD":
-				int op2 = 0,op1 = 0,res;
-				String intermediate = "";
-				String type1 = "", type2 = "";
-				String operand2 = runTimeStack.pop();
-				//System.out.println(operand2+" asda");
-				String operand1 = runTimeStack.pop();
-				//System.out.println("asd " + operand1);
-				if(environment.containsKey(operand2))
-				{
-					intermediate = environment.get(operand2).second;
-					type2 = environment.get(operand2).first;
-				}
-				else {
-					type2 = findType(operand2);
-				}
-				if(environment.containsKey(operand1))
-				{
-					intermediate = environment.get(operand1).second;	
-					type1 = environment.get(operand1).first;
-				}
-				else
-				{
-					type1 = findType(operand1);
-				}
-				Boolean checkType = checkComptability(type1, type2);
-				if(checkType && (type1.equals("NUMBER") || type2.equals("NUMBER")))
-				{
-					op1 = getValue(operand1, environment);
-					op2 = getValue(operand2, environment);
-					res = op1 + op2;
-					//System.out.println(res + "result");
-					runTimeStack.push(String.valueOf(res));
-					//System.out.println("add " + environment);
-					//System.out.println("add1 " + runTimeStack);
-				}
-				else
-				{
-					System.out.println("Incompatible types or Variable not declared");
-					System.exit(0);
-				}
-				break;				
-			case "SUBTRACT":
-				int opSub2 = 0,opSub1 = 0,resSub;
-				String intermediateSub = "";
-				String type1Sub = "", type2Sub = "";
-				String operand2Sub = runTimeStack.pop();
-				//System.out.println(operand2+" asda");
-				String operand1Sub = runTimeStack.pop();
-				//System.out.println("asd " + operand1);
-				if(environment.containsKey(operand2Sub))
-				{
-					intermediateSub = environment.get(operand2Sub).second;
-					type2Sub = environment.get(operand2Sub).first;
-				}
-				else {
-					type2Sub = findType(operand2Sub);
-				}
-				if(environment.containsKey(operand1Sub))
-				{
-					intermediateSub = environment.get(operand1Sub).second;	
-					type1Sub = environment.get(operand1Sub).first;
-				}
-				else
-				{
-					type1Sub = findType(operand1Sub);
-				}
-				Boolean checkTypeSub = checkComptability(type1Sub, type2Sub);
-				if(checkTypeSub && (type1Sub.equals("NUMBER") || type2Sub.equals("NUMBER")))
-				{
-					opSub1 = getValue(operand1Sub, environment);
-					opSub2 = getValue(operand2Sub, environment);
-					resSub = opSub1 - opSub2;
-					//System.out.println(resSub + "result");
-					runTimeStack.push(String.valueOf(resSub));
-					//System.out.println("add " + environment);
-					//System.out.println("add1 " + runTimeStack);
-				}
-				else
-				{
-					System.out.println("Incompatible types or Variable not declared sub");
-					System.exit(0);
-				}
-				break;
-			case "MULTIPLY":
-				int opMul2 = 0,opMul1 = 0,resMul;
-				String intermediateMul = "";
-				String type1Mul = "", type2Mul = "";
-				String operand2Mul = runTimeStack.pop();
-				//System.out.println(operand2+" asda");
-				String operand1Mul = runTimeStack.pop();
-				//System.out.println("asd " + operand1);
-				if(environment.containsKey(operand2Mul))
-				{
-					intermediateMul = environment.get(operand2Mul).second;
-					type2Mul = environment.get(operand2Mul).first;
-				}
-				else {
-					type2Mul = findType(operand2Mul);
-				}
-				if(environment.containsKey(operand1Mul))
-				{
-					intermediateMul = environment.get(operand1Mul).second;	
-					type1Mul = environment.get(operand1Mul).first;
-				}
-				else
-				{
-					type1Mul = findType(operand1Mul);
-				}
-				Boolean checkTypeMul = checkComptability(type1Mul, type2Mul);
-				if(checkTypeMul && (type1Mul.equals("NUMBER") || type2Mul.equals("NUMBER")))
-				{
-					opMul1 = getValue(operand1Mul, environment);
-					opMul2 = getValue(operand2Mul, environment);
-					resMul = opMul1 * opMul2;
-					//System.out.println(resMul + "result");
-					runTimeStack.push(String.valueOf(resMul));
-					//System.out.println("add " + environment);
-					//System.out.println("add1 " + runTimeStack);
-				}
-				else
-				{
-					System.out.println("Incompatible types or Variable not declared");
-					System.exit(0);
-				}
-				break;
-			case "DIVIDE":
-				int opDiv2 = 0,opDiv1 = 0,resDiv;
-				String intermediateDiv = "";
-				String type1Div = "", type2Div = "";
-				String operand2Div = runTimeStack.pop();
-				//System.out.println(operand2+" asda");
-				String operand1Div = runTimeStack.pop();
-				//System.out.println("asd " + operand1);
-				if(environment.containsKey(operand2Div))
-				{
-					intermediateDiv = environment.get(operand2Div).second;
-					type2Div = environment.get(operand2Div).first;
-				}
-				else {
-					type2Div = findType(operand2Div);
-				}
-				if(environment.containsKey(operand1Div))
-				{
-					intermediateDiv = environment.get(operand1Div).second;	
-					type1Div = environment.get(operand1Div).first;
-				}
-				else
-				{
-					type1Div = findType(operand1Div);
-				}
-				Boolean checkTypeDiv = checkComptability(type1Div, type2Div);
-				if(checkTypeDiv && (type1Div.equals("NUMBER") || type2Div.equals("NUMBER")))
-				{
-					opDiv1 = getValue(operand1Div, environment);
-					opDiv2 = getValue(operand2Div, environment);
-					resDiv = opDiv1 / opDiv2;
-					//System.out.println(resDiv + "result");
-					runTimeStack.push(String.valueOf(resDiv));
-					//System.out.println("add " + environment);
-					//System.out.println("add1 " + runTimeStack);
-				}
-				else
-				{
-					System.out.println("Incompatible types or Variable not declared");
-					System.exit(0);
-				}
-				break;
-			case "MOD":
-				int opMod2 = 0,opMod1 = 0,resMod;
-				String intermediateMod = "";
-				String type1Mod = "", type2Mod = "";
-				String operand2Mod = runTimeStack.pop();
-				//System.out.println(operand2+" asda");
-				String operand1Mod = runTimeStack.pop();
-				//System.out.println("asd " + operand1);
-				if(environment.containsKey(operand2Mod))
-				{
-					intermediateMod = environment.get(operand2Mod).second;
-					type2Mod = environment.get(operand2Mod).first;
-				}
-				else {
-					type2Mod = findType(operand2Mod);
-				}
-				if(environment.containsKey(operand1Mod))
-				{
-					intermediateMod = environment.get(operand1Mod).second;	
-					type1Mod = environment.get(operand1Mod).first;
-				}
-				else
-				{
-					type1Mod = findType(operand1Mod);
-				}
-				Boolean checkTypeMod = checkComptability(type1Mod, type2Mod);
-				if(checkTypeMod && (type1Mod.equals("NUMBER") || type2Mod.equals("NUMBER")))
-				{
-					opMod1 = getValue(operand1Mod, environment);
-					opMod2 = getValue(operand2Mod, environment);
-					resMod = opMod1 % opMod2;
-					//System.out.println(resMod + "result");
-					runTimeStack.push(String.valueOf(resMod));
-					//System.out.println("mod " + environment);
-					//System.out.println("mod1 " + runTimeStack);
-				}
-				else
-				{
-					System.out.println("Incompatible types or Variable not declared");
-					System.exit(0);
 				}
 				break;
 			case "PARAMASSIGN":
@@ -621,7 +145,7 @@ public class FishRunTime {
 				//System.out.println("assign " + environment);
 				//System.out.println("assign1 " + runTimeStack);
 				break;
-			case "AND":
+			/*case "AND":
 				Boolean opAnd2, opAnd1,resAnd;
 				String intermediateAnd = "";
 				String type1And = "", type2And = "";
@@ -705,15 +229,37 @@ public class FishRunTime {
 					System.exit(0);
 				}
 
-				break;
+				break;*/
 			case "ENDFISHING":
 				System.exit(0);
 				break;
-			case "STARTFUN":
-				
 			default:
 				System.out.println("error");
 			}
+		}
+		else if (logicalCheck)
+		{
+			LogicalOperations lo = new  LogicalOperations();
+			String operand2 = runTimeStack.pop();
+			String operand1 = runTimeStack.pop();
+			String result100 = lo.evaluate(element[1],operand1,operand2,environment);
+			runTimeStack.push(result100);
+		}
+		else if(arthimeticCheck)
+		{
+			ArithmeticOperations ao = new  ArithmeticOperations();
+			String operand2 = runTimeStack.pop();
+			String operand1 = runTimeStack.pop();
+			String result100 = ao.evaluate(element[1],operand1,operand2,environment);
+			runTimeStack.push(result100);
+		}
+		else if(relationalCheck)
+		{
+			RelationalOperations ro = new RelationalOperations();
+			String operand2 = runTimeStack.pop();
+			String operand1 = runTimeStack.pop();
+			String result100 = ro.evaluate(element[1],operand1,operand2,environment);
+			runTimeStack.push(result100);
 		}
 		else
 		{

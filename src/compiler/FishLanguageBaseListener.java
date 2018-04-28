@@ -295,6 +295,11 @@ public class FishLanguageBaseListener implements FishLanguageListener {
 			instructionNo++;
 			instructionStack.add(instructionNo+" PUSH " + ctx.BOOLEAN());
 		}
+		else if(ctx.REAL()!=null)
+		{
+			instructionNo++;
+			instructionStack.add(instructionNo+" PUSH " + ctx.REAL());
+		}
 		else if(ctx.STRING()!=null)
 		{
 			instructionNo++;

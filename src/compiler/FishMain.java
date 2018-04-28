@@ -12,7 +12,7 @@ class FishMain{
 	@SuppressWarnings("deprecation")
 	public static void main(String args[]) throws Exception
 	{
-		FileInputStream fis = new FileInputStream("C:\\Javalib\\Test\\palindrome.fish");
+		FileInputStream fis = new FileInputStream("C:\\Javalib\\Test\\sample.fish");
 		ANTLRInputStream input = new ANTLRInputStream(fis);
 		FishLanguageLexer lexer = new FishLanguageLexer(input);
 		CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -23,7 +23,7 @@ class FishMain{
 		ptw.walk(flb, tree);
 		try
         {
-        	PrintWriter writer = new PrintWriter("palindrome" + ".ic", "UTF-8");
+        	PrintWriter writer = new PrintWriter("sample" + ".ic", "UTF-8");
         	for(int i=0;i<flb.instructionStack.size();i++)
         	{
         		writer.println(flb.instructionStack.get(i));
@@ -35,7 +35,7 @@ class FishMain{
         	e.printStackTrace();
         }
 		FishRunTimeMain runTime = new FishRunTimeMain();
-		runTime.start("palindrome"+".ic");
+		runTime.start("sample"+".ic");
 		
 	}
 }
