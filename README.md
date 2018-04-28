@@ -8,7 +8,7 @@
  [Siva Pranav Mandadi](https://github.com/mspranav) - smandad1@asu.edu<br>
 
  **System Execution environment:** Windows.<br>
- Tools Used: Java SDK 1.8, Eclipse, ANTLR4.<br>
+ **Tools Used:** Java SDK 1.8, Eclipse, ANTLR4.<br>
 
  **Instructions to install Fish Programming Language:**<br>
  
@@ -24,10 +24,12 @@
  **Command to Execute the compiler and the runtime:**<br>
 
   If .fish file is in a separate folder:<br>
-  $java -jar fish.jar path/to/the/program/file.fish 
+  
+    -$java -jar fish.jar path/to/the/program/file.fish 
 
   If .fish file is in the same folder as fish.jar<br>
-  $java -jar fish.jar <filename>.fish
+  
+    -$java -jar fish.jar <filename>.fish
  
  <br>
 
@@ -39,7 +41,7 @@ FISH is a simple programming language that starts and ends with a statement as:
   
  ```
    startFISH
-     write "Hello FISH!"
+     write "Hello FISH"
    endFISH
  ```
  
@@ -277,21 +279,88 @@ FISH is a simple programming language that starts and ends with a statement as:
    
 </ol> 
 
+
+ <h3 align= "center" >Scope & Restrictions</h3>
+
+This sections talks about what FISH programming language can do. Below is a list of the same:
+
+  
+  <details>
+  <summary>1. Dynamic Typing:</summary>
+   <p> Our programming language dynamically decides the data types of variables just like Java Script/Python.
+	   We support three data types and user only need to declare variable, need not bother about type of variable.
+	   Whenever a variable is declared we are giving default value as "0" and setting default type as "NONE".
+	   Based on the context, we typecast data or shows error message to perform operations among data types.
+	   Consider the example in "data/testcases" section "dynamicTyping.fish" program,
+	   			o/p of that program is :
+		                        a:
+					1 type:NUMBER
+					a:
+					3.0 type:REAL
+	   The output illustrates the dynamic typing in our language because based on context the type of variable "a" is 
+	   changing. 
+	   The simple pinciple we followed in order to achieve dynamic typing is taking care of context/types whenever assignment
+	   statement triggers. 
+	   The priority FISH follows to choose type based on context whenever heterogenous types occurs is
+	   	Scenario 1 (in case of Arithemetic and Relational Operations): REAL > NUMBER > NONE (example "dynamicTyping.fish" also illustrates this concept at the statement a = a + b where b = 2.0 after executing this statement a becomes REAL prior to that it is NUMBER)
+	   	Scanario 2 (in case of Logical operations) : BOOLEAN (logical operations such as AND/OR works only if operands are BOOLEAN) </p>
+ </details>
  
- 
+
+	   
  <details>
- <summary>Scope & Restrictions</summary>
- <p>xyz</p>
+ <summary>2. Strong Typing:</summary>
+ <p>Identifier and assignment statement are places where we can loose our control over program. Whenever we are assigning a identifier
+	   to another indentifier i.e a=b (b must hold a value prior to this assignment statement). Since Fish is a Strongly typed language it 
+	   checks scope of 'b' in the environment before assignment.
+	   Consider the program in our test cases "strongTyping.fish",
+	   			o/p of that program is :
+	   				variable not declared : d
+					variable not declared : b
+				(*PRINTING ERROR MESSAGES AS OUR OWN EXCEPTIONS ARE NOT DEFINED*)
+		This program proves that FISH dont allow assignment of undeclared variable to another varible or use of undeclared variable any where in the program thereby proving the quality of STRONG TYPING.
+		The restriction in this strong typing occurs only at "checking no.of arguments at functioncall == no.of parameters at function definition". We havenot checked this during runtime.</p>
  </details>
  
-<details>
- <summary>Video Presentation</summary>
- <p>xyz</p>
+  <details>
+ <summary>3. Meta Language Inspiration</summary>
+ <p>Inspired from ML, Fish also prints type of "variable" on console when used along with write "statement" (i.e write a => display value and type of 'a' on console).printing type of variable will also prove our "DYNAMIC TYPING".</p>
  </details>
+ 
+  <details>
+ <summary>4. Wonders of FISH write Statement:</summary>
+ <p>
+		1. write can hold a function call (prints return value)
+		2. write can evaluate expressions (arithemetic operations,logical and relational operations)
+	(illustrated in "wondersOFWrite.fish" program and "sampleFunc.fish")</p>
+ </details>
+ 
+  <details>
+ <summary>5. Arguments</summary>
+ <p>FISH Functions can take expressions as "arguments" and Fish Fucntions can be part of expressions. This scenario is illustrated in the "sampleFunc.fish" program.</p>
+ </details>
+ 
+  <details>
+ <summary>6. Variable Decelaration</summary>
+ <p>Fish allows to declare variable at any part of program and from that point of declaration that variable holds "Global Scope". This is good thing but this led to some restriction for us i.e. Use of Same variables in the Function Block and Main Block can corrupt the program. This problem is due to use of global environment hash table instead we have to create environment states block specifically to restrict scope.</p>
+ </details>
+ 
+  <details>
+ <summary>7. Restriction</summary>
+ <p>FISH functions demand atleast one argument. Our grammar and runtime is in accordance with this feature. 
+	   FISH fucntions do not support "Recursion".
+	   			The reason for this is because we havent created Dynamic Stack Frame to handle environment and runtimestack of each function. We handled everything in global stack.
+	   FISH functions expects definition of recent function call first.
+	   			Consider the example "sampleFunctions.fish" in this as "SUB" is latest function call the definition of the SUB must be found prior to "ADD"
+	   			The reason for this restriction is due to usage of stack during compile time while forming intermediate code to store the point of function call.</p>
+ </details>
+
  
  <br>
 
+<h3 align = "center"> Other Resources: </h3> <br>
 
-
- [Contrubutions and meeting agenda](doc/contribution.txt) 
+ * [Contrubutions and meeting agenda](doc/contribution.txt) 
+ * [Compiler Design](doc/design/Compiler-Design.jpg)
+ * [FISH Logo](doc/design/FISH.jpg)
 
