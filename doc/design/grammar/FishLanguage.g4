@@ -44,8 +44,8 @@ expression 	: expression (MULTIPLY|DIVIDE|MOD) expression
 		| REAL
 		| functionCallStatement
 		| LBRACE expression RBRACE;
-BOOLEAN		: 'true'
-		| 'false';	
+BOOLEAN		: 'True'
+		| 'False';	
 SUBTRACT	: '-';
 NUMBER 		:  [-]?[0-9]+;
 REAL		: [-]?[0-9]+[.][0-9]+;
