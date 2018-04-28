@@ -43,23 +43,43 @@ FISH is a simple programming language that starts and ends with a statement as:
  ```
  
  It consists of the following:
-  <ol type="1">
-  <li>Data Types</li>
-   <details>
+ <ol type="1">
+ <li>Data Types</li>
+ <details>
  <summary>Int</summary>
   <p>
-    
+   It is recommended that Integer values are to be declared at the start of the program and can be initialized as follows:
+  
+   ```
+   $f
+   f = 0
+   ```
+   We can also have multiple initializations on the same line
+   
+   ```
+   $f $i
+   f = 0 i = -1
+   ```
   </p>
-    </details>
-    <details>
+  </details>
+  
+  <details>
  <summary>Real</summary>
-  <p>
- 
+ <p>
+ Real numbers such as 1.0, 2.2, 3.67 etc., can be intialized as follows:
+  
+  ```
+  $f
+  f = 2.7
+  ```
+  As Fish language supports dynamic typing we do not have to specify the type.
  </p>
-    </details>
-   <details>
+ 
+  </details>
+  <details>
  <summary>Boolean</summary>
    <p>
+    
    </p>
     </details>
 
@@ -97,26 +117,49 @@ FISH is a simple programming language that starts and ends with a statement as:
     </details>
   
   <details>
- <summary>Read</summary>
-   <p>
-   </p>
-    </details>
-  
-  <details>
  <summary>Write</summary>
    <p>
+    Write is used to display a promt such as:
+    
+    ```
+    $f
+    f=27
+    write f
+    ```
+   Write can alos be used to display portion of a line: 
+   
+   ```
+   write "Keep fishing"
+   ```
    </p>
   </details>
   
+  
+  <details>
+ <summary>Read</summary>
+   <p>
+    Read is used for obtaining input of the primitive types such as Int and can be writen as:
+    
+   ```
+   $f
+   write "give the value of f:"
+   read f
+   ```
+   </p>
+    </details>
+  
+
+  
   <li>Constructs</li>
     <details>
- <summary>Conditional Constructor</summary>
+ <summary>Conditional</summary>
    <p>
+    
    </p>
     </details>
    
    <details>
-   <summary>Iterative Constructor</summary>
+   <summary>Iterative</summary>
    <p>
    </p>
    </details>
