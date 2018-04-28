@@ -2,7 +2,6 @@ package compiler;
 // Generated from FishLanguage.g4 by ANTLR 4.7.1
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Stack;
 
 import org.antlr.v4.runtime.ParserRuleContext;

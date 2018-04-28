@@ -144,8 +144,35 @@ public class RelationalOperations extends TypeChecking{
 				 }
 			}
 			return String.valueOf(result);
+		case "NOTEQUALS":
+		
+		if (resType.equals("NUMBER"))
+		{
+			if (Integer.parseInt(value1)  != Integer.parseInt(value2))
+			{
+				result = true;
+			}
+			else
+			{
+				result = false;
+			}
+			
 		}
+		else if (resType.equals("REAL"))
+		{
+			 if(Double.parseDouble(value1)  != Double.parseDouble(value2))
+			 {
+				 result = true;
+			 }
+			 else
+			 {
+				 result = false;
+			 }
+		}
+		return String.valueOf(result);
+	}
 		return value2;
 	}
+	
 	
 }

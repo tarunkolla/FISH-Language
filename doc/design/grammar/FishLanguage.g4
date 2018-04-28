@@ -12,7 +12,6 @@ statements 	: (assignmentStatement
 		|    returnStatement);
 
 declarationStatement : DOLLAR IDENTIFIER;
-
 functions	: 'fun' FUNCNAME LBRACE parameters RBRACE ':' statements+ 'endfun';
 parameters	: (DOLLAR IDENTIFIER) (',' parameters)?;
 functionCallStatement : FUNCNAME LBRACE arguments RBRACE;
@@ -24,7 +23,8 @@ ifBlock		: 'if' LBRACE booleanExpression RBRACE ':' statements+ ;
 elseBlock	: 'else' ':' statements+;
 loopStatement	: 'loop' LBRACE booleanExpression RBRACE ':' statements+ 'endloop';
 writeStatement  : 'write' expression
-		| 'write' STRING;
+		| 'write' STRING
+		| 'write' booleanExpression;
 readStatement	: 'read' IDENTIFIER;
 booleanExpression: expression EQUALS expression
 		 |    expression GTE expression
@@ -32,8 +32,8 @@ booleanExpression: expression EQUALS expression
   		 |    expression NE expression
 		 |    expression GT expression
 		 |    expression LT expression
-		 |    booleanExpression AND booleanExpression
-		 |    booleanExpression OR booleanExpression		
+		 |    expression AND expression
+		 |    expression OR expression		
 		 |    BOOLEAN;
 expression 	: expression (MULTIPLY|DIVIDE|MOD) expression
 		| expression (ADD|SUBTRACT) expression
@@ -65,7 +65,7 @@ NE		: '!=';
 GT		: '>';
 LT		: '<';
 AND 		: '&&';
-STRING		: ["][ a-zA-Z:=]+["];
+STRING		: ["][ a-zA-Z:=><+*/%!\-]+["];
 OR		: '||';
 FUNCNAME 	: [A-Z]+;
 NEWLINE		: [ \n\t\r] -> skip;

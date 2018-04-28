@@ -24,7 +24,7 @@ public class LogicalOperations extends TypeChecking{
 		return value2;
 	}
 	public String checkCompatibility(String type1, String type2) {
-		if (type1.equals(type2))
+		if (type1.equals("BOOLEAN") && type1.equals("BOOLEAN"))
 			return type1;
 		else
 		{

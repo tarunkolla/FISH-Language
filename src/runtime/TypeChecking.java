@@ -34,7 +34,8 @@ public class TypeChecking {
 			System.out.println("INCOMPATIBLE TYPES");
 			System.exit(0);
 			return "error";
-		}	
+		}
+		
 	}
 
 	public String findType(String operand, Hashtable<String, Pair<String, String>> environment)
@@ -53,8 +54,9 @@ public class TypeChecking {
 		{
 			return "REAL";
 		}
-		else
+		else if(operand.matches("[true|false]"))
 			return "BOOLEAN";
+		return "NONE";
 		
 		}
 	}
@@ -67,7 +69,8 @@ public class TypeChecking {
 			}
 			else
 			{
-				System.out.println("variable not declared");
+				System.out.println("variable not declared " + operand);
+				System.exit(0);
 			}
 		}
 	}

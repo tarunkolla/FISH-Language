@@ -25,6 +25,7 @@ public class FishRunTimeMain
 	{
 		FishRunTime runTime = new FishRunTime();
 		File file = new File(fileName);
+		@SuppressWarnings("resource")
 		Scanner input = new Scanner(file);
 		
 		while (input.hasNextLine()) {
@@ -49,7 +50,6 @@ public class FishRunTimeMain
 		try {
 			fish.start(args[0]);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
