@@ -42,7 +42,7 @@ FISH is a simple programming language that starts and ends with a statement as:
    endFISH
  ```
  
- It consists of the following:
+ **It consists of the following:**
  <ol type="1">
  <li>Data Types</li>
  <details>
@@ -94,19 +94,41 @@ FISH is a simple programming language that starts and ends with a statement as:
     <details>
  <summary>Arithmetic</summary>
    <p>
-	   
+    Fish programming language suports arthmetic operations such as adition '+', subraction '-', multiplication '*', division '/', modulus '%'.	
+   
+   ```
+   $f
+   $i
+   $operate
+   i = 2
+   read f
+   
+  operate = (f % 3) - i
+  
+  write operate
+   ```
    </p>
     </details>
     
    <details>
  <summary>Relational</summary>
    <p>
+   Fish supports relational operators such as equalto, notequalto, lessthan, graterthan, lessthaorequalto, greaterthanorequlato .  
    </p>
     </details>
     
   <details>
  <summary>Logical</summary>
    <p>
+   Logical operators AND '&&' , OR '||' are supported by fish and their syntax is as follows:
+   
+   ```
+   $f
+   f=1
+   if(f&&1):
+       write "It works"
+   endif
+   ```
    </p>
     </details>
    
@@ -115,12 +137,14 @@ FISH is a simple programming language that starts and ends with a statement as:
   <details>
   <summary>Assignment</summary>
    <p>
+	   =
    </p>
    </details>
   
   <details>
  <summary>Declerative</summary>
    <p>
+	   
    </p>
     </details>
   
@@ -209,12 +233,12 @@ FISH is a simple programming language that starts and ends with a statement as:
    <details>
    <summary>Function</summary>
    <p>
-   Fish language supports functions that start with fun() and end with endfun as:
+   Fish language supports functions that start with fun(), ends with endfun and should have a return as:
 	   
    ```
-   fun($f):
-       f = 27
-       wirte f
+   fun NAME($f):
+       <statements>
+       <return Statement> 
    endfun    
    ```
    </p>
@@ -222,7 +246,14 @@ FISH is a simple programming language that starts and ends with a statement as:
     <details>
    <summary>Function call</summary>
    <p>
-   Functions in Fish support a return
+   Functions in Fish supports function calls as that also writes return values:
+	 
+   ```
+   $f $i
+   f = NAME(<argument>)
+   f = i + NAME(<argument>)
+   write NAME(<argument>)
+   ```
    </p>
    </details>
    
@@ -241,6 +272,6 @@ FISH is a simple programming language that starts and ends with a statement as:
  </details>
 
 
-<br>
- Contrubutions and meeting agenda can be found [here](doc/contribution.txt) 
+
+ [Contrubutions and meeting agenda](doc/contribution.txt) 
 
