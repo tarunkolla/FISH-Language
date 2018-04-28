@@ -41,7 +41,8 @@ public class FishRunTime {
 				}
 				else
 				{
-					System.out.println("Variable not declared");
+					System.out.println("Variable not declared "+variable);
+					System.exit(0);
 				}
 				break;
 			case "DISPLAY":

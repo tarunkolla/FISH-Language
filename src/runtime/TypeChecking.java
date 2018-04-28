@@ -54,8 +54,10 @@ public class TypeChecking {
 		{
 			return "REAL";
 		}
-		else if(operand.matches("[true|false]"))
+		else if(operand.matches("True|False"))
+		{
 			return "BOOLEAN";
+		}
 		return "NONE";
 		
 		}
@@ -77,7 +79,7 @@ public class TypeChecking {
 
 	public boolean checkType(String value)
 	{
-		if (value.matches("[-]?[0-9]+") || value.matches("[true|false]") || value.matches("[-]?[0-9]+[.][0-9]+"))
+		if (value.matches("[-]?[0-9]+") || value.matches("True|False") || value.matches("[-]?[0-9]+[.][0-9]+"))
 		{
 			return true;
 		}

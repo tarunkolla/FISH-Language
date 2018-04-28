@@ -35,6 +35,6 @@ class FishMain{
         	e.printStackTrace();
         }
 		/*FishRunTimeMain runTime = new FishRunTimeMain();
-		runTime.start("sampleFunc"+".ic");*/
+		runTime.start("binaryOperation"+".ic");*/
 	}
 }
