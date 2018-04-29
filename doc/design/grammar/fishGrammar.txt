@@ -1,21 +1,21 @@
 Grammar : As we are using Top-down parsing approach our grammar must be unambiguous, so we eliminated left recursion and added precedence among operators. The grammar is as follows:
 program			->  mainBlock | mainBlock functions
-mainBlock		->  startFISH statements endFish | startFISH block endFish functionalBlock
-block			-> declaration statements
-			| statements
-functions		-> functionalHelpBlock functions
-			|  functionalHelpBlock 
+mainBlock		->  startFISH statements endFish | startFISH statements endFish functionalBlock
+statements		-> statements
+			| declaration statements
+functions		-> functionalHelpBlock 
+			|  functionalHelpBlock functions
 functionalHelpBlock 	-> fun functionName(parameters): statements endfun
-parameters 		->  parametersHelp, parameters
-			|   parametersHelp
+parameters 		->  parametersHelp
+			|   parametersHelp, parameters
 parametersHelp 		-> $identifier
-declaration 		->  declarationHelp declaration
-			|   declarationHelp
+declaration 		->  declarationHelp
+			|   declarationHelp declaration
 declarationHelp	 	-> $identifier
 			 |   $identifier = number
 		 	 |   $identifier = boolean
-statements		->  statementsHelp statements
-			|   statementsHelp
+statements		->  statementsHelp 
+			|   statementsHelp statements
 statementsHelp	 	->  assignmentStatement
 			|    ifStatement
 			|    loopStatement
@@ -28,29 +28,30 @@ ifStatement		-> if (booleanExpression) : statements endif
 			| if (booleanExpression) : statements else : statements endif
 loopStatement		->  loop (booleanExpression) : statements endloop
 functionCallStatement	->  funcName (arguments)
-arguments 		-> argumentsHelp , arguments
-		 	| argumentsHelp
+arguments 		-> argumentsHelp 
+		 	| argumentsHelp, arguments
 argumentsHelp  		-> expression
+readStatement		-> read identifier
 writeStatement 		->  write expression
 			|   write string
 			|   write booleanExpression
 returnStatement		->  return expression
-booleanExpression	->  expression == expression
+booleanExpression	->  boolean
+			|    expression == expression
 		 	|    expression >= expression
 		 	|    expression <= expression
   		 	|    expression != expression
 		 	|    expression > expression
 		 	|    expression < expression
 			|    expression && expression
-			|    expression || expression
-			|    boolean
-expression 		->  expressionHelp + expression 
+			|    expression || expression  
+expression 		->  expressionHelp 
+			|    expressionHelp + expression 
 			|    expressionHelp - expression 
-			|    expressionHelp
-expressionHelp 	       	->  factor *  expressionHelp 
+expressionHelp 	       	->  factor  
+		 	|  factor * expressionHelp
 		 	|  factor / expressionHelp
-		 	|  factor % expressionHelp
-		 	|  factor
+		 	|  factor %  expressionHelp
 factor			->  (expression)
 			|   identifier
 			|   number
