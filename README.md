@@ -35,7 +35,7 @@
    To generate output:
     
      fish <FileName>.fish.ic if in same folder
-     fish "aboslute path" \<FileName>.fish.ic for different folder
+     fish "absolute path" \<FileName>.fish.ic for different folder
      output: Generates the program output on to the command prompt
      
 **For OSX:**
