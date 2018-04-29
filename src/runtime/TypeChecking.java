@@ -2,6 +2,12 @@ package runtime;
 
 import java.util.Hashtable;
 
+/*
+*This is the class which on the whole helps with dynamic typing and strong typing.
+*
+*@author: NAGA RAVI TEJA THORAM
+*/
+
 public class TypeChecking {
 	public String getValue(String operand, Hashtable<String, Pair<String, String>> environment) {
 		if (environment.containsKey(operand))
