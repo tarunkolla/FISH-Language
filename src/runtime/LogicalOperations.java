@@ -4,7 +4,7 @@ import java.util.Hashtable;
 /*
 *This class extends the Typechecking and computes the 2 basic Logical operations within the code.
 *
-*@author: Koushik Kotamraju
+*@author: Siva Pranav Mandadi
 */
 public class LogicalOperations extends TypeChecking{
 	public String evaluate(String operation, String operand1, String operand2,  Hashtable<String, Pair<String, String>> environment)
