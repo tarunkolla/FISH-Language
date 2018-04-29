@@ -7,6 +7,13 @@ import java.util.Stack;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/*
+*This class correlates to the keywords occurred in the code which is sent from the class 
+*Fishmain and would take actions accordingly.
+*
+*@author: Siva Pranav Mandadi
+*/
+
 public class FishRunTime {
 	
 	String operations[] = {"DISPLAY", "ASSIGN", "READ","ENDFISHING", "PARAMASSIGN","STARTFUN"};
