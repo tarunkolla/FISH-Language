@@ -2,6 +2,11 @@ package runtime;
 
 import java.util.Hashtable;
 
+/*
+*This class extends the Typechecking and computes the 5 basic Arithemetic operations within the code.
+*
+*@author: Siva Pranav Mandadi
+*/
 public class ArithmeticOperations extends TypeChecking {
 
 	public String evaluate(String operation, String operand1, String operand2,  Hashtable<String, Pair<String, String>> environment)
