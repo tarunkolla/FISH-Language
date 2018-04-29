@@ -1,5 +1,11 @@
 package runtime;
 // Pair class
+/*
+*This is an Auxilary datastructure created in order to save the datatype of the variable 
+*in the environment along with its value <Type, Value>
+*
+*@author: NAGA RAVI TEJA THORAM
+*/
 class Pair<U, V>
 {
 	public U first;   	
