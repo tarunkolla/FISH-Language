@@ -1,4 +1,10 @@
-Grammar : As we are using Top-down parsing approach our grammar must be unambiguous, so we eliminated left recursion and added precedence among operators. The grammar is as follows:
+Grammar : As we are using Top-down parsing approach our grammar must be unambiguous, 
+     so we eliminated left recursion and added precedence among operators. The grammar is as follows:
+
+Also, as ANTLR eliminates ambugity in the grammar and incudes right associativity in the grammar we have 
+used FishLanguage.g4 as our primary grammar to input to ANTLR. (We have taken this  feature of ANTLR to our 
+advantage for developing fish programming language)
+     
 program			->  mainBlock | mainBlock functions
 mainBlock		->  startFISH statements endFish | startFISH statements endFish functionalBlock
 statements		-> statements
