@@ -6,7 +6,13 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Scanner;
 import java.util.Stack;
-
+/*
+*This class would intiate the runtime by creating the runtime stack, runtime enviroment key value pair and
+*the eipregister to keep track of the current executing instrution.
+*
+*@author: Koushik Kotamraju
+*
+*/
 public class FishRunTimeMain
 {
 	int eipRegister,eaxRegister=0;
@@ -15,12 +21,14 @@ public class FishRunTimeMain
 	String[] commands; 
 	Hashtable<String, Pair<String, String>> environment;
 	
+	//Contructor to intialize runtime stack , runtime environmental key value pair and the eipregister
 	public FishRunTimeMain()
 	{
 		eipRegister = 0;
 		runTimeStack = new Stack<String>();
 		environment = new Hashtable<String, Pair<String, String>>();
 	}
+	//Method to get the instructions from the .fish file and its corresponding number (eipregister)
 	public void start(String fileName) throws FileNotFoundException
 	{
 		FishRunTime runTime = new FishRunTime();
@@ -32,11 +40,7 @@ public class FishRunTimeMain
 			instructions.add(input.nextLine());
 		}
 		commands =  instructions.toArray(new String[instructions.size()]);
-		/*while(eipRegister < commands.length) {
-            String instruction = commands[eipRegister];
-            System.out.println(eipRegister +" "+ instruction);
-            eipRegister++;
-           }*/
+		
 		eipRegister = 0;
 		while(eipRegister < commands.length) {
             String instruction = commands[eipRegister];
