@@ -12,24 +12,45 @@
 
  **Instructions to install Fish Programming Language:**<br>
  
-    -Download the Jar file.
+    -Download the install folder present in the reposority
+    -The folder consistes of .jar file for compiler and runtime.
+    -The 2 .bat files are used to execute the compiler and runtime
  
  **Instructions to build and execute the program:**<br>
 
-    -Write the Input program snippet with the file name <Filename>.fish within the same folder of the fish.jar
+    -Write the Input program snippet with the file name <FileName>.fish within the same folder of the .jar files
     if not give the absolute path to the program file.
-    -Open the command prompt and navigate to the folder where the jar is present.
-    -Execute using the given bash command to run the .fish file. 
+
  
  **Command to Execute the compiler and the runtime:**<br>
 
-  If .fish file is in a separate folder:<br>
-  
-    -$java -jar fish.jar path/to/the/program/file.fish 
-
-  If .fish file is in the same folder as fish.jar<br>
-  
-    -$java -jar fish.jar <filename>.fish
+**For Windows:** 
+    
+     -Execute using the given .bat commands to run the .fish file. 
+   To Compile: 
+   
+     fishCompile <FileName>.fish if in same folder 
+     fishCompile "absolute path" \<FileName>.fish for different folder
+     Output: <FileName>.fish.ic
+   To generate output:
+    
+     fish <FileName>.fish.ic if in same folder
+     fish "aboslute path" \<FileName>.fish.ic for different folder
+     output: Generates the program output on to the command prompt
+     
+**For OSX:**
+   
+   Navigate to the install folder or use absolute path and then
+   
+   To Compile:
+      
+     java -jar compile.jar <FileName>.fish
+     Output: <FileName>.fish.ic
+     
+   To generate output:
+   
+      java -jar runtime.jar <FileName>.fish.ic
+      Output: Generates the progrma output on to the command prompt
  
  <br>
 
@@ -216,7 +237,7 @@ FISH is a simple programming language that starts and ends with a statement as:
         write "f is zero"
     endif 
    ```
-   If can also be followed with an else sattement:
+   If can also be followed with an else statement:
    
    ```
    $f $i $s $h
@@ -294,7 +315,7 @@ This sections talks about what FISH programming language can do. The list below 
  <li> We support three data types and user only need to declare variable, need not bother about type of variable. </li>
 	 <li>   Whenever a variable is declared we are giving default value as "0" and setting default type as "NONE". </li>
 	 <li>   Based on the context, we typecast data or shows error message to perform operations among data types. 
-	 <li>   Consider the example program <a href="https://github.com/tarunkolla/SER502-Spring2018-Team16/blob/master/data/Test-Cases/Test-Programs/dynamicTyping.fish">dynamicTyping.fish</a>, </li>
+	 <li>   Consider the example program <a href="https://github.com/tarunkolla/SER502-Spring2018-Team16/blob/master/data/Test-Cases/Test-Programs/dynamicTyping.fish">dynamicTyping.fish</a> </li>
 	   			o/p of that program is : <br>
 		                        
 	a: 
@@ -319,7 +340,7 @@ This sections talks about what FISH programming language can do. The list below 
 	 <ul> <li>Identifier and assignment statement are places where we can loose our control over program. Whenever we are assigning a identifier
 	   to another indentifier i.e a=b (b must hold a value prior to this assignment statement). Since Fish is a Strongly typed language it </li> <br> 
 	  &emsp; checks scope of 'b' in the environment before assignment. <br>
-	  &emsp; Consider the program <a href="https://github.com/tarunkolla/SER502-Spring2018-Team16/blob/master/data/Test-Cases/Test-Programs/strongTyping.fish">StrongTyping.fish</a>, <br>
+	  &emsp; Consider the program <a href="https://github.com/tarunkolla/SER502-Spring2018-Team16/blob/master/data/Test-Cases/Test-Programs/strongTyping.fish">StrongTyping.fish</a> <br>
  o/p of that program is :
         
 	variable not declared : d
