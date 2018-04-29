@@ -294,7 +294,7 @@ This sections talks about what FISH programming language can do. The list below 
  <li> We support three data types and user only need to declare variable, need not bother about type of variable. </li>
 	 <li>   Whenever a variable is declared we are giving default value as "0" and setting default type as "NONE". </li>
 	 <li>   Based on the context, we typecast data or shows error message to perform operations among data types. 
-	 <li>   Consider the example in "data/testcases" section "dynamicTyping.fish" program, </li>
+	 <li>   Consider the example program <a href="https://github.com/tarunkolla/SER502-Spring2018-Team16/blob/master/data/Test-Cases/Test-Programs/dynamicTyping.fish">dynamicTyping.fish</a>, </li>
 	   			o/p of that program is : <br>
 		                        
 	a: 
@@ -319,9 +319,9 @@ This sections talks about what FISH programming language can do. The list below 
 	 <ul> <li>Identifier and assignment statement are places where we can loose our control over program. Whenever we are assigning a identifier
 	   to another indentifier i.e a=b (b must hold a value prior to this assignment statement). Since Fish is a Strongly typed language it </li> <br> 
 	  &emsp; checks scope of 'b' in the environment before assignment. <br>
-	  &emsp; Consider the program in our test cases "strongTyping.fish", 
-	   			
-	o/p of that program is :
+	  &emsp; Consider the program <a href="https://github.com/tarunkolla/SER502-Spring2018-Team16/blob/master/data/Test-Cases/Test-Programs/strongTyping.fish">StrongTyping.fish</a>, <br>
+ o/p of that program is :
+        
 	variable not declared : d
 	variable not declared : b
 				
@@ -343,12 +343,12 @@ This sections talks about what FISH programming language can do. The list below 
  <p> 
 		<ul> <li>write can hold a function call (prints return value) </li>
 		<li>write can evaluate expressions (arithemetic operations,logical and relational operations) </li>
-	(illustrated in "wondersOFWrite.fish" program and "sampleFunc.fish") </ul></p>
+	(illustrated in <a href="https://github.com/tarunkolla/SER502-Spring2018-Team16/blob/master/data/Test-Cases/Test-Programs/wondersOfWrite.fish">wondersOFWrite.fish</a> program and <a href="https://github.com/tarunkolla/SER502-Spring2018-Team16/blob/master/data/Test-Cases/Test-Programs/sampleFunc.fish">sampleFunc.fish</a> ) </ul></p>
  </details>
  
   <details>
  <summary>5. Arguments</summary>
- <p><ul><li>FISH Functions can take expressions as "arguments" and Fish Fucntions can be part of expressions. This scenario is illustrated in the "sampleFunc.fish" program.</li></ul></p>
+ <p><ul><li>FISH Functions can take expressions as "arguments" and Fish Fucntions can be part of expressions. This scenario is illustrated in the <a href="https://github.com/tarunkolla/SER502-Spring2018-Team16/blob/master/data/Test-Cases/Test-Programs/sampleFunc.fish">sampleFunc.fish</a> program.</li></ul></p>
  </details>
  
   <details>
@@ -363,9 +363,10 @@ This sections talks about what FISH programming language can do. The list below 
 	   			The reason for this is because we havent created Dynamic Stack Frame to handle environment and runtimestack of each function. We handled everything in global stack. </li>
 	  <li> FISH functions expects definition of recent function call first.  <br>
 	   			 Consider the example "sampleFunctions.fish" in this as "SUB" is latest function call the definition of the SUB must be found prior to "ADD" <br> 
-	   			The reason for this restriction is due to usage of stack during compile time while forming intermediate code to store the point of function call.</li></ul> </p>
+	   			The reason for this restriction is due to usage of stack during compile time while forming intermediate code to store the point of function call.</li>
+	<li> Functions can take given expressions as arguments bu it is recommend to leave a space between the operand and operators. Consider the example of f+1, this recommended to be writen as f + 1.</li></ul> </p>
  </details>
- Functions can take given expressions as arguments bu it is recommend to leave a space between the operand and operators. Consider the example of f+1, this recommended to be writen as f + 1.
+
 
  
  <br>
@@ -376,4 +377,4 @@ This sections talks about what FISH programming language can do. The list below 
  * [Compiler Design](doc/design/Compiler-Design.jpg)
  * [FISH Logo](doc/design/FISH.jpg)
  * [FISH Language Grammer](doc/design/grammar/FishLanguage.g4)
- * [Sample FISH programs](data/Test Cases/Test Programs)
+ * [Sample FISH programs](data/Test-Cases/Test-Programs)
