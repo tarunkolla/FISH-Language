@@ -8,6 +8,11 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import java.io.FileInputStream;
 import java.io.PrintWriter;
 
+/*
+*This class generates the Intermediate Code.
+*
+*@author: Koushik Kotamraju
+*/
 @SuppressWarnings("deprecation")
 class FishMain{
 	public static void main(String args[]) throws Exception
