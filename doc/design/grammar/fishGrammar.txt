@@ -1,15 +1,15 @@
 Grammar : As we are using Top-down parsing approach our grammar must be unambiguous, so we eliminated left recursion and added precedence among operators. The grammar is as follows:
-program			->  mainBlock
-mainBlock		->  startFISH block endFish | startFISH block endFish functionalBlock
+program			->  mainBlock | mainBlock functions
+mainBlock		->  startFISH statements endFish | startFISH block endFish functionalBlock
 block			-> declaration statements
 			| statements
-functionalBlock		-> functionalHelpBlock functionalBlock
+functions		-> functionalHelpBlock functions
 			|  functionalHelpBlock 
-functionalHelpBlock 	-> fun functionName(parameters): block endfun
+functionalHelpBlock 	-> fun functionName(parameters): statements endfun
 parameters 		->  parametersHelp, parameters
 			|   parametersHelp
-parametersHelp 	-> $identifier
-declaration 		->  declarationHelp , declaration
+parametersHelp 		-> $identifier
+declaration 		->  declarationHelp declaration
 			|   declarationHelp
 declarationHelp	 	-> $identifier
 			 |   $identifier = number
@@ -19,41 +19,47 @@ statements		->  statementsHelp statements
 statementsHelp	 	->  assignmentStatement
 			|    ifStatement
 			|    loopStatement
-			|    functionCall
+			|    functionCallStatement
 			|    writeStatement
+			|    readStatement
 			|    returnStatement
 assignmentStatement 	-> identifier = expression
-			| identifier = boolean
-ifStatement		->  if (booleanExpression) : block else : block endif
-loopStatement		->  loop (booleanExpression) : block endloop
-functionCall		->  identifier = functionName(arguments)
-			|   functionName(arguments)
+ifStatement		-> if (booleanExpression) : statements endif
+			| if (booleanExpression) : statements else : statements endif
+loopStatement		->  loop (booleanExpression) : statements endloop
+functionCallStatement	->  funcName (arguments)
 arguments 		-> argumentsHelp , arguments
 		 	| argumentsHelp
 argumentsHelp  		-> expression
-			| boolean
 writeStatement 		->  write expression
+			|   write string
+			|   write booleanExpression
 returnStatement		->  return expression
-			|    return booleanExpression
 booleanExpression	->  expression == expression
 		 	|    expression >= expression
 		 	|    expression <= expression
   		 	|    expression != expression
 		 	|    expression > expression
 		 	|    expression < expression
+			|    expression && expression
+			|    expression || expression
 			|    boolean
-expression 		->  term  + expression 
-			|    term - expression 
-			|    term
-term 	        	->  factor *  term  
-		 	|  factor / term 
-		 	|  factor % term
+expression 		->  expressionHelp + expression 
+			|    expressionHelp - expression 
+			|    expressionHelp
+expressionHelp 	       	->  factor *  expressionHelp 
+		 	|  factor / expressionHelp
+		 	|  factor % expressionHelp
 		 	|  factor
 factor			->  (expression)
 			|   identifier
 			|   number
-boolean			->  true
-			|    false	
+			|   real
+			|   string
+boolean			->  True
+			|   False	
 number			->   [-]?[0-9]+
 identifier		->   [a-z]+
-functionName		->   [#][a-z]+
+functionName		->   [A-Z]+
+real 			->   [-]?[0-9]+[.][0-9]+
+string			->   ["][ a-zA-Z:=><+*/%!\-]+["]
