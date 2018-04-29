@@ -12,8 +12,8 @@
 
  **Instructions to install Fish Programming Language:**<br>
  
-    -Download the install folder present in the reposority
-    -The folder consistes of .jar file for compiler and runtime.
+    -Download the install folder present in the repository
+    -The folder consists of .jar file for compiler and runtime.
     -The 2 .bat files are used to execute the compiler and runtime
  
  **Instructions to build and execute the program:**<br>
@@ -50,7 +50,7 @@
    To generate output:
    
       java -jar runtime.jar <FileName>.fish.ic
-      Output: Generates the progrma output on to the command prompt
+      Output: Generates the program output on to the command prompt
  
  <br>
 
@@ -66,7 +66,7 @@ FISH is a simple programming language that starts and ends with a statement as:
    endFISH
  ```
  
- **It consists of the following:**
+ **It consists of the following:** (Click to expand)
  <ol type="1">
 
    <li>Statements</li>
@@ -74,7 +74,7 @@ FISH is a simple programming language that starts and ends with a statement as:
   <details>
   <summary>Assignment</summary>
    <p>
-    Fish language supports assignment statements and can be writen as: 
+    Fish language supports assignment statements and can be written as: 
 	   
    ```
    $f
@@ -97,7 +97,7 @@ FISH is a simple programming language that starts and ends with a statement as:
   <details>
  <summary>Write</summary>
    <p>
-    Write is used to display a promt such as:
+    Write is used to display a prompt such as:
     
    ```
     $f
@@ -147,7 +147,7 @@ FISH is a simple programming language that starts and ends with a statement as:
   <details>
  <summary>Real</summary>
  <p>
- Real numbers such as 1.0, 2.2, 3.67 etc., can be intialized as follows:
+ Real numbers such as 1.0, 2.2, 3.67 etc., can be initialized as follows:
   
   ```
   $f
@@ -160,7 +160,7 @@ FISH is a simple programming language that starts and ends with a statement as:
   <details>
  <summary>Boolean</summary>
    <p>
-    Fish supports boolean types and can be intialized as:
+    Fish supports boolean types and can be initialized as:
 	   
    ```
    $f
@@ -175,7 +175,7 @@ FISH is a simple programming language that starts and ends with a statement as:
     <details>
  <summary>Arithmetic</summary>
    <p>
-    Fish programming language suports arthmetic operations such as adition '+', subraction '-', multiplication '*', division '/', modulus '%'.	
+    Fish programming language supports arithmetic operations such as addition '+', subtraction '-', multiplication '*', division '/', modulus '%'.	
    
    ```
    $f
@@ -201,7 +201,7 @@ FISH is a simple programming language that starts and ends with a statement as:
    f = 2
    read i
    if(i >= 2):
-       wiite "i is greater than or equal to 2"
+       write "i is greater than or equal to 2"
    endif
    ```
    </p>
@@ -325,11 +325,11 @@ This sections talks about what FISH programming language can do. The list below 
 					
 &emsp; The output illustrates the dynamic typing in our language because based on context the type of variable "a" is 
 	   changing. 
-	  <li>  The simple pinciple we followed in order to achieve dynamic typing is taking care of context/types whenever assignment
+	  <li>  The simple principle we followed in order to achieve dynamic typing is taking care of context/types whenever assignment
 	   statement triggers. 
-	   <li> The priority FISH follows to choose type based on context whenever heterogenous types occurs is <br>
-	   &emsp; <b>	Scenario 1 </b>(in case of Arithemetic and Relational Operations): <br>  &emsp; REAL > NUMBER > NONE (example "dynamicTyping.fish" also illustrates this concept at the statement a = a + b <br> &emsp; where b = 2.0 after executing this statement a becomes REAL prior to that it is NUMBER) <br>
-	  &emsp; <b>Scanario 2 </b>(in case of Logical operations) : <br>  &emsp; BOOLEAN (logical operations such as AND/OR works only if operands are BOOLEAN)</ul> </p>
+	   <li> The priority FISH follows to choose type based on context whenever heterogeneous types occurs is <br>
+	   &emsp; <b>	Scenario 1 </b>(in case of Arithmetic and Relational Operations): <br>  &emsp; REAL > NUMBER > NONE (example "dynamicTyping.fish" also illustrates this concept at the statement a = a + b <br> &emsp; where b = 2.0 after executing this statement a becomes REAL prior to that it is NUMBER) <br>
+	  &emsp; <b>Scenario 2 </b>(in case of Logical operations) : <br>  &emsp; BOOLEAN (logical operations such as AND/OR works only if operands are BOOLEAN)</ul> </p>
  </details>
  
 
@@ -338,7 +338,7 @@ This sections talks about what FISH programming language can do. The list below 
  <summary>2. Strong Typing</summary>
  <p>
 	 <ul> <li>Identifier and assignment statement are places where we can loose our control over program. Whenever we are assigning a identifier
-	   to another indentifier i.e a=b (b must hold a value prior to this assignment statement). Since Fish is a Strongly typed language it </li> <br> 
+	   to another identifier i.e a=b (b must hold a value prior to this assignment statement). Since Fish is a Strongly typed language it </li> <br> 
 	  &emsp; checks scope of 'b' in the environment before assignment. <br>
 	  &emsp; Consider the program <a href="https://github.com/tarunkolla/SER502-Spring2018-Team16/blob/master/data/Test-Cases/Test-Programs/strongTyping.fish">StrongTyping.fish</a> <br>
  o/p of that program is :
@@ -347,15 +347,15 @@ This sections talks about what FISH programming language can do. The list below 
 	variable not declared : b
 				
 (*PRINTING ERROR MESSAGES AS OUR OWN EXCEPTIONS ARE NOT DEFINED*) <br>
-		<li>This program proves that FISH dont allow assignment of undeclared variable to another varible or use of undeclared variable any where in the program thereby proving the quality of STRONG TYPING. </li>
-		<li> The restriction in this strong typing occurs only at "checking no.of arguments at functioncall == no.of parameters at function definition". We havenot checked this during runtime. </li> </ul> </p>
+		<li>This program proves that FISH dont allow assignment of undeclared variable to another variable or use of undeclared variable any where in the program thereby proving the quality of STRONG TYPING. </li>
+		<li> The restriction in this strong typing occurs only at "checking no.of arguments at functioncall == no.of parameters at function definition". We have not checked this during runtime. </li> </ul> </p>
  </details>
  
   <details>
  <summary>3. Meta Language Inspiration</summary>
  <p>
 	 <ul>
-		 <li>Inspired from ML, Fish also prints type of "variable" on console when used along with write "statement" (i.e write a => display value and type of 'a' on console).  <br>  Printing type of variable will also exibits our "DYNAMIC TYPING".</p> </li>
+		 <li>Inspired from ML, Fish also prints type of "variable" on console when used along with write "statement" (i.e write a => display value and type of 'a' on console).  <br>  Printing type of variable will also exhibits our "DYNAMIC TYPING".</p> </li>
 		 </ul>
  </details>
  
@@ -363,29 +363,29 @@ This sections talks about what FISH programming language can do. The list below 
  <summary>4. Wonders of FISH write Statement</summary>
  <p> 
 		<ul> <li>write can hold a function call (prints return value) </li>
-		<li>write can evaluate expressions (arithemetic operations,logical and relational operations) </li>
+		<li>write can evaluate expressions (arithmetic operations,logical and relational operations) </li>
 	(illustrated in <a href="https://github.com/tarunkolla/SER502-Spring2018-Team16/blob/master/data/Test-Cases/Test-Programs/wondersOfWrite.fish">wondersOFWrite.fish</a> program and <a href="https://github.com/tarunkolla/SER502-Spring2018-Team16/blob/master/data/Test-Cases/Test-Programs/sampleFunc.fish">sampleFunc.fish</a> ) </ul></p>
  </details>
  
   <details>
  <summary>5. Arguments</summary>
- <p><ul><li>FISH Functions can take expressions as "arguments" and Fish Fucntions can be part of expressions. This scenario is illustrated in the <a href="https://github.com/tarunkolla/SER502-Spring2018-Team16/blob/master/data/Test-Cases/Test-Programs/sampleFunc.fish">sampleFunc.fish</a> program.</li></ul></p>
+ <p><ul><li>FISH Functions can take expressions as "arguments" and Fish Functions can be part of expressions. This scenario is illustrated in the <a href="https://github.com/tarunkolla/SER502-Spring2018-Team16/blob/master/data/Test-Cases/Test-Programs/sampleFunc.fish">sampleFunc.fish</a> program.</li></ul></p>
  </details>
  
   <details>
- <summary>6. Variable Decelaration</summary>
+ <summary>6. Variable Declaration</summary>
  <p><ul><li>Fish allows to declare variable at any part of program and from that point of declaration that variable holds "Global Scope". This is good thing but this led to some restriction for us i.e. Use of Same variables in the Function Block and Main Block can corrupt the program. This problem is due to use of global environment hash table instead we have to create environment states block specifically to restrict scope. </li></ul></p>
  </details>
  
   <details>
  <summary>7. Restriction</summary>
- <p><ul><li>FISH functions demand atleast one argument. Our grammar and runtime is in accordance with this feature. </li>
-	  <li> FISH fucntions do not support "Recursion". <br>
-	   			The reason for this is because we havent created Dynamic Stack Frame to handle environment and runtimestack of each function. We handled everything in global stack. </li>
+ <p><ul><li>FISH functions demand at least one argument. Our grammar and runtime is in accordance with this feature. </li>
+	  <li> FISH functions do not support "Recursion". <br>
+	   			The reason for this is because we havent created Dynamic Stack Frame to handle environment and runtime stack of each function. We handled everything in global stack. </li>
 	  <li> FISH functions expects definition of recent function call first.  <br>
 	   			 Consider the example "sampleFunctions.fish" in this as "SUB" is latest function call the definition of the SUB must be found prior to "ADD" <br> 
 	   			The reason for this restriction is due to usage of stack during compile time while forming intermediate code to store the point of function call.</li>
-	<li> Functions can take given expressions as arguments bu it is recommend to leave a space between the operand and operators. Consider the example of f+1, this recommended to be writen as f + 1.</li></ul> </p>
+	<li> Functions can take given expressions as arguments bu it is recommend to leave a space between the operand and operators. Consider the example of f+1, this recommended to be written as f + 1.</li></ul> </p>
  </details>
 
 
@@ -394,8 +394,8 @@ This sections talks about what FISH programming language can do. The list below 
 
 <h3 align = "center"> Other Resources </h3> <br>
 
- * [Contrubutions and meeting agenda](doc/contribution.txt) 
+ * [Contributions and meeting agenda](doc/contribution.txt) 
  * [Compiler Design](doc/design/Compiler-Design.jpg)
  * [FISH Logo](doc/design/FISH.jpg)
- * [FISH Language Grammer](doc/design/grammar/FishLanguage.g4)
+ * [FISH Language Grammar](doc/design/grammar/FishLanguage.g4)
  * [Sample FISH programs](data/Test-Cases/Test-Programs)
