@@ -394,10 +394,9 @@ This sections talks about what FISH programming language can do. The list below 
 
 <h3 align = "center"> Other Resources </h3> <br>
 
- * [Contributions and meeting agenda](doc/contribution.txt) 
+
  * [Compiler Design](doc/design/Compiler-Design.jpg)
  * [FISH Logo](doc/design/FISH.jpg)
  * [FISH Language Grammar](doc/design/grammar/FishLanguage.g4)
  * [Sample FISH programs](data/Test-Cases/Test-Programs)
- * [Youtube Video Updated to 15:00m](https://youtu.be/XoU5I9I3MAk)
- * [Youtube Video](https://youtu.be/B69gsLde1ow)
+ * [Watch the 15:00 minutes video to know more](https://youtu.be/XoU5I9I3MAk)
